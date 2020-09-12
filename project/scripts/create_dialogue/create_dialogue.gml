@@ -34,7 +34,7 @@ function create_dialogue() {
 	var _effects	= array_create(text_len, [1,0]);
 	var _speed		= array_create(text_len, [1,0.5]);
 	var _textcol	= array_create(text_len, [1,c_white]);
-	var _type		= array_create(text_len, 0);
+	var _type		= array_create(text_len, DialogueType.Normal);
 	var _nextline	= array_create(text_len, 0);
 	var _script		= array_create(text_len, 0);
 	var _emotion	= array_create(text_len, 0);

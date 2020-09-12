@@ -9,7 +9,7 @@ create_textevent(
 	-1,
 	[ [1,1, 9,2, 16,4], -1, [1,3]],
 	[ [1,0.2, 4,2, 10, 0.5]],
-	-1,
+	DialogueType.Normal,
 	-1,
 	-1,
 	[ [1,c_lime, 9,c_fuchsia, 16,c_aqua] ],

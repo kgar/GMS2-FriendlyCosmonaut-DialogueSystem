@@ -6,7 +6,7 @@ function reset_dialogue_defaults() {
 	mySpeaker			= -1;
 	myEffects			= 0;
 	myTextSpeed			= 0;
-	myTypes				= 0;
+	myTypes				= DialogueType.Normal;
 	myNextLine			= 0;
 	myScripts			= 0;
 	myTextCol			= 0;

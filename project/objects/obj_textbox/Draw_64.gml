@@ -6,7 +6,7 @@ if(portrait[page] != -1){
 	draw_sprite_ext(portrait[page], emotion[page], pos_x-portraitWidth, pos_y, scale,scale, 0, c_white, 1);
 
 	#region Idle Animated Portrait
-if(type[page] == 1 or charCount >= str_len) {
+if(type[page] == DialogueType.Choice or charCount >= str_len) {
 	if(portrait_idle[page] != -1){
 		var posx = pos_x-portraitWidth; var posy = pos_y;
 		if(portrait_idle_x[page] != -1){ posx += portrait_idle_x[page] * scale; }
@@ -43,7 +43,7 @@ draw_set_font(font[page]);
 
 //--------Draw the text differently if we are in 1) a dialogue choice or 2) normal dialogue
 #region TYPE 1: DIALOGUE CHOICE
-if(type[page] == 1){
+if(type[page] == DialogueType.Choice){
 	//Variables we need
 	var col = default_col, tp = text[page], tpl = array_length_1d(tp), txtwidth = boxWidth-(2*x_buffer);
 	var cc = 1, yy = pos_y+y_buffer, xx = pos_x+x_buffer, ii = 0, iy = 0;
