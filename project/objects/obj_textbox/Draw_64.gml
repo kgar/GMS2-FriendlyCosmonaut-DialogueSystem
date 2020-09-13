@@ -184,27 +184,27 @@ else {
 		}
 		
 		switch(effect){
-			case 0:	//normal
+			case TextEffect.Normal:	//normal
 				draw_text_color(xx + (cx*charSize), yy+(cy*stringHeight), letter, col, col, col, col, 1);
 				break;
 			
-			case 1:	//shakey
+			case TextEffect.Shakey:	//shakey
 				draw_text_color(xx + (cx*charSize)+random_range(-1,1), yy+(cy*stringHeight)+random_range(-1,1), letter, col, col, col, col, 1);
 				break;
 			
-			case 2:	//wave
+			case TextEffect.Wave:	//wave
 				var so = t;
 				var shift = sin(so*pi*freq/room_speed)*amplitude;
 				draw_text_color(xx + (cx*charSize), yy+(cy*stringHeight)+shift, letter, col, col, col, col, 1);
 				break; 
 			
-			case 3: //colour shift
+			case TextEffect.ColorShift: //colour shift
 				var c1 = make_colour_hsv(t+cc, 255, 255);
 				var c2 = make_colour_hsv(t+cc+34, 255, 255);
 				draw_text_color(xx + (cx*charSize), yy+(cy*stringHeight), letter, c1, c1, c2, c2, 1);
 				break;
 		
-			case 4: //wave AND colour shift
+			case TextEffect.WaveAndColorShift: //wave AND colour shift
 				var so = t + cc;
 				var shift = sin(so*pi*freq/room_speed)*amplitude;
 				var c1 = make_colour_hsv(t+cc, 255, 255);
@@ -212,7 +212,7 @@ else {
 				draw_text_color(xx + (cx*charSize), yy+(cy*stringHeight)+shift, letter, c1, c1, c2, c2, 1);
 				break; 
 		
-			case 5: //spin
+			case TextEffect.Spin: //spin
 				var so = t + cc;
 				var shift = sin(so*pi*freq/room_speed);
 				var mv = charSize/2;
@@ -221,7 +221,7 @@ else {
 				draw_set_valign(fa_top); draw_set_halign(fa_left);
 				break;
 				
-			case 6: //pulse
+			case TextEffect.Pulse: //pulse
 				var so = t + cc;
 				var shift = abs(sin(so*pi*freq/room_speed));
 				var mv = charSize/2;
@@ -230,7 +230,7 @@ else {
 				draw_set_valign(fa_top); draw_set_halign(fa_left);
 				break;
 				
-			case 7:	//flicker
+			case TextEffect.Flicker:	//flicker
 				var so = t + cc;
 				var shift = sin(so*pi*freq/room_speed);
 				draw_text_color(xx + (cx*charSize), yy+(cy*stringHeight), letter, col, col, col, col, shift+random_range(-1,1));

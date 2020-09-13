@@ -32,7 +32,7 @@ switch(choice_variable){
 		//Line 4
 		i++;
 		myText[i]		= "Looky here, green hood.";
-		myEffects[i]	= [13,1, 18,0];
+		myEffects[i]	= [13, TextEffect.Shakey, 18, TextEffect.Normal];
 		mySpeaker[i]	= id;
 		myTextCol[i]	= [13, c_lime, 18, c_white];
 

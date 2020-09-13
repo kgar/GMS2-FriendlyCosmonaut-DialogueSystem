@@ -1,0 +1,1 @@
+- Recreate scripts and objects alongside the existing files that make up the dialogue system, but have them use the structs-based approach instead

@@ -1,4 +1,4 @@
-import { Dialogue, DialogueEntry, DialogueType } from "./dialogue-models";
+import { Dialogue, DialogueType, TextEffect } from "./dialogue-models";
 
 declare var id: number,
   create_instance_layer: number,
@@ -57,7 +57,10 @@ var initialDialogue: Dialogue = [
   {
     type: DialogueType.Normal,
     text: "Looky here, green hood.",
-    effects: [13, 1, 18, 0],
+    effects: [
+      { index: 13, effect: TextEffect.Shakey },
+      { index: 18, effect: TextEffect.Normal }
+    ],
     speaker: id,
     textColors: [
       { color: c_lime, index: 13 },
@@ -145,12 +148,12 @@ var greenDialogue: Dialogue = [
 ];
 
 var blueDialogue: Dialogue = [
-    {
-        type: DialogueType.Normal,
-        text: "Hey there, fellow blue lover!",
-        textSpeed: [
-            { index: 1, speed: 1},
-            { index: 10, speed: 0.5}
-        ]
-    }
+  {
+    type: DialogueType.Normal,
+    text: "Hey there, fellow blue lover!",
+    textSpeed: [
+      { index: 1, speed: 1 },
+      { index: 10, speed: 0.5 }
+    ]
+  }
 ];
