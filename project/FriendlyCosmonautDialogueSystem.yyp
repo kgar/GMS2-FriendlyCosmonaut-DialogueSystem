@@ -17,7 +17,7 @@
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":3,},
     {"id":{"name":"fnt_debug","path":"fonts/fnt_debug/fnt_debug.yy",},"order":0,},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":6,},
-    {"id":{"name":"reset_dialogue_defaults_vStruct","path":"scripts/reset_dialogue_defaults_vStruct/reset_dialogue_defaults_vStruct.yy",},"order":7,},
+    {"id":{"name":"reset_dialogue_defaults_vStruct","path":"scripts/reset_dialogue_defaults_vStruct/reset_dialogue_defaults_vStruct.yy",},"order":2,},
     {"id":{"name":"create_dialogue","path":"scripts/create_dialogue/create_dialogue.yy",},"order":1,},
     {"id":{"name":"obj_examplechar","path":"objects/obj_examplechar/obj_examplechar.yy",},"order":2,},
     {"id":{"name":"obj_examplechar_vStruct","path":"objects/obj_examplechar_vStruct/obj_examplechar_vStruct.yy",},"order":1,},
