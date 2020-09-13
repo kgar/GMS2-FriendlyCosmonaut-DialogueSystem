@@ -1,14 +1,4 @@
-import { Dialogue, DialogueType, TextEffect } from "./dialogue-models";
-
-declare var id: number,
-  create_instance_layer: number,
-  obj_emote: number,
-  obj_player: number,
-  obj_examplechar: number,
-  c_lime: number,
-  c_white: number,
-  c_aqua: number,
-  change_variable: number;
+import { change_variable, create_instance_layer, c_aqua, c_lime, c_white, Dialogue, DialogueType, id, obj_emote, obj_examplechar, obj_player, TextEffect } from "./dialogue-models";
 
 var initialDialogue: Dialogue = [
   {

@@ -1,6 +1,6 @@
-- Convert obj_camera textevent data to structs-based approach.
-- Convert obj_textevent_vStruct and creation script to structs-based approach.
 - Convert obj_dialogue_vStruct and creation script to structs-based approach.
+  - On each page turn: set up portrait, voice, font, name, speaker, portrait_talk, portrait_talk_x, portrait_talk_y, portrait_idle, portrait_idle_x, portrait_idle_y, portrait_talk_n, portrait_talk_s
+    - Fall back to defaults when none provided
 - Test and fix until opening text works same as original.
 - Convert par_speaker_vStruct to structs-based approach.
 - Convert obj_examplechar_vStruct data to structs-based approach.

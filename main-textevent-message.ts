@@ -1,8 +1,6 @@
-following = obj_player;
-freeze = false;
-debug = false;
+import { c_aqua, c_fuschia, c_lime, Dialogue, DialogueType, TextEffect } from "./dialogue-models";
 
-var dialogue = [
+var message: Dialogue = [
   {
     text:
       "Welcome to the demo of the dialogue system! Hit 'E' to go to the next page.",
@@ -38,7 +36,3 @@ var dialogue = [
     effects: [{ index: 1, effect: TextEffect.ColorShift }]
   }
 ];
-
-create_textevent_vStruct(dialogue);
-
-show_debug_overlay(true);

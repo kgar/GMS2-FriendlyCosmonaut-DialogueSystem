@@ -61,3 +61,14 @@ export interface DialogueMessage {
 
 export type DialogueEntry = DialogueChoices | DialogueMessage;
 export type Dialogue = DialogueEntry[];
+
+export declare var id: number,
+  create_instance_layer: number,
+  obj_emote: number,
+  obj_player: number,
+  obj_examplechar: number,
+  c_lime: number,
+  c_white: number,
+  c_aqua: number,
+  c_fuschia: number,
+  change_variable: number;
