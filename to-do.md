@@ -1,1 +1,13 @@
-- Recreate scripts and objects alongside the existing files that make up the dialogue system, but have them use the structs-based approach instead
+- Convert obj_camera textevent data to structs-based approach.
+- Convert obj_textevent_vStruct and creation script to structs-based approach.
+- Convert obj_dialogue_vStruct and creation script to structs-based approach.
+- Test and fix until opening text works same as original.
+- Convert par_speaker_vStruct to structs-based approach.
+- Convert obj_examplechar_vStruct data to structs-based approach.
+- Test and fix until new example char conversation works same as original.
+- Refactor, clarify, and simplify event lifecycle code wherever simplifications can be found.
+- Do likewise for the events themselves. Is each event's role clearly defined in the process?
+- Review feature and identify how to add/remove dialogue features.
+- For fun, add your own text effect
+- Also for fun, add a dialog feature
+- Replace original with new version.
