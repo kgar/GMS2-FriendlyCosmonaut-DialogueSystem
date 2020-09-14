@@ -1,5 +1,5 @@
 ///@description reset_dialogue_defaults
-function reset_dialogue_defaults() {
+function reset_dialogue_defaults_vStruct() {
 
 	myTextbox			= noone;
 	myText				= -1;

@@ -1,7 +1,8 @@
-var cv = executeScript[page];
-if(is_array(cv)){
-	var len = array_length_1d(cv)-1;
-	var cva = array_create(len, 0);
-	array_copy(cva, 0, cv, 1, len);
-	script_execute_alt(cv[0], cva);
+var scriptComponents = executeScript[page];
+if(is_array(scriptComponents)){
+	var argsLength = array_length_1d(scriptComponents)-1;
+	var args = array_create(argsLength, 0);
+	array_copy(args, 0, scriptComponents, 1, argsLength);
+	var functionId = scriptComponents[0];
+	script_execute_alt(functionId, args);
 }

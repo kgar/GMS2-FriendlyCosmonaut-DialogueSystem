@@ -1,6 +1,6 @@
 ///@description create_textevent_vStruct
 ///@arg dialogue
-function create_textevent(dialogue) {
+function create_textevent_vStruct(dialogue) {
 
 	if(instance_exists(obj_textevent_vStruct)){ exit; }
 
