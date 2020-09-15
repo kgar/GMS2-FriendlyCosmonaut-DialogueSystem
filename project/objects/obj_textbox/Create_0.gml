@@ -68,7 +68,6 @@ finishede_y		= pos_y + boxHeight - y_buffer;
 
 letter			= 0;
 charCount		= 0;
-charCount_f		= 0;
 text_speed		= 0;
 text_speed_c	= 0;
 audio_c			= 0;

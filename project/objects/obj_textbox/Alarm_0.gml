@@ -8,7 +8,6 @@ portrait_talk_c = 0;
 portrait_idle_c = 0;
 text_speed_c	= 0;
 audio_c			= 0;
-charCount_f		= 0;
 effects_p		= effects[page];
 text_col_p		= text_col[page];
 

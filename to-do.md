@@ -1,3 +1,8 @@
+- Identify the roles of each of the objects.
+- For each object, identify the roles of their lifecycle events.
+- Rename variables whose meanings I don't understand outright.
+
+## Old TODOs that I might come back to later
 - Convert obj_dialogue_vStruct and creation script to structs-based approach.
   - On each page turn: set up portrait, voice, font, name, speaker, portrait_talk, portrait_talk_x, portrait_talk_y, portrait_idle, portrait_idle_x, portrait_idle_y, portrait_talk_n, portrait_talk_s
     - Fall back to defaults when none provided

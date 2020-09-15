@@ -23,6 +23,7 @@ if(debug){
 			draw_text(gw-10, 10+(i*30), "charCount = "+string(floor(charCount))); i++;
 			draw_text(gw-10, 10+(i*30), "String Length = "+string(string_length(text_NE))); i++;
 			draw_text(gw-10, 10+(i*30), "Choice = "+string(choice)); i++;
+			draw_text(gw-10, 10+(i*30), "t = "+string(t)); i++;
 		}
 	}
 	with(obj_examplechar){
