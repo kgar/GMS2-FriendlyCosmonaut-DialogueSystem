@@ -1,4 +1,4 @@
-import { c_aqua, c_fuschia, c_lime, Dialogue, DialogueType, TextEffect } from "./dialogue-models";
+import { c_aqua, c_fuschia as c_fuchsia, c_lime, Dialogue, DialogueType, TextEffect } from "./dialogue-models";
 
 var message: Dialogue = [
   {
@@ -18,7 +18,7 @@ var message: Dialogue = [
     ],
     textColors: [
       { index: 1, color: c_lime },
-      { index: 9, color: c_fuschia },
+      { index: 9, color: c_fuchsia },
       { index: 16, color: c_aqua }
     ]
   },

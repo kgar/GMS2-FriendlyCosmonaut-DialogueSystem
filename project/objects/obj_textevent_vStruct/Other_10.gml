@@ -1,2 +1,2 @@
 ///@description Create Dialogue
-myTextbox = create_dialogue_vStruct(textBoxDialogue);
+myTextbox = create_dialogue_vStruct(dialogue);

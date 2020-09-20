@@ -20,7 +20,7 @@ var dialogue = [
     ],
     textColors: [
       { index: 1, color: c_lime },
-      { index: 9, color: c_fuschia },
+      { index: 9, color: c_fuchsia },
       { index: 16, color: c_aqua }
     ]
   },

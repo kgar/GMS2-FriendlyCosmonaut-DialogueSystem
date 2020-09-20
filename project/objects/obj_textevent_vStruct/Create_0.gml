@@ -1,4 +1,4 @@
-if(dialogue_functions.textevent_already_underway()) { 
+if(global.dialogue_functions.textevent_already_underway()) { 
 	instance_destroy(); 
 	exit; 
 }
