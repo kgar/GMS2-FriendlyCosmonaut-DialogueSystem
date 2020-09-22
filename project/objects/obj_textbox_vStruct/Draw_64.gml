@@ -14,7 +14,11 @@ if (textIndex + 1 < string_length(dialogue[currentPage].text)) {
 }
 
 // Draw text up to this point in textIndex
-var textToDraw = string_copy(dialogue[currentPage].text, 1, textIndex);
-draw_text_ext(200, 200, textToDraw, font_get_size(0) + 10, room_width - 10);
-
+var textToDraw = string_copy(dialogueEntry.text, 1, textIndex);
+draw_text_ext(
+	textboxPositionX + textboxPaddingX, 
+	textboxPositionY + textboxPaddingY, 
+	textToDraw, 
+	characterHeight, 
+	textboxWidth - textboxPaddingX * 2);
 #endregion

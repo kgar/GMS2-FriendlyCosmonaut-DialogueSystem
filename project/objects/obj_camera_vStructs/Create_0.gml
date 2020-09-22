@@ -39,6 +39,6 @@ var dialogue = [
   }
 ];
 
-create_textevent_vStruct(dialogue);
+create_dialogue_vStruct(dialogue);
 
 show_debug_overlay(true);
