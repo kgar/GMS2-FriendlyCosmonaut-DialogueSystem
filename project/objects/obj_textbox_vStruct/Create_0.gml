@@ -3,11 +3,9 @@ dialogue = undefined;
 dialogueEntry = undefined;
 currentPage = undefined;
 currentText = undefined;
-textIndex = undefined;
 textLength = undefined;
-characterWidth = undefined;
-characterHeight = undefined;
-calculatedNewlines = undefined;
+currentCharacterSpecs = undefined;
+textIndex = undefined;
 guiWidth = display_get_gui_width();
 guiHeight = display_get_gui_height();
 textboxWidth = guiWidth - 50; // TODO: Calculate this whenever I figure out what textbox sprite / methodology I'm using.
@@ -17,6 +15,7 @@ textboxPaddingX = 10;
 textboxPositionX = (guiWhitespace/2);
 textboxPaddingY = 10;
 textboxPositionY = guiHeight - textboxHeight - 8;
+dialogueSpeed = 0.25;
 
 function Init(_dialogue) {
 	dialogue = _dialogue;
@@ -36,19 +35,16 @@ function TurnPage() {
 	
 	textIndex = 0;
 
-	// TODO: 
-	// draw_set_font(font[page]);
-	characterWidth = string_width("M");
-	characterHeight = string_height("M");
-
-	calculatedNewlines = global.dialogue_functions.calculate_newlines(
-		currentText,
-		textboxWidth,
-		textboxPaddingX,
-		textLength,
-		characterWidth);
+	draw_set_font_temp(fnt_dialogue, function() {		
+		currentCharacterSpecs = global.dialogue_functions.create_character_specs(
+		currentText, 
+		textboxWidth - textboxPaddingX,
+		textLength);
+		
+	});
 	
-	show_debug_message(calculatedNewlines);
+			
+	show_debug_message(currentCharacterSpecs);
 	
 	// Perform calculations, 
 	// prepare any optional features for the page
