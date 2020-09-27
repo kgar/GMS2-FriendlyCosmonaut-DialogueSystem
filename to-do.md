@@ -1,5 +1,4 @@
 ## To Do
-- Extract breakpoint code into its own function in dialogue helper functions 😉
 - Draw a black rectangle before drawing text to represent the textbox area.
 - Add code in Draw GUI to respect calculated newlines
   - Change from draw_text_ext for text block to a repeat() loop

@@ -41,7 +41,7 @@ function TurnPage() {
 	characterWidth = string_width("M");
 	characterHeight = string_height("M");
 
-	lineBreakPoints = CalculateLineBreakPoints(
+	lineBreakPoints = global.dialogue_functions.calculate_newlines(
 		currentText,
 		textboxWidth,
 		textboxPaddingX,
@@ -53,31 +53,4 @@ function TurnPage() {
 	// Perform calculations, 
 	// prepare any optional features for the page
 	// etc.
-}
-
-function CalculateLineBreakPoints(currentText, boxWidth, textboxPaddingX, textLength, characterWidth) {
-	var breakpointIndex = 0;
-	var lastBreakPoint = 0;
-	var characterPointer = 1;
-	var nextSpace = 0;
-	var maxTextWidth = boxWidth - (2 * textboxPaddingX);
-	
-	var breakpoints = -1;
-	
-	repeat(textLength) {
-		if (characterPointer >= nextSpace) {
-			nextSpace = characterPointer;
-			while (nextSpace < textLength and string_copy(currentText, nextSpace, 1) != " ") nextSpace++;
-			var lineWidth = (nextSpace - lastBreakPoint) * characterWidth;
-			if (lineWidth >= maxTextWidth) {
-				lastBreakPoint = characterPointer;
-				breakpoints[breakpointIndex] = characterPointer;
-				breakpointIndex++;
-			}
-		}
-		
-		characterPointer++;
-	}
-	
-	return breakpoints;
 }
