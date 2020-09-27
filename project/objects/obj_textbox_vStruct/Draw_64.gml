@@ -17,7 +17,8 @@ draw_set_color_temp(c_black, function() {
 #region Normal Dialogue
 
 // Increment Text Index
-if (textIndex + 1 < textLength) {
+// TODO: Give textIndex a better name. It does not really map to a particular index in the string.
+if (textIndex < textLength) {
 	textIndex += dialogueSpeed;
 }
 
