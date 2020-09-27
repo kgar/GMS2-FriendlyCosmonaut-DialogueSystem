@@ -1,6 +1,11 @@
 ## To Do
+- Upgrade global.dialogue_functions.calculate_newlines to global.dialogue_functions.create_character_specs
+  - Should create a character array
+    - character
+    - append_newline
+    - effect // Normal, for now
+    - width
 - Add code in Draw GUI to respect calculated newlines
-  - Change from draw_text_ext for text block to a repeat() loop
 - Add input handling for turning page
 - Add input handling for skipping to end of typewriting
 - Add logic for destroying textbox when done

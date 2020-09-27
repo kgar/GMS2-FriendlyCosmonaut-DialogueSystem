@@ -7,7 +7,7 @@ textIndex = undefined;
 textLength = undefined;
 characterWidth = undefined;
 characterHeight = undefined;
-lineBreakPoints = undefined;
+calculatedNewlines = undefined;
 guiWidth = display_get_gui_width();
 guiHeight = display_get_gui_height();
 textboxWidth = guiWidth - 50; // TODO: Calculate this whenever I figure out what textbox sprite / methodology I'm using.
@@ -41,14 +41,14 @@ function TurnPage() {
 	characterWidth = string_width("M");
 	characterHeight = string_height("M");
 
-	lineBreakPoints = global.dialogue_functions.calculate_newlines(
+	calculatedNewlines = global.dialogue_functions.calculate_newlines(
 		currentText,
 		textboxWidth,
 		textboxPaddingX,
 		textLength,
 		characterWidth);
 	
-	show_debug_message(lineBreakPoints);
+	show_debug_message(calculatedNewlines);
 	
 	// Perform calculations, 
 	// prepare any optional features for the page
