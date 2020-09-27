@@ -2,6 +2,14 @@
 
 if (!active) return;
 
+// Draw textbox
+draw_set_color_temp(c_black, function() {
+	draw_rectangle(
+		textboxPositionX, textboxPositionY, 
+		textboxPositionX + textboxWidth, textboxPositionY + textboxHeight, 
+		false);
+});
+
 #region Dialogue Choice
 
 #endregion

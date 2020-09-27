@@ -1,7 +1,6 @@
 global.dialogue_functions = {
 	textevent_already_underway: function() {
-		return instance_number(obj_textevent_vStruct) > 1 or
-			instance_number(obj_textbox_vStruct) > 0;
+		return instance_number(obj_textbox_vStruct) > 0;
 	},
 	calculate_newlines: function(currentText, boxWidth, textboxPaddingX, textLength, characterWidth) {
 		var breakpointIndex = 0;
