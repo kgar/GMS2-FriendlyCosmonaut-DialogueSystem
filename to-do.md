@@ -1,4 +1,6 @@
 ## To Do
+- Upgrade word break to add a hyphen to the line where the word is broken
+  - this should add 1 character to the dialogue text
 - Add input handling for turning page
 - Add input handling for skipping to end of typewriting
 - Add logic for destroying textbox when done
