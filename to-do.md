@@ -1,8 +1,4 @@
 ## To Do
-- Add input handling for turning page
-- Add input handling for skipping to end of typewriting
-- Add logic for destroying textbox when done
-  - Make sure this is encapsulated in a function!
 - Add text effects
 	- Shakey,
 	- Wave,
@@ -14,6 +10,13 @@
 - ...
 - Add adhoc script execution into TurnPage() function
 - Add dialogue choice input handling into Step
+  - control destination dialogue page based on choice
+  - execute script from dialogue action
+  - handle user input
+    - selection
+    - choosing between options
+  - use a cool pointer sprite that animates
+  - highlight the currently selected option
 - Add optional nameplate
 - Add static portrait
 - Add talk animation

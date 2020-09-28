@@ -17,6 +17,7 @@ textboxPositionX = (guiWhitespace/2);
 textboxPaddingY = 10;
 textboxPositionY = guiHeight - textboxHeight - 8;
 dialogueSpeed = 1;
+interactKey = ord("E");
 
 function Init(_dialogue) {
 	dialogue = _dialogue;
@@ -28,6 +29,11 @@ function TurnPage() {
 	currentPage = currentPage == undefined
 		? 0
 		: currentPage + 1;
+		
+	if (currentPage >= array_length(dialogue)) {
+		instance_destroy();
+		return;
+	}
 		
 	dialogueEntry = dialogue[currentPage];
 	
