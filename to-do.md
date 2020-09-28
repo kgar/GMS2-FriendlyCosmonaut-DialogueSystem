@@ -1,6 +1,4 @@
 ## To Do
-- Upgrade word break handling to be a set of properties on the character spec struct
-  - It should basically absorb all of the 
 - Add input handling for turning page
 - Add input handling for skipping to end of typewriting
 - Add logic for destroying textbox when done
