@@ -14,7 +14,7 @@ global.dialogue_functions = {
 		var currentXOffset = 0;
 		var currentYOffset = 0; // TODO: Implement yOffset
 		var lineHeight = string_height("M"); // TODO: increment yOffset with this.
-		var mostRecentSpace = 0;
+		var mostRecentSpace = -1;
 		for (var i = 0; i < textLength; i++) {
 			var spec = new global.dialogue_models.CharacterSpec();
 			spec.character = string_char_at(currentText, i + 1);
@@ -37,13 +37,20 @@ global.dialogue_functions = {
 			if (currentXOffset > textAreaWidth) {
 				currentXOffset = 0;
 				currentYOffset += lineHeight;
+				
+				var startOfNewline = mostRecentSpace == -1
+					? i // Break the word if there are no spaces on the current line
+					: mostRecentSpace + 1; // Start at the beginning of the current word
+				
 				// Backfill new yOffset from last-known space
-				for (var j = mostRecentSpace + 1; j <= i; j++) {
+				for (var j = startOfNewline; j <= i; j++) {
 					var specToMoveToNewLine = characterSpecs[j];
 					specToMoveToNewLine.yOffset = currentYOffset;
 					specToMoveToNewLine.xOffset = currentXOffset;
 					currentXOffset += specToMoveToNewLine.width;
 				}
+				
+				mostRecentSpace = -1;
 			}
 		}
 		

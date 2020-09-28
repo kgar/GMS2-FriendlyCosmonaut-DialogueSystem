@@ -1,6 +1,4 @@
 ## To Do
-- Implement yOffset / newline handling in character specs.
-- ...
 - Add input handling for turning page
 - Add input handling for skipping to end of typewriting
 - Add logic for destroying textbox when done
