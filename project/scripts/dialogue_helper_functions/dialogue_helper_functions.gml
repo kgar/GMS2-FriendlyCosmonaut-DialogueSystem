@@ -4,6 +4,7 @@ global.dialogue_models = {
 		width = -1;
 		xOffset = 0;
 		yOffset = 0;
+		effect = TextEffect.Normal;
 	}
 }
 
@@ -16,9 +17,9 @@ global.dialogue_functions = {
 		hyphenSpec.yOffset = yOffset;
 		return hyphenSpec;
 	},
-	create_character_specs: function(currentText, textAreaWidth, textLength) {
+	create_character_specs: function(dialogueEntry, textAreaWidth, textLength) {
 		var characterSpecs = [];
-		
+		var currentText = dialogueEntry.text;
 		var currentXOffset = 0;
 		var currentYOffset = 0;
 		var lineHeight = string_height("M");
