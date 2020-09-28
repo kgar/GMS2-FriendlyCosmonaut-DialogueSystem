@@ -4,6 +4,7 @@ dialogueEntry = undefined;
 currentPage = undefined;
 currentText = undefined;
 textLength = undefined;
+specsLength = undefined;
 currentCharacterSpecs = undefined;
 textIndex = undefined;
 guiWidth = display_get_gui_width();
@@ -15,7 +16,7 @@ textboxPaddingX = 10;
 textboxPositionX = (guiWhitespace/2);
 textboxPaddingY = 10;
 textboxPositionY = guiHeight - textboxHeight - 8;
-dialogueSpeed = 0.25;
+dialogueSpeed = 1;
 
 function Init(_dialogue) {
 	dialogue = _dialogue;
@@ -41,10 +42,8 @@ function TurnPage() {
 		textboxWidth - textboxPaddingX,
 		textLength);
 		
+		specsLength = array_length(currentCharacterSpecs);
 	});
-	
-			
-	show_debug_message(currentCharacterSpecs);
 	
 	// Perform calculations, 
 	// prepare any optional features for the page

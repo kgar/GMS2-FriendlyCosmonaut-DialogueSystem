@@ -11,3 +11,15 @@ function draw_set_font_temp(font, action) {
 	action();
 	draw_set_font(originalFont);
 }
+
+function array_insert_at(array, index, itemToInsert) {
+	var length = array_length(array) + 1;
+	var itemToShift = itemToInsert;
+	for (var i = index; i < length; i++) {
+		var currentItem = array[i];
+		array[i] = itemToShift;
+		itemToShift = currentItem;
+	}
+	
+	return array;
+}

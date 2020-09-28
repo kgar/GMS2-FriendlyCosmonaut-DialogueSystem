@@ -5,7 +5,7 @@ debug = false;
 var dialogue = [
   {
     text:
-      "Welcome to the demo of the dialogue system! Hit 'E' to go to the next page.",
+      "Welcome to the supersupersupersupersupersupersupersupersupersupersupersupersuper demo of the dialogue system! Hit 'E' to go to the next page.",
     type: DialogueType.Normal,
     speaker: undefined,
     effects: [
