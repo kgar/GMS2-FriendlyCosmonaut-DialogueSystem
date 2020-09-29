@@ -30,7 +30,15 @@ for (var i = 0; i < textIndex; i++) {
 	var drawTextX = textboxPositionX + textboxPaddingX + spec.xOffset;
 	var drawTextY = textboxPositionY + textboxPaddingY + spec.yOffset;
 	
-	draw_text(drawTextX, drawTextY, spec.character);
+	switch(spec.effect) {
+		case TextEffect.Shakey:
+			draw_text(drawTextX + random_range(-1, 1), drawTextY + random_range(-1, 1), spec.character);
+			break;
+		case TextEffect.Normal:
+		default:
+			draw_text(drawTextX, drawTextY, spec.character);
+			break;
+	}
 }
 
 #endregion

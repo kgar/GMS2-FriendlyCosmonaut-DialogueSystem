@@ -9,19 +9,19 @@ var dialogue = [
     type: DialogueType.Normal,
     speaker: undefined,
     effects: [
-      { index: 1, effect: TextEffect.Shakey },
-      { index: 9, effect: TextEffect.Wave },
-      { index: 16, effect: TextEffect.WaveAndColorShift }
+      { index: 0, effect: TextEffect.Shakey },
+      { index: 8, effect: TextEffect.Wave },
+      { index: 15, effect: TextEffect.WaveAndColorShift }
     ],
     textSpeed: [
-      { index: 1, speed: 0.2 },
-      { index: 4, speed: 2 },
-      { index: 10, speed: 0.5 }
+      { index: 0, speed: 0.2 },
+      { index: 3, speed: 2 },
+      { index: 9, speed: 0.5 }
     ],
     textColors: [
-      { index: 1, color: c_lime },
-      { index: 9, color: c_fuchsia },
-      { index: 16, color: c_aqua }
+      { index: 0, color: c_lime },
+      { index: 8, color: c_fuchsia },
+      { index: 15, color: c_aqua }
     ]
   },
   {

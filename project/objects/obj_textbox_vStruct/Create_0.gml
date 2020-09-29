@@ -3,7 +3,6 @@ dialogue = undefined;
 dialogueEntry = undefined;
 currentPage = undefined;
 currentText = undefined;
-textLength = undefined;
 specsLength = undefined;
 currentCharacterSpecs = undefined;
 textIndex = undefined;
@@ -40,15 +39,13 @@ function TurnPage() {
 	dialogueEntry = dialogue[currentPage];
 	
 	currentText = dialogueEntry.text;
-	textLength = string_length(dialogueEntry.text);
 	
 	textIndex = 0;
 
 	draw_set_font_temp(fnt_dialogue, function() {		
 		currentCharacterSpecs = global.dialogue_functions.create_character_specs(
 		dialogueEntry, 
-		textboxWidth - textboxPaddingX * 2,
-		textLength);
+		textboxWidth - textboxPaddingX * 2);
 		
 		specsLength = array_length(currentCharacterSpecs);
 	});

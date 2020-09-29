@@ -30,7 +30,7 @@ global.dialogue_functions = {
 		}
 		return effectsMap;
 	},
-	create_character_specs: function(dialogueEntry, textAreaWidth, textLength) {
+	create_character_specs: function(dialogueEntry, textAreaWidth) {
 		// Offsets and positioning setup
 		var currentXOffset = 0;
 		var currentYOffset = 0;
@@ -45,6 +45,7 @@ global.dialogue_functions = {
 		// Create Specs
 		var characterSpecs = [];
 		var currentText = dialogueEntry.text;
+		var textLength = string_length(currentText);
 		for (var i = 0; i < textLength + characterInsertCount; i++) {
 			var spec = new global.dialogue_models.CharacterSpec();
 			spec.character = string_char_at(currentText, i + 1);
