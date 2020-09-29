@@ -20,11 +20,22 @@ global.dialogue_functions = {
 	create_character_specs: function(dialogueEntry, textAreaWidth, textLength) {
 		var characterSpecs = [];
 		var currentText = dialogueEntry.text;
+		
+		// Offsets and positioning
 		var currentXOffset = 0;
 		var currentYOffset = 0;
 		var lineHeight = string_height("M");
 		var mostRecentSpace = -1;
 		var characterInsertCount = 0;
+		
+		// Effects
+		var effectRanges = variable_struct_get(dialogueEntry, "effects");
+		var effectRangeIndex = 0;
+		var effectRangeLength = array_length(effectRanges);
+		var currentEffect = effectRangeLength > 0
+			? effectRanges[effectRangeIndex]
+			: undefined;
+		
 		for (var i = 0; i < textLength + characterInsertCount; i++) {
 			var spec = new global.dialogue_models.CharacterSpec();
 			spec.character = string_char_at(currentText, i + 1);
@@ -36,9 +47,26 @@ global.dialogue_functions = {
 				mostRecentSpace = i;
 			}
 			
+			
+			// Handle effects
+			// TODO: Create a common struct for handling this pattern of ranges and values; use for each of the ranges (effects, fonts, colors, etc.)
+			var nextEffect = effectRangeLength > effectRangeIndex
+				? effectRanges[effectRangeIndex + 1]
+				: undefined;
+			var moveToNextEffect = nextEffect != undefined && i + characterInsertCount >= nextEffect.index;
+			if (moveToNextEffect) {
+				currentEffect = nextEffect;
+			}
+					
+			var effectAppliesToThisCharacter = 
+				currentEffect != undefined && 
+				i >= currentEffect.index + characterInsertCount;
+			if (effectAppliesToThisCharacter) {
+				spec.effect = currentEffect.effect;
+			}
+			
 			// Handle fonts
 			// Handle colors
-			// Handle effects
 			
 			characterSpecs[i] = spec;
 			currentXOffset += spec.width;
