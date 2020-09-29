@@ -20,6 +20,10 @@ textboxPositionY = guiHeight - textboxHeight - 8;
 dialogueSpeed = 1;
 interactKey = ord("E");
 
+effectTime = 0;
+effectFrequency = 2;
+effectAmplitude = 1;
+
 function Init(_dialogue) {
 	dialogue = _dialogue;
 	TurnPage();

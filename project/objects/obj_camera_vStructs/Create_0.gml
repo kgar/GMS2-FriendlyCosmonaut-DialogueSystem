@@ -10,18 +10,18 @@ var dialogue = [
     speaker: undefined,
     effects: [
       { index: 0, effect: TextEffect.Shakey },
-      { index: 8, effect: TextEffect.Wave },
-      { index: 15, effect: TextEffect.WaveAndColorShift }
+      { index: 15, effect: TextEffect.Wave },
+      { index: 81, effect: TextEffect.WaveAndColorShift }
     ],
     textSpeed: [
       { index: 0, speed: 0.2 },
-      { index: 3, speed: 2 },
-      { index: 9, speed: 0.5 }
+      { index: 15, speed: 2 },
+      { index: 81, speed: 0.5 }
     ],
     textColors: [
       { index: 0, color: c_lime },
-      { index: 8, color: c_fuchsia },
-      { index: 15, color: c_aqua }
+      { index: 15, color: c_fuchsia },
+      { index: 81, color: c_aqua }
     ]
   },
   {

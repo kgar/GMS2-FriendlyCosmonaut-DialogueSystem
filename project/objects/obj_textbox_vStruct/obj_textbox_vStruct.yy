@@ -24,6 +24,8 @@
     {"isDnD":false,"eventNum":64,"eventType":8,"collisionObjectId":null,"parent":{"name":"obj_textbox_vStruct","path":"objects/obj_textbox_vStruct/obj_textbox_vStruct.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":2,"eventType":2,"collisionObjectId":null,"parent":{"name":"obj_textbox_vStruct","path":"objects/obj_textbox_vStruct/obj_textbox_vStruct.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":2,"collisionObjectId":null,"parent":{"name":"obj_textbox_vStruct","path":"objects/obj_textbox_vStruct/obj_textbox_vStruct.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":75,"eventType":8,"collisionObjectId":null,"parent":{"name":"obj_textbox_vStruct","path":"objects/obj_textbox_vStruct/obj_textbox_vStruct.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":74,"eventType":8,"collisionObjectId":null,"parent":{"name":"obj_textbox_vStruct","path":"objects/obj_textbox_vStruct/obj_textbox_vStruct.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],

@@ -1,6 +1,5 @@
 ## To Do
 - Add text effects
-	- Shakey,
 	- Wave,
 	- ColorShift,
 	- WaveAndColorShift,
