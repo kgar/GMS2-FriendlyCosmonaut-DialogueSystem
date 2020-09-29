@@ -17,6 +17,15 @@ global.dialogue_functions = {
 		hyphenSpec.yOffset = yOffset;
 		return hyphenSpec;
 	},
+	create_range_map: function(array, propertyName) {
+		var effectsMap = ds_map_create();
+		var arrayLength = array_length(array);
+		for (var i = 0; i < arrayLength; i++) {
+			var entry = array[i];
+			ds_map_set(effectsMap, entry.index, variable_struct_get(entry, propertyName)); 
+		}
+		return effectsMap;
+	},
 	create_character_specs: function(dialogueEntry, textAreaWidth, textLength) {
 		var characterSpecs = [];
 		var currentText = dialogueEntry.text;
@@ -29,13 +38,9 @@ global.dialogue_functions = {
 		var characterInsertCount = 0;
 		
 		// Effects
-		var effectRanges = variable_struct_get(dialogueEntry, "effects");
-		var effectRangeIndex = 0;
-		var effectRangeLength = array_length(effectRanges);
-		var currentEffect = effectRangeLength > 0
-			? effectRanges[effectRangeIndex]
-			: undefined;
-		
+		var effectsMap = create_range_map(dialogueEntry.effects, "effect");
+		var currentEffect = undefined;
+				
 		for (var i = 0; i < textLength + characterInsertCount; i++) {
 			var spec = new global.dialogue_models.CharacterSpec();
 			spec.character = string_char_at(currentText, i + 1);
@@ -50,19 +55,13 @@ global.dialogue_functions = {
 			
 			// Handle effects
 			// TODO: Create a common struct for handling this pattern of ranges and values; use for each of the ranges (effects, fonts, colors, etc.)
-			var nextEffect = effectRangeLength > effectRangeIndex
-				? effectRanges[effectRangeIndex + 1]
-				: undefined;
-			var moveToNextEffect = nextEffect != undefined && i + characterInsertCount >= nextEffect.index;
-			if (moveToNextEffect) {
-				currentEffect = nextEffect;
+			var effectAtIndex = effectsMap[? i - characterInsertCount];
+			if (effectAtIndex != undefined) {
+				currentEffect = effectAtIndex;
 			}
-					
-			var effectAppliesToThisCharacter = 
-				currentEffect != undefined && 
-				i >= currentEffect.index + characterInsertCount;
-			if (effectAppliesToThisCharacter) {
-				spec.effect = currentEffect.effect;
+			
+			if (currentEffect != undefined) {
+				spec.effect = currentEffect;
 			}
 			
 			// Handle fonts
