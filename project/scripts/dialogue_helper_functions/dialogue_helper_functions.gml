@@ -9,13 +9,14 @@ global.dialogue_models = {
 }
 
 global.dialogue_functions = {
-	create_hyphen_spec: function(xOffset, yOffset) {
-		var hyphenSpec = new global.dialogue_models.CharacterSpec();
-		hyphenSpec.character = "-";
-		hyphenSpec.width = string_width(hyphenSpec.character);
-		hyphenSpec.xOffset = xOffset;
-		hyphenSpec.yOffset = yOffset;
-		return hyphenSpec;
+	copy_character_spec: function(spec) {
+		var copy = new global.dialogue_models.CharacterSpec();
+		copy.character = spec.character;
+		copy.width = spec.width;
+		copy.xOffset = spec.xOffset;
+		copy.yOffset = spec.yOffset;
+		copy.effect = spec.effect;
+		return copy;
 	},
 	create_range_map: function(struct, rangeArrayName, valueName) {
 		var effectsMap = ds_map_create();
@@ -93,9 +94,9 @@ global.dialogue_functions = {
 				if (breakWord) {
 					currentText = string_insert("-", currentText, startOfNewline);
 					var lastCharacterOnWordBreakLine = characterSpecs[startOfNewline - 1];
-					var hyphenXOffset = lastCharacterOnWordBreakLine.xOffset + lastCharacterOnWordBreakLine.width;
-					var hyphenYOffset = lastCharacterOnWordBreakLine.yOffset;
-					var hyphenSpec = create_hyphen_spec(hyphenXOffset, hyphenYOffset);
+					var hyphenSpec = copy_character_spec(lastCharacterOnWordBreakLine);
+					hyphenSpec.xOffset = lastCharacterOnWordBreakLine.xOffset + lastCharacterOnWordBreakLine.width;
+					hyphenSpec.character = "-";
 					characterSpecs = array_insert_at(characterSpecs, startOfNewline, hyphenSpec);
 					// Skip forward by 1 to account for inserted character
 					i++;
