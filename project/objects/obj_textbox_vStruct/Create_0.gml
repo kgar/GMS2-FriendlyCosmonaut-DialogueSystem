@@ -22,7 +22,7 @@ interactKey = ord("E");
 
 effectTime = 0;
 effectFrequency = 2;
-effectAmplitude = 1;
+effectAmplitude = 4;
 
 function Init(_dialogue) {
 	dialogue = _dialogue;

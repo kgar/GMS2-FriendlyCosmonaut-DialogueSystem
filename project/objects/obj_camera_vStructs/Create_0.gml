@@ -2,6 +2,8 @@ following = obj_player;
 freeze = false;
 debug = false;
 
+window_set_fullscreen(true);
+
 var dialogue = [
   {
     text:
@@ -10,6 +12,7 @@ var dialogue = [
     speaker: undefined,
     effects: [
       { index: 0, effect: TextEffect.Shakey },
+	    { index: 7, effect: TextEffect.Normal }, 
       { index: 15, effect: TextEffect.Wave },
       { index: 81, effect: TextEffect.WaveAndColorShift }
     ],
@@ -23,6 +26,13 @@ var dialogue = [
       { index: 15, color: c_fuchsia },
       { index: 81, color: c_aqua }
     ]
+  },
+  {
+	  text: "Sometimes, I just want to ride the wave, y'all! Hyphens - and other special characters ! @ ## $ % ^ & * ( ) 0 1234567890 should wave, too!",
+	  type: DialogueType.Normal,
+	  effects: [
+		{ index: 0, effect: TextEffect.Wave }
+	  ]
   },
   {
     text:
