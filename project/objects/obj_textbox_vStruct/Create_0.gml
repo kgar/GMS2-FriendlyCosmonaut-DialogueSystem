@@ -20,9 +20,12 @@ textboxPositionY = guiHeight - textboxHeight - 8;
 dialogueSpeed = 1;
 interactKey = ord("E");
 
-effectTime = 0;
-effectFrequency = 2;
-effectAmplitude = 4;
+// Effects
+waveEffectTime = 0;
+waveEffectFrequency = 2;
+waveEffectAmplitude = 4;
+colorShiftTime = 0;
+colorShiftRate = 8;
 
 function Init(_dialogue) {
 	dialogue = _dialogue;

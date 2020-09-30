@@ -98,10 +98,8 @@ global.dialogue_functions = {
 					hyphenSpec.xOffset = lastCharacterOnWordBreakLine.xOffset + lastCharacterOnWordBreakLine.width;
 					hyphenSpec.character = "-";
 					characterSpecs = array_insert_at(characterSpecs, startOfNewline, hyphenSpec);
-					// Skip forward by 1 to account for inserted character
-					i++;
-					// Increment inserted character count to ensure the loop covers all remaining text
-					characterInsertCount++;
+					i++; // Skip forward by 1 to account for inserted character
+					characterInsertCount++; // Increment inserted character count to ensure the loop covers all remaining text
 				}
 				
 				mostRecentSpace = -1;

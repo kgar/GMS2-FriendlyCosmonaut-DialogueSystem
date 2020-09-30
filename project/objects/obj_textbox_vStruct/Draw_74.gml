@@ -8,4 +8,5 @@ if (dialogueEntry.type == DialogueType.Normal) {
 	}
 }
 
-effectTime = (effectTime + 1) % 360;
+waveEffectTime = (waveEffectTime + 1) % 360;
+colorShiftTime = (colorShiftTime + colorShiftRate) % 256;

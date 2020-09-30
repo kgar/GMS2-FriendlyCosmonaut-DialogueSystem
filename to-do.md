@@ -1,7 +1,5 @@
 ## To Do
 - Add text effects
-	- Wave,
-	- ColorShift,
 	- WaveAndColorShift,
 	- Spin,
 	- Pulse,
