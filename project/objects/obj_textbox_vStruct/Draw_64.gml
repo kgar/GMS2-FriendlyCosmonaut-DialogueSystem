@@ -34,10 +34,18 @@ for (var i = 0; i < textIndex; i++) {
 			draw_text(drawTextX, drawTextY + shift, spec.character);
 			break;
 		case TextEffect.ColorShift:
-			var secondaryShift = (colorShiftTime + 34) % 256;
 			var color1 = make_color_hsv(colorShiftTime, 255, 255);
-			var color2 = make_color_hsv(secondaryShift, 255, 255);
+			var secondaryHue = (colorShiftTime + 34) % 256;
+			var color2 = make_color_hsv(secondaryHue, 255, 255);
 			draw_text_color(drawTextX, drawTextY, spec.character, color1, color1, color2, color2, 1);
+			break;
+		case TextEffect.WaveAndColorShift:
+			var shiftOffset = (waveEffectTime + i);
+			var shift = sin(shiftOffset * pi * waveEffectFrequency / room_speed) * waveEffectAmplitude;
+			var color1 = make_color_hsv(colorShiftTime, 255, 255);
+			var secondaryHue = (colorShiftTime + 34) % 256;
+			var color2 = make_color_hsv(secondaryHue, 255, 255);
+			draw_text_color(drawTextX, drawTextY + shift, spec.character, color1, color1, color2, color2, 1);
 			break;
 		case TextEffect.Normal:
 		default:
