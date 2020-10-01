@@ -12,7 +12,7 @@ var dialogue = [
     speaker: undefined,
     effects: [
       { index: 0, effect: TextEffect.Shakey },
-	  { index: 7, effect: TextEffect.Normal }, 
+	  { index: 7, effect: TextEffect.Spin }, 
       { index: 15, effect: TextEffect.Wave },
       { index: 81, effect: TextEffect.ColorShift },
 	  { index: 110, effect: TextEffect.WaveAndColorShift },

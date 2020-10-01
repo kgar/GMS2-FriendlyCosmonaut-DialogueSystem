@@ -1,7 +1,5 @@
 ## To Do
 - Add text effects
-	- WaveAndColorShift,
-	- Spin,
 	- Pulse,
 	- Flicker
 - Is there some way to better organize text effect drawing? What about timer increments?

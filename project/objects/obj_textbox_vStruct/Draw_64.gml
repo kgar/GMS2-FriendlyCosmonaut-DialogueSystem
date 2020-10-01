@@ -47,6 +47,19 @@ for (var i = 0; i < textIndex; i++) {
 			var color2 = make_color_hsv(secondaryHue, 255, 255);
 			draw_text_color(drawTextX, drawTextY + shift, spec.character, color1, color1, color2, color2, 1);
 			break;
+		case TextEffect.Spin:
+			var shiftOffset = (waveEffectTime + i);
+			var shift = sin(shiftOffset * pi * waveEffectFrequency / room_speed);
+			var characterCenterOffset = spec.width / 2;
+			var valign = draw_get_valign(), halign = draw_get_halign();
+			draw_set_valign(fa_middle);
+			draw_set_halign(fa_middle);
+			var color = draw_get_color();
+			draw_text_transformed_color(drawTextX + characterCenterOffset, drawTextY + stringHeight / 2, 
+				spec.character, 1, 1, shift * 20, color, color, color, color, 1);
+			draw_set_valign(valign);
+			draw_set_halign(halign);
+			break;
 		case TextEffect.Normal:
 		default:
 			draw_text(drawTextX, drawTextY, spec.character);

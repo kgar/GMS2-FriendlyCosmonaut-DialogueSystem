@@ -6,6 +6,7 @@ currentText = undefined;
 specsLength = undefined;
 currentCharacterSpecs = undefined;
 textIndex = undefined;
+stringHeight = undefined;
 guiWidth = display_get_gui_width();
 guiHeight = display_get_gui_height();
 textboxWidth = guiWidth - 50; // TODO: Calculate this whenever I figure out what textbox sprite / methodology I'm using.
@@ -50,6 +51,7 @@ function TurnPage() {
 	textIndex = 0;
 
 	draw_set_font_temp(fnt_dialogue, function() {		
+		stringHeight = string_height("M");
 		currentCharacterSpecs = global.dialogue_functions.create_character_specs(
 		dialogueEntry, 
 		textboxWidth - textboxPaddingX * 2);

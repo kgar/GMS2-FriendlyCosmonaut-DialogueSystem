@@ -12,6 +12,20 @@ function draw_set_font_temp(font, action) {
 	draw_set_font(originalFont);
 }
 
+function draw_set_valign_temp(valign, action) {
+	var originalAlign = draw_get_valign();
+	draw_set_valign(valign);
+	action();
+	draw_set_valign(originalAlign);
+}
+
+function draw_set_halign_temp(halign, action) {
+	var originalAlign = draw_get_halign();
+	draw_set_halign(halign);
+	action();
+	draw_set_halign(originalAlign);
+}
+
 function array_insert_at(array, index, itemToInsert) {
 	var length = array_length(array) + 1;
 	var itemToShift = itemToInsert;
