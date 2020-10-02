@@ -1,12 +1,9 @@
 ## To Do
-- Add text effects
-	- Pulse,
-	- Flicker
+- Add text color ranges
+- Add font ranges
 - Is there some way to better organize text effect drawing? What about timer increments?
 - Is there a more efficient way to deal with time increments other than keeping time variables? What about using the game timer and game fps?
 - Can I eliminate any more variables from the textbox object?
-- Add text color ranges
-- Add font ranges
 - Add text speed ranges
 - Is there a less manual way to handle text ranges?
 - ...

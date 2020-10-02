@@ -73,6 +73,12 @@ for (var i = 0; i < textIndex; i++) {
 			draw_set_valign(valign);
 			draw_set_halign(halign);
 			break;
+		case TextEffect.Flicker:
+			var shiftOffset = waveEffectTime + i;
+			var shift = sin(shiftOffset * pi * waveEffectFrequency / room_speed);
+			var color = draw_get_color();
+			draw_text_color(drawTextX, drawTextY, spec.character, color, color, color, color, shift + random_range(-1, 1));
+			break;
 		case TextEffect.Normal:
 		default:
 			draw_text(drawTextX, drawTextY, spec.character);
