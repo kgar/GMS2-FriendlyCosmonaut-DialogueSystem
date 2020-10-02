@@ -24,6 +24,7 @@ for (var i = 0; i < textIndex; i++) {
 	var drawTextX = textboxPositionX + textboxPaddingX + spec.xOffset;
 	var drawTextY = textboxPositionY + textboxPaddingY + spec.yOffset;
 	var color = spec.color;
+	draw_set_font(spec.font);
 	
 	switch(spec.effect) {
 		case TextEffect.Shakey:

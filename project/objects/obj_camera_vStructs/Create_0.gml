@@ -28,7 +28,10 @@ var dialogue = [
       { index: 0, color: c_lime },
       { index: 15, color: c_fuchsia },
       { index: 81, color: c_aqua }
-    ]
+    ],
+	textFont: [
+	  { index: 131, font: fnt_chiller }
+	]
   },
   {
 	  text: "Sometimes, I just want to ride the wave, y'all! Hyphens - and other special characters ! @ ## $ % ^ & * ( ) 0 1234567890 should wave, too!",

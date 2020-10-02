@@ -6,6 +6,7 @@ global.dialogue_models = {
 		yOffset = 0;
 		effect = TextEffect.Normal;
 		color = c_white;
+		font = fnt_dialogue;
 	}
 }
 
@@ -17,6 +18,8 @@ global.dialogue_functions = {
 		copy.xOffset = spec.xOffset;
 		copy.yOffset = spec.yOffset;
 		copy.effect = spec.effect;
+		copy.color = spec.color;
+		copy.font = spec.font;
 		return copy;
 	},
 	create_range_map: function(struct, rangeArrayName, valueName) {
@@ -48,6 +51,10 @@ global.dialogue_functions = {
 		var currentColor = draw_get_color();
 		var colorMap = create_range_map(dialogueEntry, "textColors", "color");
 		
+		// Font setup
+		var currentFont = draw_get_font();
+		var fontMap = create_range_map(dialogueEntry, "textFont", "font");
+		
 		// Create Specs
 		var characterSpecs = [];
 		var currentText = dialogueEntry.text;
@@ -55,7 +62,6 @@ global.dialogue_functions = {
 		for (var i = 0; i < textLength + characterInsertCount; i++) {
 			var spec = new global.dialogue_models.CharacterSpec();
 			spec.character = string_char_at(currentText, i + 1);
-			spec.width = string_width(spec.character);
 			spec.xOffset = currentXOffset;
 			spec.yOffset = currentYOffset;
 			
@@ -72,6 +78,11 @@ global.dialogue_functions = {
 			spec.effect = currentEffect;
 			
 			// Handle fonts
+			var fontAtIndex = fontMap[? i - characterInsertCount];
+			if (fontAtIndex != undefined) {
+				currentFont = fontAtIndex;
+			}
+			spec.font = currentFont;
 			
 			// Handle colors
 			var colorAtIndex = colorMap[? i - characterInsertCount];
@@ -79,6 +90,11 @@ global.dialogue_functions = {
 				currentColor = colorAtIndex;
 			}
 			spec.color = currentColor;
+			
+			var tempFont = draw_get_font();
+			draw_set_font(spec.font);
+			spec.width = string_width(spec.character);
+			draw_set_font(tempFont);
 			
 			characterSpecs[i] = spec;
 			currentXOffset += spec.width;
@@ -121,6 +137,7 @@ global.dialogue_functions = {
 		
 		ds_map_destroy(effectsMap);
 		ds_map_destroy(colorMap);
+		ds_map_destroy(fontMap);
 		
 		return characterSpecs;
 	}
