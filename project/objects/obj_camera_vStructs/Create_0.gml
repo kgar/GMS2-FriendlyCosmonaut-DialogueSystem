@@ -16,6 +16,7 @@ var dialogue = [
       { index: 15, effect: TextEffect.Wave },
       { index: 81, effect: TextEffect.ColorShift },
 	  { index: 110, effect: TextEffect.WaveAndColorShift },
+	  { index: 121, effect: TextEffect.Pulse }
     ],
     textSpeed: [
       { index: 0, speed: 0.2 },

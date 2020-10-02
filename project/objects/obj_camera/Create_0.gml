@@ -8,7 +8,7 @@ create_textevent(
 	"Hit 'Space' to make a player monologue happen. And 'D' to toggle debug."],
 	-1,
 	[ 
-		[1, TextEffect.Spin, 9, TextEffect.Flicker, 16, TextEffect.WaveAndColorShift], 
+		[1, TextEffect.Pulse, 9, TextEffect.Flicker, 16, TextEffect.WaveAndColorShift], 
 		-1, 
 		[1, TextEffect.ColorShift]
 	],

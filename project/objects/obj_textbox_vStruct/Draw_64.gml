@@ -60,6 +60,19 @@ for (var i = 0; i < textIndex; i++) {
 			draw_set_valign(valign);
 			draw_set_halign(halign);
 			break;
+		case TextEffect.Pulse:
+			var shiftOffset = waveEffectTime + i;
+			var shift = abs(sin(shiftOffset * pi * waveEffectFrequency / room_speed));
+			var characterCenterOffset = spec.width / 2;
+			var color = draw_get_color();
+			var valign = draw_get_valign(), halign = draw_get_halign();
+			draw_set_valign(fa_middle);
+			draw_set_halign(fa_middle);
+			draw_text_transformed_color(drawTextX + characterCenterOffset, drawTextY + stringHeight / 2, 
+				spec.character, shift, shift, 0, color, color, color, color, 1);
+			draw_set_valign(valign);
+			draw_set_halign(halign);
+			break;
 		case TextEffect.Normal:
 		default:
 			draw_text(drawTextX, drawTextY, spec.character);
