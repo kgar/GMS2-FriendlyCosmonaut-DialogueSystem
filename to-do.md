@@ -1,5 +1,4 @@
 ## To Do
-- Implement text color changes
 - Add font ranges
 - Implement font changes
 - Is there some way to better organize text effect drawing? What about timer increments?
