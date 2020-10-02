@@ -5,6 +5,7 @@ global.dialogue_models = {
 		xOffset = 0;
 		yOffset = 0;
 		effect = TextEffect.Normal;
+		color = c_white;
 	}
 }
 
@@ -42,6 +43,10 @@ global.dialogue_functions = {
 		// Effects setup
 		var effectsMap = create_range_map(dialogueEntry, "effects", "effect");
 		var currentEffect = TextEffect.Normal;
+
+		// Color setup
+		var currentColor = draw_get_color();
+		var colorMap = create_range_map(dialogueEntry, "textColors", "color");
 		
 		// Create Specs
 		var characterSpecs = [];
@@ -67,7 +72,13 @@ global.dialogue_functions = {
 			spec.effect = currentEffect;
 			
 			// Handle fonts
+			
 			// Handle colors
+			var colorAtIndex = colorMap[? i - characterInsertCount];
+			if (colorAtIndex != undefined) {
+				currentColor = colorAtIndex;
+			}
+			spec.color = currentColor;
 			
 			characterSpecs[i] = spec;
 			currentXOffset += spec.width;
@@ -109,6 +120,7 @@ global.dialogue_functions = {
 		show_debug_message(string(characterSpecs));
 		
 		ds_map_destroy(effectsMap);
+		ds_map_destroy(colorMap);
 		
 		return characterSpecs;
 	}

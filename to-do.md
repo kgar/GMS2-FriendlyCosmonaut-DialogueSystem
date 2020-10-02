@@ -1,6 +1,7 @@
 ## To Do
-- Add text color ranges
+- Implement text color changes
 - Add font ranges
+- Implement font changes
 - Is there some way to better organize text effect drawing? What about timer increments?
 - Is there a more efficient way to deal with time increments other than keeping time variables? What about using the game timer and game fps?
 - Can I eliminate any more variables from the textbox object?
