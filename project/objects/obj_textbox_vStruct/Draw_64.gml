@@ -23,15 +23,16 @@ for (var i = 0; i < textIndex; i++) {
 	
 	var drawTextX = textboxPositionX + textboxPaddingX + spec.xOffset;
 	var drawTextY = textboxPositionY + textboxPaddingY + spec.yOffset;
+	var color = spec.color;
 	
 	switch(spec.effect) {
 		case TextEffect.Shakey:
-			draw_text(drawTextX + random_range(-1, 1), drawTextY + random_range(-1, 1), spec.character);
+			draw_text_color(drawTextX + random_range(-1, 1), drawTextY + random_range(-1, 1), spec.character, color, color, color, color, 1);
 			break;
 		case TextEffect.Wave:
 			var shiftOffset = (waveEffectTime + i);
 			var shift = sin(shiftOffset * pi * waveEffectFrequency / room_speed) * waveEffectAmplitude;
-			draw_text(drawTextX, drawTextY + shift, spec.character);
+			draw_text_color(drawTextX, drawTextY + shift, spec.character, color, color, color, color, 1);
 			break;
 		case TextEffect.ColorShift:
 			var color1 = make_color_hsv(colorShiftTime, 255, 255);
