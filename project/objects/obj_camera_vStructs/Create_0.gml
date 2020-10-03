@@ -22,7 +22,8 @@ var dialogue = [
     textSpeed: [
       { index: 0, speed: 0.2 },
       { index: 15, speed: 2 },
-      { index: 81, speed: 0.5 }
+      { index: 81, speed: 0.5 },
+	    { index: 110, speed: 1 },
     ],
     textColors: [
       { index: 0, color: c_lime },

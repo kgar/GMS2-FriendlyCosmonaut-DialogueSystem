@@ -43,6 +43,8 @@ function TurnPage() {
 		instance_destroy();
 		return;
 	}
+	
+	dialogueSpeed = 1;
 		
 	dialogueEntry = dialogue[currentPage];
 	

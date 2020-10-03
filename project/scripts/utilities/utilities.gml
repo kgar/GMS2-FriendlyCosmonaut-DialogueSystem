@@ -37,3 +37,9 @@ function array_insert_at(array, index, itemToInsert) {
 	
 	return array;
 }
+
+function coalesce(value, fallback) {
+	return value != undefined && value != noone
+		? value
+		: fallback;
+}

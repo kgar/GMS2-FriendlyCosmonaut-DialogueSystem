@@ -7,6 +7,7 @@ global.dialogue_models = {
 		effect = TextEffect.Normal;
 		color = c_white;
 		font = fnt_dialogue;
+		speed = 1;
 	}
 }
 
@@ -20,6 +21,7 @@ global.dialogue_functions = {
 		copy.effect = spec.effect;
 		copy.color = spec.color;
 		copy.font = spec.font;
+		copy.speed = spec.speed;
 		return copy;
 	},
 	create_range_map: function(struct, rangeArrayName, valueName) {
@@ -55,6 +57,10 @@ global.dialogue_functions = {
 		var currentFont = draw_get_font();
 		var fontMap = create_range_map(dialogueEntry, "textFont", "font");
 		
+		// Speed setup
+		var currentSpeed = 1;
+		var speedMap = create_range_map(dialogueEntry, "textSpeed", "speed");
+		
 		// Create Specs
 		var characterSpecs = [];
 		var currentText = dialogueEntry.text;
@@ -71,25 +77,20 @@ global.dialogue_functions = {
 			
 			// Handle effects
 			// TODO: Create a common struct for handling this pattern of ranges and values; use for each of the ranges (effects, fonts, colors, etc.)
-			var effectAtIndex = effectsMap[? i - characterInsertCount];
-			if (effectAtIndex != undefined) {
-				currentEffect = effectAtIndex;
-			}
+			currentEffect = coalesce(effectsMap[? i - characterInsertCount], currentEffect);
 			spec.effect = currentEffect;
 			
 			// Handle fonts
-			var fontAtIndex = fontMap[? i - characterInsertCount];
-			if (fontAtIndex != undefined) {
-				currentFont = fontAtIndex;
-			}
+			currentFont = coalesce(fontMap[? i - characterInsertCount], currentFont);
 			spec.font = currentFont;
 			
 			// Handle colors
-			var colorAtIndex = colorMap[? i - characterInsertCount];
-			if (colorAtIndex != undefined) {
-				currentColor = colorAtIndex;
-			}
+			currentColor = coalesce(colorMap[? i - characterInsertCount], currentColor);
 			spec.color = currentColor;
+			
+			// Handle speeds
+			currentSpeed = coalesce(speedMap[? i - characterInsertCount], currentSpeed)
+			spec.speed = currentSpeed;
 			
 			var tempFont = draw_get_font();
 			draw_set_font(spec.font);
@@ -138,6 +139,7 @@ global.dialogue_functions = {
 		ds_map_destroy(effectsMap);
 		ds_map_destroy(colorMap);
 		ds_map_destroy(fontMap);
+		ds_map_destroy(speedMap);
 		
 		return characterSpecs;
 	}

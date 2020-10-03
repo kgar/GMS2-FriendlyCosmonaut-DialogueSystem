@@ -18,7 +18,8 @@ draw_set_color_temp(c_black, function() {
 
 // Draw text up to this point in textIndex
 draw_set_font(fnt_dialogue);
-for (var i = 0; i < textIndex; i++) {
+var roundedTextIndex = floor(textIndex);
+for (var i = 0; i < roundedTextIndex; i++) {
 	var spec = currentCharacterSpecs[i];
 	
 	var drawTextX = textboxPositionX + textboxPaddingX + spec.xOffset;
