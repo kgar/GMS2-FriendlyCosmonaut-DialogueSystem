@@ -1,5 +1,7 @@
 ## To Do
 - Add dialogue choice input handling into Step
+  - Draw GUI:
+    - 
   - control destination dialogue page based on choice
   - execute script from dialogue action
   - handle user input
@@ -13,7 +15,7 @@
   - Make sure it can be configured for longer sprite speaking animations or dynamically able to handle that
 - Add idle animation
 - Add vocal pause
-- Add dialogue page turn indicator (use the existing one); make sure it animates nicely.
+- Add dialogue page turn indicator (use the existing spr_dialoguefinished); it should animate like the original.
 
 ## Refactoring
 - Can I eliminate any more variables from the textbox object?

@@ -1,6 +1,6 @@
 /// @description Write
 
-if (!active) return;
+if (!active) exit;
 
 // Draw textbox
 draw_set_color_temp(c_black, function() {

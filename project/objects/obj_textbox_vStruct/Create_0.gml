@@ -1,11 +1,31 @@
 active = false;
+
+// Dialogue Settings
 dialogue = undefined;
 dialogueEntry = undefined;
 currentPage = undefined;
 currentText = undefined;
+
+// Normal Dialogue
+dialogueSpeed = 1;
 specsLength = undefined;
 currentCharacterSpecs = undefined;
 textIndex = undefined;
+
+// Choice Dialogue
+choiceMoveSound = snd_moveselect;
+choiceSelectSound = snd_select;
+choiceTextColor = c_yellow;
+choicePointerSprite = spr_dialoguefinished;
+chosen = false;
+currentChoiceIndex = 0;
+
+// Input
+interactKey = ord("E");
+choiceMoveUpKey = vk_up;
+choiceMoveDownKey = vk_down;
+
+// Draw Settings
 stringHeight = undefined;
 guiWidth = display_get_gui_width();
 guiHeight = display_get_gui_height();
@@ -18,10 +38,8 @@ textboxPositionX = (guiWhitespace/2);
 // TODO: Make a better name for this. It essentially is the padding for one side, not both sides.
 textboxPaddingY = 10;
 textboxPositionY = guiHeight - textboxHeight - 8;
-dialogueSpeed = 1;
-interactKey = ord("E");
 
-// Effects
+// Effect Settings
 waveEffectAmplitude = 4;
 
 function Init(_dialogue) {
@@ -34,6 +52,9 @@ function TurnPage() {
 	currentPage = currentPage == undefined
 		? 0
 		: currentPage + 1;
+		
+	currentChoiceIndex = 0;
+	chosen = false;
 		
 	if (currentPage >= array_length(dialogue)) {
 		instance_destroy();

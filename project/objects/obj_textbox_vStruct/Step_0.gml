@@ -12,7 +12,15 @@ switch (dialogueEntry.type) {
 		}
 		break;
 	case DialogueType.Choice:
-	
+		// On Interact:
+		// Process input
+		// Play sound
+		// Process choice
+		
+		// On Move up/down:
+		// Process input
+		// Play sound
+		// Adjust choice index
 		break;
 	default:
 		throw "Invalid DialogueType";
