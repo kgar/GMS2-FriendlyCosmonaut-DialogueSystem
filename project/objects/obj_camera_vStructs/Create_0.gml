@@ -32,7 +32,11 @@ var dialogue = [
     ],
 	textFont: [
 	  { index: 131, font: fnt_chiller }
-	]
+	],
+	onPageTurn: function() {
+    // Literally do whatever scripting you need right here!
+		create_instance_layer(170, 120, "Instances", obj_emote_vStruct);
+	}
   },
   {
 	  text: "Sometimes, I just want to ride the wave, y'all! Hyphens - and other special characters ! @ ## $ % ^ & * ( ) 0 1234567890 should wave, too!",

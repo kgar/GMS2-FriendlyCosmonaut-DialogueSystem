@@ -41,7 +41,11 @@ function TurnPage() {
 	}
 	
 	dialogueSpeed = 1;
-		
+	
+	if (dialogueEntry != undefined && variable_struct_exists(dialogueEntry, "onPageTurn")) {
+		dialogueEntry.onPageTurn();
+	}
+	
 	dialogueEntry = dialogue[currentPage];
 	
 	currentText = dialogueEntry.text;
