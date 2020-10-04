@@ -34,24 +34,26 @@ for (var i = 0; i < roundedTextIndex; i++) {
 			break;
 		case TextEffect.Wave:
 			var shiftOffset = (time + i);
-			var shift = sin(shiftOffset * pi * waveEffectFrequency / room_speed) * waveEffectAmplitude;
+			var shift = dsin(shiftOffset * 6) * waveEffectAmplitude;
 			draw_text_color(drawTextX, drawTextY + shift, spec.character, color, color, color, color, 1);
 			break;
 		case TextEffect.ColorShift:
-			var color1 = make_color_hsv(time % 256, 255, 255);
-			var color2 = make_color_hsv((time + 34) % 256, 255, 255);
+			var colorShift = time * 8 + drawTextX;
+			var color1 = make_color_hsv(colorShift % 256, 255, 255);
+			var color2 = make_color_hsv((colorShift + 34) % 256, 255, 255);
 			draw_text_color(drawTextX, drawTextY, spec.character, color1, color1, color2, color2, 1);
 			break;
 		case TextEffect.WaveAndColorShift:
-			var shiftOffset = (time + i);
-			var shift = sin(shiftOffset * pi * waveEffectFrequency / room_speed) * waveEffectAmplitude;
-			var color1 = make_color_hsv(time % 256, 255, 255);
-			var color2 = make_color_hsv((time + 34) % 256, 255, 255);
+			var colorShift = time * 8 + drawTextX;
+			var shift = dsin(shiftOffset * 6) * waveEffectAmplitude;
+			var colorShift = (time + i) * 10;
+			var color1 = make_color_hsv(colorShift % 256, 255, 255);
+			var color2 = make_color_hsv((colorShift + 34) % 256, 255, 255);
 			draw_text_color(drawTextX, drawTextY + shift, spec.character, color1, color1, color2, color2, 1);
 			break;
 		case TextEffect.Spin:
 			var shiftOffset = (time + i);
-			var shift = sin(shiftOffset * pi * waveEffectFrequency / room_speed);
+			var shift = dsin(shiftOffset * 6);
 			var characterCenterOffset = spec.width / 2;
 			var valign = draw_get_valign(), halign = draw_get_halign();
 			draw_set_valign(fa_middle);
@@ -64,7 +66,7 @@ for (var i = 0; i < roundedTextIndex; i++) {
 			break;
 		case TextEffect.Pulse:
 			var shiftOffset = time + i;
-			var shift = abs(sin(shiftOffset * pi * waveEffectFrequency / room_speed));
+			var shift = abs(dsin(shiftOffset * 6));
 			var characterCenterOffset = spec.width / 2;
 			var color = draw_get_color();
 			var valign = draw_get_valign(), halign = draw_get_halign();
@@ -77,7 +79,7 @@ for (var i = 0; i < roundedTextIndex; i++) {
 			break;
 		case TextEffect.Flicker:
 			var shiftOffset = time + i;
-			var shift = sin(shiftOffset * pi * waveEffectFrequency / room_speed);
+			var shift = dsin(shiftOffset * 6);
 			var color = draw_get_color();
 			draw_text_color(drawTextX, drawTextY, spec.character, color, color, color, color, shift + random_range(-1, 1));
 			break;

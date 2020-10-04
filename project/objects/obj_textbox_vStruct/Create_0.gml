@@ -22,9 +22,7 @@ dialogueSpeed = 1;
 interactKey = ord("E");
 
 // Effects
-waveEffectFrequency = 2;
 waveEffectAmplitude = 4;
-colorShiftRate = 8;
 
 function Init(_dialogue) {
 	dialogue = _dialogue;
