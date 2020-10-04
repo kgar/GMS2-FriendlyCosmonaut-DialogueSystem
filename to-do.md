@@ -1,9 +1,4 @@
 ## To Do
-- Is there some way to better organize text effect drawing? What about timer increments?
-- Is there a more efficient way to deal with time increments other than keeping time variables? What about using the game timer and game fps?
-- Can I eliminate any more variables from the textbox object?
-- Is there a less manual way to handle text ranges?
-- ...
 - Add dialogue choice input handling into Step
   - control destination dialogue page based on choice
   - execute script from dialogue action
@@ -19,6 +14,10 @@
 - Add idle animation
 - Add vocal pause
 - Add dialogue page turn indicator (use the existing one); make sure it animates nicely.
+
+## Refactoring
+- Can I eliminate any more variables from the textbox object?
+- Is there a less manual way to handle text ranges?
 - Challenge: Refactor rainbow text to no longer depend on drawTextX in order to shift vertically correlated colors.
   - Hmm... divide the screen into 255 slices?
   - Somehow determine with the passage of time that hue should circularly shift to the left...
