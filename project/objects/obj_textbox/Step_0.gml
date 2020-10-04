@@ -1,7 +1,7 @@
 //We check the type of dialogue to see if it is 1) "normal" or 2) a player choice dialogue.
 
 #region TYPE 0: NORMAL
-if(type[page] == 0){
+if(type[page] == DialogueType.Normal){
 	if(keyboard_check_pressed(interact_key)){
 
 		//If we haven't "typed out" all the letters, immediately "type out" all letters (works as a "skip")

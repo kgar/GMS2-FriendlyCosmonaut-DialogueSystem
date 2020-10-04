@@ -6,18 +6,18 @@ if(portrait[page] != -1){
 	draw_sprite_ext(portrait[page], emotion[page], pos_x-portraitWidth, pos_y, scale,scale, 0, c_white, 1);
 
 	#region Idle Animated Portrait
-if(type[page] == 1 or charCount >= str_len) {
-	if(portrait_idle[page] != -1){
-		var posx = pos_x-portraitWidth; var posy = pos_y;
-		if(portrait_idle_x[page] != -1){ posx += portrait_idle_x[page] * scale; }
-		if(portrait_idle_y[page] != -1){ posy += portrait_idle_y[page] * scale; }
+	if(type[page] == DialogueType.Choice or charCount >= str_len) {
+		if(portrait_idle[page] != -1){
+			var posx = pos_x-portraitWidth; var posy = pos_y;
+			if(portrait_idle_x[page] != -1){ posx += portrait_idle_x[page] * scale; }
+			if(portrait_idle_y[page] != -1){ posy += portrait_idle_y[page] * scale; }
 		
-		portrait_idle_c += portrait_idle_s[page];
-		if(portrait_idle_c >= portrait_idle_n[page]){ portrait_idle_c = 0; }
-		draw_sprite_ext(portrait_idle[page], portrait_idle_c, posx, posy, scale,scale, 0, c_white, 1);	
+			portrait_idle_c += portrait_idle_s[page];
+			if(portrait_idle_c >= portrait_idle_n[page]){ portrait_idle_c = 0; }
+			draw_sprite_ext(portrait_idle[page], portrait_idle_c, posx, posy, scale,scale, 0, c_white, 1);	
+		}
 	}
-}
-#endregion
+	#endregion
 
 	draw_sprite_ext(portrait_frame, 0, pos_x-portraitWidth, pos_y, scale,scale, 0, c_white, 1);
 }
@@ -43,10 +43,10 @@ draw_set_font(font[page]);
 
 //--------Draw the text differently if we are in 1) a dialogue choice or 2) normal dialogue
 #region TYPE 1: DIALOGUE CHOICE
-if(type[page] == 1){
+if(type[page] == DialogueType.Choice){
 	//Variables we need
 	var col = default_col, tp = text[page], tpl = array_length_1d(tp), txtwidth = boxWidth-(2*x_buffer);
-	var cc = 1, yy = pos_y+y_buffer, xx = pos_x+x_buffer, ii = 0, iy = 0;
+	var yy = pos_y+y_buffer, xx = pos_x+x_buffer, ii = 0, iy = 0;
 	
 	//Loop through our choices, draw them, highlight the one we are selecting
 	repeat(tpl){
@@ -114,7 +114,6 @@ else {
 						portrait_talk_c += portrait_talk_s[page];
 		
 						//To include the consideration of vowels
-						//*/
 						var l = string_lower(ch);
 						if(l == "a" or l == "e" or l == "i" or l == "o" or l == "u"){ 
 							portrait_talk_c = open_mouth_frame; 
@@ -123,12 +122,7 @@ else {
 								audio_c = charCount + audio_increment; 
 							} 
 						}
-						/*/
-						if (charCount > audio_c) { 
-							audio_play_sound(voice[page], 1, false); 
-							audio_c = charCount + audio_increment; 
-						} 
-						//*/
+						
 						if(portrait_talk_c > portrait_talk_n[page]){ portrait_talk_c = 0; }
 						draw_sprite_ext(portrait_talk[page], portrait_talk_c, posx, posy, scale,scale, 0, c_white, 1);	
 					}
@@ -142,9 +136,9 @@ else {
 
 	//---------------------------------Setup for Effects----------------------------//
 	#region
-	var col = default_col, cc = 1, yy = pos_y+y_buffer, xx = pos_x+x_buffer, cx = 0, cy = 0, lineswidth;
-	var ty = 0, by = 0, bp_len = -1, effect = 0, next_space, breakpoint = 0, effects_c = 0, text_col_c = 0;
-	var bp_array = breakpoints, txtwidth = boxWidth-(2*x_buffer), char_max = txtwidth div charSize; 
+	var col = default_col, cc = 1, yy = pos_y+y_buffer, xx = pos_x+x_buffer, cx = 0, cy = 0;
+	var by = 0, bp_len = -1, effect = 0, next_space, effects_c = 0, text_col_c = 0;
+	var bp_array = breakpoints, txtwidth = boxWidth-(2*x_buffer); 
 	
 	//Check if there are breakpoints in this string, if there are save their lengths
 	if(bp_array != -1){ bp_len = array_length_1d(bp_array); next_space = breakpoints[by]; by++; }
@@ -157,7 +151,6 @@ else {
 	
 	//---------------------------------Draw the Letters-----------------------------//
 	#region
-	
 	repeat(charCount){
 		//Get current letter
 		letter = string_char_at(text_NE, cc);
@@ -184,27 +177,27 @@ else {
 		}
 		
 		switch(effect){
-			case 0:	//normal
+			case TextEffect.Normal:
 				draw_text_color(xx + (cx*charSize), yy+(cy*stringHeight), letter, col, col, col, col, 1);
 				break;
 			
-			case 1:	//shakey
+			case TextEffect.Shakey:
 				draw_text_color(xx + (cx*charSize)+random_range(-1,1), yy+(cy*stringHeight)+random_range(-1,1), letter, col, col, col, col, 1);
 				break;
 			
-			case 2:	//wave
+			case TextEffect.Wave:
 				var so = t;
 				var shift = sin(so*pi*freq/room_speed)*amplitude;
 				draw_text_color(xx + (cx*charSize), yy+(cy*stringHeight)+shift, letter, col, col, col, col, 1);
 				break; 
 			
-			case 3: //colour shift
+			case TextEffect.ColorShift:
 				var c1 = make_colour_hsv(t+cc, 255, 255);
 				var c2 = make_colour_hsv(t+cc+34, 255, 255);
 				draw_text_color(xx + (cx*charSize), yy+(cy*stringHeight), letter, c1, c1, c2, c2, 1);
 				break;
 		
-			case 4: //wave AND colour shift
+			case TextEffect.WaveAndColorShift:
 				var so = t + cc;
 				var shift = sin(so*pi*freq/room_speed)*amplitude;
 				var c1 = make_colour_hsv(t+cc, 255, 255);
@@ -212,7 +205,7 @@ else {
 				draw_text_color(xx + (cx*charSize), yy+(cy*stringHeight)+shift, letter, c1, c1, c2, c2, 1);
 				break; 
 		
-			case 5: //spin
+			case TextEffect.Spin:
 				var so = t + cc;
 				var shift = sin(so*pi*freq/room_speed);
 				var mv = charSize/2;
@@ -221,7 +214,7 @@ else {
 				draw_set_valign(fa_top); draw_set_halign(fa_left);
 				break;
 				
-			case 6: //pulse
+			case TextEffect.Pulse:
 				var so = t + cc;
 				var shift = abs(sin(so*pi*freq/room_speed));
 				var mv = charSize/2;
@@ -230,7 +223,7 @@ else {
 				draw_set_valign(fa_top); draw_set_halign(fa_left);
 				break;
 				
-			case 7:	//flicker
+			case TextEffect.Flicker:
 				var so = t + cc;
 				var shift = sin(so*pi*freq/room_speed);
 				draw_text_color(xx + (cx*charSize), yy+(cy*stringHeight), letter, col, col, col, col, shift+random_range(-1,1));

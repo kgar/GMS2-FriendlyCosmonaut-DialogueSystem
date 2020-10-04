@@ -8,7 +8,6 @@ portrait_talk_c = 0;
 portrait_idle_c = 0;
 text_speed_c	= 0;
 audio_c			= 0;
-charCount_f		= 0;
 effects_p		= effects[page];
 text_col_p		= text_col[page];
 
@@ -26,34 +25,31 @@ if(portrait[page] == -1){
 
 draw_set_font(font[page]);
 charSize = string_width("M");		//gets new charSize under current font
-charHeight = string_height("M");	//same for width
 #endregion
 
 #region GET THE BREAKPOINTS AND TEXT EFFECTS
 //Again only need to do this if our CURRENT page is "normal". Separated from above for readability.
-if(type[page] == 0){
+if(type[page] == DialogueType.Normal){
 	text_NE = text[page]; 
 	str_len = string_length(text_NE);
 	
 	//Get variables ready
-	var by = 0, ty = 0, cc = 1, breakpoint = 0;
-	var next_space = 0, char, txtwidth = boxWidth-(2*x_buffer), char_max = txtwidth div charSize;
+	var by = 0, cc = 1, breakpoint = 0;
+	var next_space = 0, txtwidth = boxWidth-(2*x_buffer);
 
-	//Reset the text effects and breakpoints arrays
-	text_effects = -1;
+	//Reset the breakpoints array
 	breakpoints = -1;
 	
 	//Loop through and save the effect positions and breakpoints
 	repeat(str_len){
-		//Save Effect Positions
-		char = string_char_at(text[page], cc);
-		
 		//Get next space, deal with new lines
 		if(cc >= next_space){
 			next_space = cc;
 			while(next_space < str_len and string_copy(text_NE, next_space,1) != " ") next_space++;
 			var linewidth = (next_space-breakpoint)*charSize;
-			if (linewidth >= txtwidth) { breakpoint = cc; breakpoints[by] = cc; by++; } 
+			if (linewidth >= txtwidth) { 
+				breakpoint = cc; breakpoints[by] = cc; by++;
+			} 
 		}
 	
 		cc++;
