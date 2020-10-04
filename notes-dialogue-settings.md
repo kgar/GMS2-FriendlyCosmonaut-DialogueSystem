@@ -9,3 +9,9 @@ I've been puzzling about how to make such a setup more flexible for adding new e
 ## Can I make it even bootstrappier?
 
 Question I needed answered: is there a max game time in GMS?
+
+I suppose that's something I shouldn't really worry about... not really... But let's calculate! The game timer value is a double.
+
+Oof. I started to do the math, but we're talking astronomically large, like 2^1023 microseconds, or apparently 8.988466e+302 seconds, or 1.498078e+301 minutes, or 2.496796e+299 hours, or 1.040332e+298 days... there's plenty of time for me to use the game timer when doing text calculations.
+
+I wonder what would happen in a GMS game when the clock exceeds the max. Is that even possible with frame skipping?

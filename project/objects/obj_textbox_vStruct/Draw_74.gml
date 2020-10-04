@@ -10,6 +10,3 @@ if (dialogueEntry.type == DialogueType.Normal) {
 		? currentCharacterSpecs[textIndex].speed
 		: dialogueSpeed;
 }
-
-waveEffectTime = (waveEffectTime + 1) % 360;
-colorShiftTime = (colorShiftTime + colorShiftRate) % 256;
