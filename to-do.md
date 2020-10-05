@@ -1,7 +1,10 @@
 ## To Do
 - Add dialogue choice input handling into Step
   - Draw GUI:
-    - 
+    - Draw the options
+      - Highlight the current choice
+    - Ensure pointer exists
+    - Ensure pointer destination is specified
   - control destination dialogue page based on choice
   - execute script from dialogue action
   - handle user input
