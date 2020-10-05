@@ -13,3 +13,9 @@ enum TextEffect {
 	Pulse,
 	Flicker
 }
+
+enum DialogueJumpType {
+	AbsoluteIndex,
+	RelativeIndex,
+	UniqueId
+}

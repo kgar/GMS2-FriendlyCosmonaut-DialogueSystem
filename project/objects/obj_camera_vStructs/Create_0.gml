@@ -60,6 +60,30 @@ var dialogue = [
     type: DialogueType.Normal,
     speaker: undefined,
     effects: [{ index: 0, effect: TextEffect.ColorShift }]
+  },
+  {
+    text: "Do you want to start over?",
+    type: DialogueType.Choice,
+    textColors: [
+      { index: 15, color: c_yellow },
+      { index: 25, color: c_white }
+    ],
+    choices: [
+      { 
+        text: "Yeah, sure, why not?",
+        jump: {
+          jumpType: DialogueJumpType.AbsoluteIndex,
+          value: 0
+        },
+        script: function() {
+          global.introRestartCount++;
+        }
+      },
+      {
+        text: "Nope."
+      }
+    ]
+    
   }
 ];
 

@@ -1,4 +1,4 @@
-import { change_variable, create_instance_layer, c_aqua, c_lime, c_white, Dialogue, DialogueType, id, obj_emote, obj_examplechar, obj_player, TextEffect } from "./dialogue-models";
+import { change_variable, create_instance_layer, c_aqua, c_lime, c_white, Dialogue, DialogueJumpType, DialogueType, id, obj_emote, obj_examplechar, obj_player, TextEffect } from "./dialogue-models";
 
 var initialDialogue: Dialogue = [
   {
@@ -6,9 +6,8 @@ var initialDialogue: Dialogue = [
     text:
       "You can run a script after any line of dialogue! Let's make an emote to the left.",
     speaker: id,
-    script: {
-      functionId: create_instance_layer,
-      args: [170, 120, "Instances", obj_emote]
+    onPageTurn: function() {
+      create_instance_layer(170, 120, "Instances", obj_emote);
     }
   },
   {
@@ -21,20 +20,16 @@ var initialDialogue: Dialogue = [
     type: DialogueType.Choice,
     choices: [
       {
-        choice: "An emote",
-        script: {
-          functionId: create_instance_layer,
-          args: [170, 120, "Instances", obj_emote]
-        },
-        nextLine: 0
+        text: "An emote",
+        script: function() {
+          create_instance_layer(170, 120, "Instances", obj_emote);
+        }
       },
       {
-        choice: "Another you!",
-        script: {
-          functionId: create_instance_layer,
-          args: [170, 120, "Instances", obj_examplechar]
-        },
-        nextLine: 0
+        text: "Another you!",
+        script: function() {
+          create_instance_layer(170, 120, "Instances", obj_examplechar)
+        }
       }
     ],
     speaker: obj_player
@@ -82,20 +77,24 @@ var initialDialogue: Dialogue = [
     type: DialogueType.Choice,
     choices: [
       {
-        choice: "(sarcastically) Blue is the best colour.",
-        script: {
-          functionId: change_variable,
-          args: [id, "choice_variable", "blue"]
+        text: "(sarcastically) Blue is the best colour.",
+        script: function() {
+          change_variable(id, "choice_variable", "blue");
         },
-        nextLine: 8
+        jump: {
+          jumpType: DialogueJumpType.AbsoluteIndex,
+          value: 8
+        }
       },
       {
-        choice: "Green is the best colour.",
-        script: {
-          functionId: change_variable,
-          args: [id, "choice_variable", "green"]
+        text: "Green is the best colour.",
+        script: function() {
+          change_variable(id, "choice_variable", "green");
         },
-        nextLine: 9
+        jump: {
+          jumpType: DialogueJumpType.AbsoluteIndex,
+          value: 9
+        }
       }
     ],
     speaker: obj_player
@@ -105,7 +104,6 @@ var initialDialogue: Dialogue = [
     text: "Exactly! Thank you!",
     emotion: 0,
     emote: 0,
-    nextLine: -1,
     speaker: id
   },
   {

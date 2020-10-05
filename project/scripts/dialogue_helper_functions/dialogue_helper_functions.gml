@@ -8,6 +8,10 @@ global.dialogue_models = {
 		color = c_white;
 		font = fnt_dialogue;
 		speed = 1;
+	},
+	DialogueJump: function(_jumpType, _value) {
+		jumpType = _jumpType;
+		value = _value;
 	}
 }
 
