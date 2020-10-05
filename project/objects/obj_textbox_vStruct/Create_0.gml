@@ -25,6 +25,9 @@ interactKey = ord("E");
 choiceMoveUpKey = vk_up;
 choiceMoveDownKey = vk_down;
 
+// Delayed actions
+delayedAction = undefined;
+
 // Draw Settings
 stringHeight = undefined;
 guiWidth = display_get_gui_width();
@@ -85,4 +88,14 @@ function TurnPage() {
 	// Perform calculations, 
 	// prepare any optional features for the page
 	// etc.
+}
+
+function ProcessChoice() {
+	// Get choice object based on chosen index
+	
+	// Optionally execute associated action
+	
+	// Optionally adjust custom page turn; else, turn page normally
+	
+	
 }

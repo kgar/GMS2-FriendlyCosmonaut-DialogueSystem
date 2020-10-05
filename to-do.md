@@ -1,13 +1,15 @@
 ## To Do
-- Add dialogue choice input handling into Step
+- Implement choice
   - Draw GUI:
-    - Draw the options
-      - Highlight the current choice
-    - Ensure pointer exists
-    - Ensure pointer destination is specified
+    - Type-write the prompt text (if any)
+    - Instantly show the choices and a pointer on the default option
+    - Selected choice should be highlighted the color specified by the variable
+    - The pointer should oscillate smoothly and slighty from left to right, bigger (on left) to slightly smaller (on right)
+    - When the choice changes, lerp() the pointer from the one option to the other. It should be so fast that there's no concern about waiting on it if you are cycling through options
+    - Support as many options as can be visible on a single page
   - control destination dialogue page based on choice
   - execute script from dialogue action
-  - handle user input
+  - handle user input in step
     - selection
     - choosing between options
   - use a cool pointer sprite that animates
@@ -19,6 +21,7 @@
 - Add idle animation
 - Add vocal pause
 - Add dialogue page turn indicator (use the existing spr_dialoguefinished); it should animate like the original.
+- Apply some simple 9-panel textbox with borders to replace the black box
 
 ## Refactoring
 - Can I eliminate any more variables from the textbox object?
@@ -27,3 +30,7 @@
   - Hmm... divide the screen into 255 slices?
   - Somehow determine with the passage of time that hue should circularly shift to the left...
   - Somehow do this without holding any variables so that all rainbow text behaves as if some kind of masking were being used.
+- Challenge: Provide scrollability to choice, so any number of options can appear in the textbox
+  - This should include arrow pointers up and down in the center x / top and bottom y of the textbox; the arrows should only appear for their corresponding direction when that direction is accessible
+  - Can I make it so scrolling is smooth, with strings of text scrolling in and out of view instead of instantly changing?
+- 

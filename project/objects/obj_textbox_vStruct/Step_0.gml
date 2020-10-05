@@ -12,10 +12,16 @@ switch (dialogueEntry.type) {
 		}
 		break;
 	case DialogueType.Choice:
-		// On Interact:
-		// Process input
-		// Play sound
-		// Process choice
+		if (chosen) exit;
+		if (keyboard_check_pressed(interactKey)) {
+			// Process input
+			chosen = true;
+			delayedAction = ProcessChoice;
+			alarm[0] = 10;			
+			// Play sound
+			// Process choice
+		}
+				
 		
 		// On Move up/down:
 		// Process input
