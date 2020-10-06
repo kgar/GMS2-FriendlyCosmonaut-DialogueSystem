@@ -16,17 +16,18 @@ switch (dialogueEntry.type) {
 		if (keyboard_check_pressed(interactKey)) {
 			// Process input
 			chosen = true;
+			audio_play_sound(choiceSelectSound, choiceSoundPriority, false); 
 			delayedAction = ProcessChoice;
 			alarm[0] = 10;			
-			// Play sound
-			// Process choice
+			exit;
 		}
-				
 		
-		// On Move up/down:
-		// Process input
-		// Play sound
-		// Adjust choice index
+		var change = keyboard_check_pressed(choiceMoveDownKey) - keyboard_check_pressed(choiceMoveUpKey);
+		if(change != 0){ 
+			var choicesLength = array_length(dialogueEntry.choices);
+			currentChoiceIndex = (currentChoiceIndex + change + choicesLength) % choicesLength; 
+			audio_play_sound(choiceChangeSound, choiceSoundPriority, false); 
+		}
 		break;
 	default:
 		throw "Invalid DialogueType";

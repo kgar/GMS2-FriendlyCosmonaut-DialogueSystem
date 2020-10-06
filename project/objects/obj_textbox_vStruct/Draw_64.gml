@@ -11,7 +11,15 @@ draw_set_color_temp(c_black, function() {
 });
 
 #region Dialogue Choice
-
+if (dialogueEntry.type == DialogueType.Choice) {
+	// Type-write prompt with full effects support ; TODO: Consider extracting spec drawing code to its own dedicated function.
+	// If current index is at or exceeding text length, 
+	// show choices
+		// Ensure selected choice is highlighted
+		// Ensure pointer exists
+		// lerp pointer to its appropriate place to the left of the choice text
+	exit;
+}
 #endregion
 
 #region Normal Dialogue

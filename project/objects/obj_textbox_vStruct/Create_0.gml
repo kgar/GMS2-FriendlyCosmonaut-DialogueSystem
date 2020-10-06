@@ -13,8 +13,9 @@ currentCharacterSpecs = undefined;
 textIndex = undefined;
 
 // Choice Dialogue
-choiceMoveSound = snd_moveselect;
+choiceChangeSound = snd_moveselect;
 choiceSelectSound = snd_select;
+choiceSoundPriority = 5;
 choiceTextColor = c_yellow;
 choicePointerSprite = spr_dialoguefinished;
 chosen = false;

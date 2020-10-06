@@ -1,4 +1,7 @@
 ## To Do
+- Refactor so that text drawing always happens in normal or choice dialogue pages
+  - Additional choice-based draw logic should appear after the regular spec drawing logic
+- Update step event: ensure choice input handling ignored until type-writing is done. 
 - Implement choice
   - Draw GUI:
     - Type-write the prompt text (if any)
