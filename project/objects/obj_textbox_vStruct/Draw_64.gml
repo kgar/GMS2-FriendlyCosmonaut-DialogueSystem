@@ -43,6 +43,7 @@ for (var i = 0; i <= roundedspecIndex; i++) {
 			break;
 		case TextEffect.WaveAndColorShift:
 			var colorShift = time * 8 + drawTextX;
+			var shiftOffset = (time + i);
 			var shift = dsin(shiftOffset * 6) * waveEffectAmplitude;
 			var colorShift = (time + i) * 10;
 			var color1 = make_color_hsv(colorShift % 256, 255, 255);

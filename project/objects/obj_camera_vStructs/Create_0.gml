@@ -27,6 +27,7 @@ var dialogue = [
     ],
     textColors: [
       { index: 0, color: c_lime },
+	  { index: 7, color: c_white },
       { index: 15, color: c_fuchsia },
       { index: 81, color: c_aqua },
 	  { index: 131, color: make_color_rgb(220, 20, 60) }
