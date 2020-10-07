@@ -1,18 +1,11 @@
 ## To Do
-- Update step event: ensure choice input handling ignored until type-writing is done. 
 - Implement choice
   - Draw GUI:
     - Add a pointer on the currently highlighted option
     - The pointer should oscillate smoothly and slighty from left to right
     - When the choice changes, lerp() the pointer from the one option to the other. It should be so fast that there's no concern about waiting on it if you are cycling through options
     - Support as many options as can be visible on a single page
-  - control destination dialogue page based on choice
-  - execute script from dialogue action
-  - handle user input in step
-    - selection
-    - choosing between options
   - use a cool pointer sprite that animates
-  - highlight the currently selected option
 - Add optional nameplate
 - Add static portrait
 - Add talk animation
