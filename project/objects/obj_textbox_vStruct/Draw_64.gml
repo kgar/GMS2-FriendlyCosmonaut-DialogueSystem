@@ -56,7 +56,6 @@ for (var i = 0; i <= roundedspecIndex; i++) {
 			var valign = draw_get_valign(), halign = draw_get_halign();
 			draw_set_valign(fa_middle);
 			draw_set_halign(fa_middle);
-			var color = draw_get_color();
 			draw_text_transformed_color(drawTextX + characterCenterOffset, drawTextY + stringHeight / 2, 
 				spec.character, 1, 1, shift * 20, color, color, color, color, 1);
 			draw_set_valign(valign);
@@ -66,7 +65,6 @@ for (var i = 0; i <= roundedspecIndex; i++) {
 			var shiftOffset = time + i;
 			var shift = abs(dsin(shiftOffset * 6));
 			var characterCenterOffset = spec.width / 2;
-			var color = draw_get_color();
 			var valign = draw_get_valign(), halign = draw_get_halign();
 			draw_set_valign(fa_middle);
 			draw_set_halign(fa_middle);
@@ -78,12 +76,11 @@ for (var i = 0; i <= roundedspecIndex; i++) {
 		case TextEffect.Flicker:
 			var shiftOffset = time + i;
 			var shift = dsin(shiftOffset * 6);
-			var color = draw_get_color();
 			draw_text_color(drawTextX, drawTextY, spec.character, color, color, color, color, shift + random_range(-1, 1));
 			break;
 		case TextEffect.Normal:
 		default:
-			draw_text(drawTextX, drawTextY, spec.character);
+			draw_text_color(drawTextX, drawTextY, spec.character, color, color, color, color, 1);
 			break;
 	}
 }
@@ -105,10 +102,7 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 		var choice = dialogueEntry.choices[i];
 		var isSelected = currentChoiceIndex == i;
 		var color = isSelected ? choiceTextColor : c_white /* TODO: Eliminate this hardcodedness */;
-		var currentColor = draw_get_color();
-		draw_set_color(color);
-		draw_text_ext(drawChoiceX, drawChoiceY + choiceOffsetY, choice.text, stringHeight, availableChoiceWidth)
-		draw_set_color(currentColor);
+		draw_text_ext_color(drawChoiceX, drawChoiceY + choiceOffsetY, choice.text, stringHeight, availableChoiceWidth, color, color, color, color, 1);
 		choiceOffsetY += string_height_ext(choice.text, stringHeight, availableChoiceWidth);
 		// TODO: Ensure pointer exists
 		// TODO: lerp pointer to its appropriate place to the left of the choice text

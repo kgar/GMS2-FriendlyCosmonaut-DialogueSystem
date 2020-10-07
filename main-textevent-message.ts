@@ -109,6 +109,10 @@ var dialogue: Dialogue = [
       { index: 18, speed: 0.2 },
       { index: 21, speed: 1 }
     ],
+    effects: [
+      { index: 45, effect: TextEffect.ColorShift },
+      { index: 56, effect: TextEffect.Normal }
+    ],
     choices: [
       {
         text: "Fine! Show the rainbow!",

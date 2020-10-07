@@ -28,7 +28,8 @@ var dialogue = [
     textColors: [
       { index: 0, color: c_lime },
       { index: 15, color: c_fuchsia },
-      { index: 81, color: c_aqua }
+      { index: 81, color: c_aqua },
+	  { index: 131, color: make_color_rgb(220, 20, 60) }
     ],
     textFont: [{ index: 131, font: fnt_chiller }],
     onPageTurn: function () {
@@ -91,7 +92,7 @@ var dialogue = [
     ]
   },
   {
-    text: "Okay, but,... like... what about seeing that rad rainbow again?",
+    text: "Okay, so, ... like ... what about seeing that rad rainbow again?",
     type: DialogueType.Choice,
     textSpeed: [
       { index: 10, speed: 0.2 },
@@ -99,6 +100,10 @@ var dialogue = [
       { index: 18, speed: 0.2 },
       { index: 21, speed: 1 }
     ],
+	effects: [
+		{ index: 46, effect: TextEffect.ColorShift },
+		{ index: 57, effect: TextEffect.Normal }
+	],
     choices: [
       {
         text: "Fine! Show the rainbow!",

@@ -34,4 +34,4 @@
 - Challenge: Provide scrollability to choice, so any number of options can appear in the textbox
   - This should include arrow pointers up and down in the center x / top and bottom y of the textbox; the arrows should only appear for their corresponding direction when that direction is accessible
   - Can I make it so scrolling is smooth, with strings of text scrolling in and out of view instead of instantly changing?
-- 
+- Make text effects drawing reusable
