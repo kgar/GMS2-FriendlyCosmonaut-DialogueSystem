@@ -1,24 +1,35 @@
 /// @description Handle User Input
 
+
+
+
 switch (dialogueEntry.type) {
 	case DialogueType.Normal:
 	
 		if (!keyboard_check_pressed(interactKey)) return;
 	
-		if (textIndex >= specsLength) {
+		if (specIndex >= specsLength - 1) {
 			TurnPage();
-		} else if (textIndex > 2 || specsLength <= 2) {
-			textIndex = specsLength;
+		} else if (specIndex > 2 || specsLength <= 2) {
+			specIndex = specsLength - 1; // Skip to end of text prompt
 		}
 		break;
 	case DialogueType.Choice:
 		if (chosen) exit;
 		if (keyboard_check_pressed(interactKey)) {
-			// Process input
-			chosen = true;
-			audio_play_sound(choiceSelectSound, choiceSoundPriority, false); 
-			delayedAction = ProcessChoice;
-			alarm[0] = 10;			
+			
+			var finishedTypeWriting = specIndex >= specsLength - 1;
+			
+			if (finishedTypeWriting) {
+				// Process input
+				chosen = true;
+				audio_play_sound(choiceSelectSound, choiceSoundPriority, false); 
+				delayedAction = ProcessChoice;
+				alarm[0] = 10;			
+			} else if (specIndex > 2 || specsLength <= 2) {
+				specIndex = specsLength - 1; // Skip to end of text prompt
+			}
+			
 			exit;
 		}
 		

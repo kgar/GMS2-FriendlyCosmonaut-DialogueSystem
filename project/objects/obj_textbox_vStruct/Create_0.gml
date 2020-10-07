@@ -10,7 +10,7 @@ currentText = undefined;
 dialogueSpeed = 1;
 specsLength = undefined;
 currentCharacterSpecs = undefined;
-textIndex = undefined;
+specIndex = undefined;
 
 // Choice Dialogue
 choiceChangeSound = snd_moveselect;
@@ -75,7 +75,7 @@ function TurnPage() {
 	
 	currentText = dialogueEntry.text;
 	
-	textIndex = 0;
+	specIndex = 0;
 
 	draw_set_font_temp(fnt_dialogue, function() {		
 		stringHeight = string_height("M");

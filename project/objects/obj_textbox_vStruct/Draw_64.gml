@@ -10,25 +10,13 @@ draw_set_color_temp(c_black, function() {
 		false);
 });
 
-#region Dialogue Choice
-if (dialogueEntry.type == DialogueType.Choice) {
-	// Type-write prompt with full effects support ; TODO: Consider extracting spec drawing code to its own dedicated function.
-	// If current index is at or exceeding text length, 
-	// show choices
-		// Ensure selected choice is highlighted
-		// Ensure pointer exists
-		// lerp pointer to its appropriate place to the left of the choice text
-	exit;
-}
-#endregion
-
 #region Normal Dialogue
 
-// Draw text up to this point in textIndex
+// Draw text up to this point in specIndex
 draw_set_font(fnt_dialogue);
 var time = get_timer() / 1000000 * room_speed;
-var roundedTextIndex = floor(textIndex);
-for (var i = 0; i < roundedTextIndex; i++) {
+var roundedspecIndex = floor(specIndex);
+for (var i = 0; i <= roundedspecIndex; i++) {
 	var spec = currentCharacterSpecs[i];
 	
 	var drawTextX = textboxPositionX + textboxPaddingX + spec.xOffset;
@@ -98,4 +86,15 @@ for (var i = 0; i < roundedTextIndex; i++) {
 	}
 }
 
+#endregion
+
+
+#region Dialogue Choice
+if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
+	// If current index is at or exceeding text length, 
+	// show choices
+		// Ensure selected choice is highlighted
+		// Ensure pointer exists
+		// lerp pointer to its appropriate place to the left of the choice text
+}
 #endregion

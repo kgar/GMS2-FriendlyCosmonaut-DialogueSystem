@@ -1,12 +1,9 @@
 /// @description Increment
 
-if (dialogueEntry.type == DialogueType.Normal) {
-	// TODO: Give textIndex a better name. It does not really map to a particular index in the string.
-	if (textIndex < specsLength) {
-		textIndex += dialogueSpeed;
-	}
-	
-	dialogueSpeed = textIndex < specsLength
-		? currentCharacterSpecs[textIndex].speed
-		: dialogueSpeed;
+if (specIndex < specsLength - 1) {
+	specIndex = min(specIndex + dialogueSpeed, specsLength - 1);
 }
+	
+dialogueSpeed = specIndex < specsLength
+	? currentCharacterSpecs[specIndex].speed
+	: dialogueSpeed;
