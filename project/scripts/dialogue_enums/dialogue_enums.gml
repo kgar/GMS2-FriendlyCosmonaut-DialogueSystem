@@ -17,5 +17,6 @@ enum TextEffect {
 enum DialogueJumpType {
 	AbsoluteIndex,
 	RelativeIndex,
-	UniqueId
+	UniqueId,
+	ExitDialogue
 }

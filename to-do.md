@@ -1,13 +1,9 @@
 ## To Do
-- Refactor so that text drawing always happens in normal or choice dialogue pages
-  - Additional choice-based draw logic should appear after the regular spec drawing logic
 - Update step event: ensure choice input handling ignored until type-writing is done. 
 - Implement choice
   - Draw GUI:
-    - Type-write the prompt text (if any)
-    - Instantly show the choices and a pointer on the default option
-    - Selected choice should be highlighted the color specified by the variable
-    - The pointer should oscillate smoothly and slighty from left to right, bigger (on left) to slightly smaller (on right)
+    - Add a pointer on the currently highlighted option
+    - The pointer should oscillate smoothly and slighty from left to right
     - When the choice changes, lerp() the pointer from the one option to the other. It should be so fast that there's no concern about waiting on it if you are cycling through options
     - Support as many options as can be visible on a single page
   - control destination dialogue page based on choice
@@ -27,6 +23,8 @@
 - Apply some simple 9-panel textbox with borders to replace the black box
 
 ## Refactoring
+- Create specMaxIndex variable for obj and use it.
+- Create function for skipping to end of typewriting and extract all manual logic.
 - Can I eliminate any more variables from the textbox object?
 - Is there a less manual way to handle text ranges?
 - Challenge: Refactor rainbow text to no longer depend on drawTextX in order to shift vertically correlated colors.

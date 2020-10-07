@@ -16,11 +16,13 @@ draw_set_color_temp(c_black, function() {
 draw_set_font(fnt_dialogue);
 var time = get_timer() / 1000000 * room_speed;
 var roundedspecIndex = floor(specIndex);
+var drawTextY = textboxPositionY + textboxPaddingY;
+
 for (var i = 0; i <= roundedspecIndex; i++) {
 	var spec = currentCharacterSpecs[i];
 	
 	var drawTextX = textboxPositionX + textboxPaddingX + spec.xOffset;
-	var drawTextY = textboxPositionY + textboxPaddingY + spec.yOffset;
+	drawTextY = textboxPositionY + textboxPaddingY + spec.yOffset;
 	var color = spec.color;
 	draw_set_font(spec.font);
 	
@@ -91,10 +93,27 @@ for (var i = 0; i <= roundedspecIndex; i++) {
 
 #region Dialogue Choice
 if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
-	// If current index is at or exceeding text length, 
-	// show choices
-		// Ensure selected choice is highlighted
-		// Ensure pointer exists
-		// lerp pointer to its appropriate place to the left of the choice text
+	
+	var choicesLength = array_length(dialogueEntry.choices);
+	
+	var drawChoiceX = textboxPositionX + textboxPaddingX;
+	var drawChoiceY = drawTextY + stringHeight;
+	var choiceOffsetY = 0;
+	var availableChoiceWidth = textboxWidth - textboxPaddingX * 2;
+	
+	for (var i = 0; i < choicesLength; i++) {
+		var choice = dialogueEntry.choices[i];
+		var isSelected = currentChoiceIndex == i;
+		var color = isSelected ? choiceTextColor : c_white /* TODO: Eliminate this hardcodedness */;
+		var currentColor = draw_get_color();
+		draw_set_color(color);
+		draw_text_ext(drawChoiceX, drawChoiceY + choiceOffsetY, choice.text, stringHeight, availableChoiceWidth)
+		draw_set_color(currentColor);
+		choiceOffsetY += string_height_ext(choice.text, stringHeight, availableChoiceWidth);
+		// TODO: Ensure pointer exists
+		// TODO: lerp pointer to its appropriate place to the left of the choice text
+	}
+	
+		
 }
 #endregion

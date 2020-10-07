@@ -52,11 +52,21 @@ function Init(_dialogue) {
 	active = true;
 }
 
+/// @description Turn the page
+/// @param index  optional field specifying the absolute index to change the page to.
 function TurnPage() {
-	currentPage = currentPage == undefined
-		? 0
-		: currentPage + 1;
-		
+	
+	var absoluteIndex = argument_count > 0 ? argument[0] : undefined;
+	
+	if (absoluteIndex != undefined) {
+		currentPage = absoluteIndex;
+	} 
+	else {
+		currentPage = currentPage == undefined
+			? 0
+			: currentPage + 1;	
+	}
+			
 	currentChoiceIndex = 0;
 	chosen = false;
 		
@@ -91,12 +101,50 @@ function TurnPage() {
 	// etc.
 }
 
+function FindPageIndexByUniqueId(uniqueId) {
+	var totalPages = array_length(dialogue);
+	for (var i = 0; i < totalPages; i++) {
+		var dialogueEntryToCheck = dialogue[i];
+		var pageUniqueId = variable_struct_get(dialogueEntryToCheck, "uniqueId");
+		if (uniqueId == pageUniqueId) return i;
+	}
+	return undefined;
+}
+
 function ProcessChoice() {
 	// Get choice object based on chosen index
+	var choice = dialogueEntry.choices[currentChoiceIndex];
 	
-	// Optionally execute associated action
+	// Optionally execute associated script
+	var action = variable_struct_get(choice, "script");
+	if (action != undefined) {
+		action();
+	}
 	
 	// Optionally adjust custom page turn; else, turn page normally
-	
-	
+	var jump = variable_struct_get(choice, "jump");
+	if (jump != undefined) {
+		switch(jump.jumpType) {
+			case DialogueJumpType.AbsoluteIndex:
+				TurnPage(jump.value);
+				break;
+			case DialogueJumpType.RelativeIndex:
+				var absoluteIndex = currentPage + jump.value;
+				TurnPage(absoluteIndex);
+				break;
+			case DialogueJumpType.UniqueId:
+				var pageSearchResult = FindPageIndexByUniqueId(jump.value);
+				if (pageSearchResult == undefined) {
+					throw "Attempt to jump dialogue by unique ID failed. Dialogue does not contain the unique ID " + jump.value;
+				}
+				TurnPage(pageSearchResult);
+				break;
+			case DialogueJumpType.ExitDialogue:
+				instance_destroy();
+				break;
+		}
+	}
+	else {
+		TurnPage();
+	}
 }

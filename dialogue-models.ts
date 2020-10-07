@@ -17,12 +17,13 @@ export enum TextEffect {
 export enum DialogueJumpType {
   AbsoluteIndex,
   RelativeIndex,
-  UniqueId
+  UniqueId,
+  ExitDialogue
 }
 
 export interface DialogueJump {
   jumpType: DialogueJumpType;
-  value: string | number;
+  value?: string | number;
 }
 
 export interface DialogueChoice {
@@ -77,7 +78,7 @@ export interface DialogueMessage {
   emote?: number;
   textSpeed?: TextSpeed[];
   textFont?: TextFont[];
-  id?: string;
+  uniqueId?: string;
 }
 
 export type DialogueEntry = DialogueChoices | DialogueMessage;

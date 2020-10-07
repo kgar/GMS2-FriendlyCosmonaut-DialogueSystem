@@ -33,6 +33,7 @@
     {"id":{"name":"spr_portrait_examplechar_idle","path":"sprites/spr_portrait_examplechar_idle/spr_portrait_examplechar_idle.yy",},"order":8,},
     {"id":{"name":"spr_portrait_examplechar_mouth","path":"sprites/spr_portrait_examplechar_mouth/spr_portrait_examplechar_mouth.yy",},"order":9,},
     {"id":{"name":"change_variable","path":"scripts/change_variable/change_variable.yy",},"order":0,},
+    {"id":{"name":"global_data","path":"scripts/global_data/global_data.yy",},"order":5,},
     {"id":{"name":"spr_box","path":"sprites/spr_box/spr_box.yy",},"order":0,},
     {"id":{"name":"create_textevent","path":"scripts/create_textevent/create_textevent.yy",},"order":3,},
     {"id":{"name":"spr_portraitframe","path":"sprites/spr_portraitframe/spr_portraitframe.yy",},"order":11,},
