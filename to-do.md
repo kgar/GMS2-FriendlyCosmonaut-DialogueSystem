@@ -1,11 +1,13 @@
 ## To Do
 - Add optional nameplate
+  - Default on the right side of the textbox
 - Add static portrait
+  - Allow for specifying a side
+  - The nameplate should automatically take the opposite side
 - Add talk animation
   - Make sure it can be configured for longer sprite speaking animations or dynamically able to handle that
 - Add idle animation
 - Add vocal pause
-- Add dialogue page turn indicator (use the existing spr_dialoguefinished); it should animate like the original.
 - Apply some simple 9-panel textbox with borders to replace the black box
 
 ## Stretches
