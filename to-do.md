@@ -1,8 +1,4 @@
 ## To Do
-- Implement choice
-  - Draw GUI:
-    - The pointer should oscillate smoothly and slighty from left to right
-    - Support as many options as can be visible on a single page
 - Add optional nameplate
 - Add static portrait
 - Add talk animation
@@ -29,6 +25,9 @@
 - Provide scrollability to choice, so any number of options can appear in the textbox
   - This should include arrow pointers up and down in the center x / top and bottom y of the textbox; the arrows should only appear for their corresponding direction when that direction is accessible
   - Can I make it so scrolling is smooth, with strings of text scrolling in and out of view instead of instantly changing?
+- Update choice pointer to animate
+  - Subtle bounce effect where the arrow accelerates to the right, bounces back very slowly, then repeats
+
 
 ## Refactoring
 - Create specMaxIndex variable for obj and use it.
