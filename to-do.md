@@ -7,7 +7,6 @@
 - Add talk animation
   - Make sure it can be configured for longer sprite speaking animations or dynamically able to handle that
 - Add idle animation
-- Add vocal pause
 - Apply some simple 9-panel textbox with borders to replace the black box
 
 ## Stretches
