@@ -114,7 +114,7 @@ var dialogue = [
         }
       },
       {
-        text: "Actually, I want to answer the previous question ;)",
+        text: "I want to answer the previous question ;)",
         jump: {
           jumpType: DialogueJumpType.RelativeIndex,
           value: -1

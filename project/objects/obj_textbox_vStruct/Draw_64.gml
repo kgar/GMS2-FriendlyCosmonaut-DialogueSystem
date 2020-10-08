@@ -94,8 +94,10 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 	
 	var choicesLength = array_length(dialogueEntry.choices);
 	
-	var drawChoiceX = textboxPositionX + textboxPaddingX;
+	var drawChoiceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding;
 	var drawChoiceY = drawTextY + stringHeight;
+	var pointerDrawX = undefined;
+	var pointerDrawY = undefined;
 	var choiceOffsetY = 0;
 	var availableChoiceWidth = textboxWidth - textboxPaddingX * 2;
 	
@@ -105,10 +107,15 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 		var color = isSelected ? choiceTextColor : c_white /* TODO: Eliminate this hardcodedness */;
 		draw_text_ext_color(drawChoiceX, drawChoiceY + choiceOffsetY, choice.text, stringHeight, availableChoiceWidth, color, color, color, color, 1);
 		choiceOffsetY += string_height_ext(choice.text, stringHeight, availableChoiceWidth);
-		// TODO: Ensure pointer exists
-		// TODO: lerp pointer to its appropriate place to the left of the choice text
+		
+		if (isSelected) {
+			pointerDrawX = drawChoiceX - choicePointerWidth - choicePointerRightPadding / 2;
+			pointerDrawY = drawChoiceY + choiceOffsetY - stringHeight / 2;
+		}
 	}
 	
-		
+	choicePointerLastX = lerp(coalesce(choicePointerLastX, pointerDrawX), pointerDrawX, 0.25);
+	choicePointerLastY = lerp(coalesce(choicePointerLastY, pointerDrawY), pointerDrawY, 0.25);
+	draw_sprite(spr_pointer, 0, choicePointerLastX, choicePointerLastY);
 }
 #endregion

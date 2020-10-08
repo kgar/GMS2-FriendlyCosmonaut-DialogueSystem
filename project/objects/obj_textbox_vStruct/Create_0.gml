@@ -17,7 +17,10 @@ choiceChangeSound = snd_moveselect;
 choiceSelectSound = snd_select;
 choiceSoundPriority = 5;
 choiceTextColor = c_yellow;
-choicePointerSprite = spr_dialoguefinished;
+choicePointerWidth = sprite_get_width(spr_pointer);
+choicePointerRightPadding = choicePointerWidth / 2;
+choicePointerLastX = undefined;
+choicePointerLastY = undefined;
 chosen = false;
 currentChoiceIndex = 0;
 
@@ -69,6 +72,8 @@ function TurnPage() {
 			
 	currentChoiceIndex = 0;
 	chosen = false;
+	choicePointerLastX = undefined;
+	choicePointerLastY = undefined;
 		
 	if (currentPage >= array_length(dialogue)) {
 		instance_destroy();
@@ -96,9 +101,6 @@ function TurnPage() {
 		specsLength = array_length(currentCharacterSpecs);
 	});
 	
-	// Perform calculations, 
-	// prepare any optional features for the page
-	// etc.
 }
 
 function FindPageIndexByUniqueId(uniqueId) {

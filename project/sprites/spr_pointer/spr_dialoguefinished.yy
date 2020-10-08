@@ -60,7 +60,7 @@
     "eventStubScript": null,
     "parent": {"name":"spr_dialoguefinished","path":"sprites/spr_dialoguefinished/spr_dialoguefinished.yy",},
     "resourceVersion": "1.3",
-    "name": "spr_dialoguefinished",
+    "name": "",
     "tags": [],
     "resourceType": "GMSequence",
   },

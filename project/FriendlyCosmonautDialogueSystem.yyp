@@ -43,6 +43,7 @@
     {"id":{"name":"spr_examplechar","path":"sprites/spr_examplechar/spr_examplechar.yy",},"order":4,},
     {"id":{"name":"spr_emotes","path":"sprites/spr_emotes/spr_emotes.yy",},"order":3,},
     {"id":{"name":"snd_voice1","path":"sounds/snd_voice1/snd_voice1.yy",},"order":2,},
+    {"id":{"name":"spr_pointer","path":"sprites/spr_pointer/spr_pointer.yy",},"order":12,},
     {"id":{"name":"obj_textbox_vStruct","path":"objects/obj_textbox_vStruct/obj_textbox_vStruct.yy",},"order":0,},
     {"id":{"name":"obj_textevent","path":"objects/obj_textevent/obj_textevent.yy",},"order":5,},
     {"id":{"name":"spr_namebox","path":"sprites/spr_namebox/spr_namebox.yy",},"order":5,},
