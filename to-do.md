@@ -8,6 +8,7 @@
   - Make sure it can be configured for longer sprite speaking animations or dynamically able to handle that
 - Add idle animation
 - Apply some simple 9-panel textbox with borders to replace the black box
+  - Do the same for the nameplate
 
 ## Stretches
 - Allow for variable insertion during spec generation
