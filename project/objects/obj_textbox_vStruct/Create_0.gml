@@ -46,6 +46,15 @@ textboxPositionX = (guiWhitespace/2);
 textboxPaddingY = 10;
 textboxPositionY = guiHeight - textboxHeight - 8;
 
+// Nameplate
+nameplateName = undefined;
+nameplateX = undefined;
+nameplateY = undefined;
+nameplateWidth = undefined;
+nameplateHeight = undefined;
+nameplatePadding = 5;
+nameplateXOffset = 20;
+
 // Effect Settings
 waveEffectAmplitude = 4;
 
@@ -94,6 +103,13 @@ function TurnPage() {
 
 	draw_set_font_temp(fnt_dialogue, function() {		
 		stringHeight = string_height("M");
+		
+		nameplateName = variable_struct_get(dialogueEntry, "name");
+		nameplateHeight = nameplateName != undefined ? stringHeight + nameplatePadding * 2 : undefined;
+		nameplateWidth = nameplateName != undefined ? string_width(nameplateName) + nameplatePadding * 2 : undefined;
+		nameplateX = nameplateName != undefined ? textboxPositionX + textboxWidth - nameplateWidth - nameplateXOffset : undefined;
+		nameplateY = nameplateName != undefined ? textboxPositionY - nameplateHeight : undefined;
+		
 		currentCharacterSpecs = global.dialogue_functions.create_character_specs(
 		dialogueEntry, 
 		textboxWidth - textboxPaddingX * 2);

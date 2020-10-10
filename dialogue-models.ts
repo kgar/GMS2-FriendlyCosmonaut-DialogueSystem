@@ -44,6 +44,7 @@ export interface DialogueChoices {
   textSpeed?: TextSpeed[];
   textFont?: TextFont[];
   id?: string;
+  name?: string;
   // Make an extension of DialogueMessage?
 }
 
@@ -79,6 +80,7 @@ export interface DialogueMessage {
   textSpeed?: TextSpeed[];
   textFont?: TextFont[];
   uniqueId?: string;
+  name?: string;
 }
 
 export type DialogueEntry = DialogueChoices | DialogueMessage;

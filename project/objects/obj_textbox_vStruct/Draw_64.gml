@@ -119,3 +119,17 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 	draw_sprite(spr_pointer, 0, choicePointerLastX, choicePointerLastY);
 }
 #endregion
+
+#region Nameplate
+
+if (nameplateName != undefined) {
+	draw_set_color_temp(c_black, function() {
+		draw_rectangle(nameplateX, nameplateY, nameplateX + nameplateWidth, nameplateY + nameplateHeight, false);
+	});
+	
+	draw_set_font_temp(fnt_dialogue, function() {
+		draw_text_color(nameplateX + nameplatePadding, nameplateY + nameplatePadding, nameplateName, c_white, c_white, c_white, c_white, 1);
+	});
+}
+
+#endregion

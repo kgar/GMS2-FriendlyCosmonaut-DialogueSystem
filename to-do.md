@@ -1,6 +1,4 @@
 ## To Do
-- Add optional nameplate
-  - Default on the right side of the textbox
 - Add static portrait
   - Allow for specifying a side
   - The nameplate should automatically take the opposite side
@@ -9,6 +7,9 @@
 - Add idle animation
 - Apply some simple 9-panel textbox with borders to replace the black box
   - Do the same for the nameplate
+- Implement interactable objects for dialogue
+  - Inheritance? Or composition?
+    - How would we do composition in GMS2?
 
 ## Stretches
 - Allow for variable insertion during spec generation
