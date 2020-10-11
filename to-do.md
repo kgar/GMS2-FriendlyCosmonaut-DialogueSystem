@@ -1,11 +1,10 @@
 ## To Do
-- Allow for specifying a side with a portrait
-  - Default left side
-  - The nameplate should automatically take the opposite side
-  - Add option for inverting portrait for portraits that need to face another direction
 - Add talk animation
-  - Make sure it can be configured for longer sprite speaking animations or dynamically able to handle that
-- Add idle animation
+  - Be wasteful and make full sprite subImgs of the full speaking animation that I want
+  - Be able to specify talk speed?
+  - The portrait should talk only while vowels and consonants are being drawn. They shouldn't animate during punctuation.
+- Add portrait semi-random 1-2 blinks during idle
+  - Idle State = dialogue is finished type-writing
 - Apply some simple 9-panel textbox with borders to replace the black box
   - Do the same for the nameplate
 - Implement interactable objects for dialogue

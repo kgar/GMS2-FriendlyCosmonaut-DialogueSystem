@@ -52,7 +52,8 @@ var dialogue = [
 	name: "Narrator",
 	portrait: {
 		assetName: "spr_portrait_narrator",
-		subImg: 0
+		subImg: 0,
+		invert: true
 	}
   },
   {
@@ -62,7 +63,8 @@ var dialogue = [
 	name: "Narrator",
 	portrait: {
 		assetName: "spr_portrait_narrator",
-		subImg: 0
+		subImg: 0,
+		invert: true
 	}
   },
   {
@@ -75,7 +77,8 @@ var dialogue = [
 	name: "The Other Narrator",
 	portrait: {
 		assetName: "spr_portrait_other_narrator",
-		subImg: 0
+		subImg: 0,
+		side: PortraitSide.Right
 	}
   },
   {
@@ -109,7 +112,8 @@ var dialogue = [
 	name: "Narrator",
 	portrait: {
 		assetName: "spr_portrait_narrator",
-		subImg: 0
+		subImg: 0,
+		invert: true
 	}
   },
   {
@@ -144,7 +148,8 @@ var dialogue = [
 	name: "The Other Narrator",
 	portrait: {
 		assetName: "spr_portrait_other_narrator",
-		subImg: 0
+		subImg: 0,
+		side: PortraitSide.Right
 	}
   }
 ];

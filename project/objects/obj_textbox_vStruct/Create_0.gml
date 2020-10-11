@@ -46,15 +46,6 @@ textboxPositionX = (guiWhitespace/2);
 textboxPaddingY = 10;
 textboxPositionY = guiHeight - textboxHeight - 8;
 
-// Nameplate
-nameplateName = undefined;
-nameplateX = undefined;
-nameplateY = undefined;
-nameplateWidth = undefined;
-nameplateHeight = undefined;
-nameplatePadding = 5;
-nameplateXOffset = 20;
-
 // Portrait
 portraitSprite = undefined;
 portraitSubImg = undefined;
@@ -63,6 +54,17 @@ portraitY = undefined;
 portraitWidth = undefined;
 portraitPaddingX = 20;
 portraitWidthAndPadding = undefined;
+portraitSide = undefined;
+portraitXScale = 0;
+
+// Nameplate
+nameplateName = undefined;
+nameplateX = undefined;
+nameplateY = undefined;
+nameplateWidth = undefined;
+nameplateHeight = undefined;
+nameplatePadding = 5;
+nameplateXOffset = 20;
 
 // Effect Settings
 waveEffectAmplitude = 4;
@@ -112,20 +114,55 @@ function TurnPage() {
 
 	// TODO: Throw this right into a struct and calculate everything on construction :O
 	var portrait = variable_struct_get(dialogueEntry, "portrait");
-	portraitSprite = portrait != undefined ? asset_get_index(portrait.assetName) : undefined;
-	portraitSubImg = portrait != undefined ? coalesce(variable_struct_get(portrait, "subImg"), 0) : undefined;
-	portraitWidth = portraitSprite != undefined ? sprite_get_width(portraitSprite) : 0;
-	portraitX = portrait != undefined ? textboxPositionX + portraitPaddingX + portraitWidth / 2 : undefined;
-	portraitY = portrait != undefined ? textboxPositionY + textboxHeight / 2 : undefined;
-	portraitWidthAndPadding = portrait != undefined ? portraitWidth + portraitPaddingX * 2 : 0;
+	
+	portraitSprite = portrait != undefined 
+		? asset_get_index(portrait.assetName) 
+		: undefined;
+	
+	portraitSubImg = portrait != undefined 
+		? coalesce(variable_struct_get(portrait, "subImg"), 0) 
+		: undefined;
+	
+	portraitWidth = portraitSprite != undefined 
+		? sprite_get_width(portraitSprite) 
+		: 0;
+	
+	portraitSide = portrait != undefined 
+		? coalesce(variable_struct_get(portrait, "side"), PortraitSide.Left) 
+		: PortraitSide.Left;
+	
+	if (portrait != undefined && portraitSide == PortraitSide.Left) {
+		portraitX = textboxPositionX + portraitPaddingX + portraitWidth / 2;
+	} else if (portrait != undefined && portraitSide == PortraitSide.Right) {
+		portraitX = textboxPositionX + textboxWidth - portraitPaddingX - portraitWidth / 2;
+	} else {
+		portraitX = undefined;
+	}
+	
+	portraitY = portrait != undefined 
+		? textboxPositionY + textboxHeight / 2 
+		: undefined;
+	
+	portraitWidthAndPadding = portrait != undefined 
+		? portraitWidth + portraitPaddingX * 2 
+		: 0;
+	
+	portraitXScale = portrait != undefined && variable_struct_get(portrait, "invert") == true
+		? -1
+		: 1;
+	
 	
 	draw_set_font_temp(fnt_dialogue, function() {		
 		stringHeight = string_height("M");
 		
+		// TODO: Put nameplates in a struct; name is required parameter; portrait struct is optional parameter
 		nameplateName = variable_struct_get(dialogueEntry, "name");
 		nameplateHeight = nameplateName != undefined ? stringHeight + nameplatePadding * 2 : undefined;
 		nameplateWidth = nameplateName != undefined ? string_width(nameplateName) + nameplatePadding * 2 : undefined;
-		nameplateX = nameplateName != undefined ? textboxPositionX + textboxWidth - nameplateWidth - nameplateXOffset : undefined;
+		// TODO: Clean this up! This is a mess! Perhaps use some functions when this is extracted to its own nameplate struct...
+		nameplateX = portraitSide == PortraitSide.Right
+			? (nameplateName != undefined ? textboxPositionX + textboxWidth - nameplateWidth - nameplateXOffset : undefined)
+			: (nameplateName != undefined ? textboxPositionX + nameplateXOffset : undefined);
 		nameplateY = nameplateName != undefined ? textboxPositionY - nameplateHeight : undefined;
 				
 		var textAreaWidth = textboxWidth - textboxPaddingX * 2 - portraitWidthAndPadding;

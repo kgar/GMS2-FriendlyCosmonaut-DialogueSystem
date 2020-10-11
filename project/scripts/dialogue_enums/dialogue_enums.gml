@@ -20,3 +20,8 @@ enum DialogueJumpType {
 	UniqueId,
 	ExitDialogue
 }
+
+enum PortraitSide {
+	Left,
+	Right
+}

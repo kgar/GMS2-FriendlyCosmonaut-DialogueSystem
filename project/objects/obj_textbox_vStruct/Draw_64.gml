@@ -21,7 +21,11 @@ var drawTextY = textboxPositionY + textboxPaddingY;
 for (var i = 0; i <= roundedspecIndex; i++) {
 	var spec = currentCharacterSpecs[i];
 	
-	var drawTextX = textboxPositionX + textboxPaddingX + portraitWidthAndPadding + spec.xOffset;
+	// TODO: Need a better name than effectivePortraitWidthAndPadding
+	var effectivePortraitWidthAndPadding = portraitSide == PortraitSide.Left
+		? portraitWidthAndPadding
+		: 0;
+	var drawTextX = textboxPositionX + textboxPaddingX + effectivePortraitWidthAndPadding + spec.xOffset;
 	drawTextY = textboxPositionY + textboxPaddingY + spec.yOffset;
 	var color = spec.color;
 	draw_set_font(spec.font);
@@ -94,7 +98,11 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 	
 	var choicesLength = array_length(dialogueEntry.choices);
 	
-	var drawChoiceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + portraitWidthAndPadding;
+	// TODO: Need a better name than effectivePortraitWidthAndPadding
+	var effectivePortraitWidthAndPadding = portraitSide == PortraitSide.Left
+		? portraitWidthAndPadding
+		: 0;
+	var drawChoiceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + effectivePortraitWidthAndPadding;
 	var drawChoiceY = drawTextY + stringHeight;
 	var pointerDrawX = undefined;
 	var pointerDrawY = undefined;
@@ -136,7 +144,7 @@ if (nameplateName != undefined) {
 
 if (portraitSprite != undefined) {
 	// TODO: Move calculations to page turn ;)
-		draw_sprite(portraitSprite, portraitSubImg, portraitX, portraitY);
+		draw_sprite_ext(portraitSprite, portraitSubImg, portraitX, portraitY, portraitXScale, 1, 0, c_white, 1);
 }
 
 #endregion
