@@ -30,7 +30,18 @@
   - Can I make it so scrolling is smooth, with strings of text scrolling in and out of view instead of instantly changing?
 - Update choice pointer to animate
   - Subtle bounce effect where the arrow accelerates to the right, bounces back very slowly, then repeats
-
+- Create character metadata structs in global scope
+  - The struct contains name, all portrait data, etc.
+  - Implement character's side preference and level of intensity
+    - The hero's portrait is always on the left with intensity of 100
+    - A villain's portrait is always on the right with intensity of 100
+    - A character type that has no real preference will go on the side that the other character does not prefer. 
+  - ... there are probably other things that could be added to this
+- Ooo, and then upgrade that character metadata to be read from a JSON file
+- Allow for a single character, e.g., a protag, to have their metadata changed as the game progresses, so all dialogues that reference the protag will have access to the latest sprites / other metadata.
+- Implement dialogue participants context
+  - Have the ability to declare who all is in a conversation and at what point in the conversation they are present or absent
+  - Imagine this kind of context allowing for visualizations like showing character busts all at once on the screen and emphasizing the current speaker.
 
 ## Refactoring
 - Create specMaxIndex variable for obj and use it.
