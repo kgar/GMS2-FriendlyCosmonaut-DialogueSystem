@@ -32,6 +32,11 @@ export interface DialogueChoice {
   script?: () => void;
 }
 
+export interface DialoguePortrait {
+  assetName: string;
+  subImg?: number;
+}
+
 export interface DialogueChoices {
   type: DialogueType.Choice;
   text?: string;
@@ -46,6 +51,7 @@ export interface DialogueChoices {
   id?: string;
   name?: string;
   // Make an extension of DialogueMessage?
+  portrait: DialoguePortrait;
 }
 
 export interface TextColor {
@@ -81,6 +87,7 @@ export interface DialogueMessage {
   textFont?: TextFont[];
   uniqueId?: string;
   name?: string;
+  portrait: DialoguePortrait;
 }
 
 export type DialogueEntry = DialogueChoices | DialogueMessage;

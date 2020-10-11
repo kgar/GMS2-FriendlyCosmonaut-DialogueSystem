@@ -1,7 +1,8 @@
 ## To Do
-- Add static portrait
-  - Allow for specifying a side
+- Allow for specifying a side with a portrait
+  - Default left side
   - The nameplate should automatically take the opposite side
+  - Add option for inverting portrait for portraits that need to face another direction
 - Add talk animation
   - Make sure it can be configured for longer sprite speaking animations or dynamically able to handle that
 - Add idle animation
@@ -42,3 +43,10 @@
   - Somehow determine with the passage of time that hue should circularly shift to the left...
   - Somehow do this without holding any variables so that all rainbow text behaves as if some kind of masking were being used.
 - Make text effects drawing reusable
+- Convert as many hardcoded assets to strings and use asset_get_index() on them.
+
+## Research
+- How could I handle JSON-driven dialogue workflow while also allowing for running full GML scripts?
+  - Some ideas:
+    - use the function execution technique that FriendlyCosmonaut uses with the big switch
+    - ...?

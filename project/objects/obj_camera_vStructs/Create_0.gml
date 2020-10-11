@@ -49,13 +49,21 @@ var dialogue = [
       { index: 87, effect: TextEffect.WaveAndColorShift },
       { index: 121, effect: TextEffect.Wave }
     ],
-	name: "Narrator"
+	name: "Narrator",
+	portrait: {
+		assetName: "spr_portrait_narrator",
+		subImg: 0
+	}
   },
   {
     text:
       "This is an example of a one-time 'text event'. It runs when the game starts.",
     type: DialogueType.Normal,
-	name: "Narrator"
+	name: "Narrator",
+	portrait: {
+		assetName: "spr_portrait_narrator",
+		subImg: 0
+	}
   },
   {
     text:
@@ -64,7 +72,11 @@ var dialogue = [
     speaker: undefined,
     effects: [{ index: 0, effect: TextEffect.ColorShift }],
     uniqueId: "FullOnRainbowText",
-	name: "The Other Narrator"
+	name: "The Other Narrator",
+	portrait: {
+		assetName: "spr_portrait_other_narrator",
+		subImg: 0
+	}
   },
   {
     text: "Do you want to start over?",
@@ -94,7 +106,11 @@ var dialogue = [
 		}
 	  }
     ],
-	name: "Narrator"
+	name: "Narrator",
+	portrait: {
+		assetName: "spr_portrait_narrator",
+		subImg: 0
+	}
   },
   {
     text: "Okay, so, ... like ... what about seeing that rad rainbow again?",
@@ -118,14 +134,18 @@ var dialogue = [
         }
       },
       {
-        text: "I want to answer the previous question ;)",
+        text: "I want to answer the previous question",
         jump: {
           jumpType: DialogueJumpType.RelativeIndex,
           value: -1
         }
       }
     ],
-	name: "The Other Narrator"
+	name: "The Other Narrator",
+	portrait: {
+		assetName: "spr_portrait_other_narrator",
+		subImg: 0
+	}
   }
 ];
 

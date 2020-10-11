@@ -21,7 +21,7 @@ var drawTextY = textboxPositionY + textboxPaddingY;
 for (var i = 0; i <= roundedspecIndex; i++) {
 	var spec = currentCharacterSpecs[i];
 	
-	var drawTextX = textboxPositionX + textboxPaddingX + spec.xOffset;
+	var drawTextX = textboxPositionX + textboxPaddingX + portraitWidthAndPadding + spec.xOffset;
 	drawTextY = textboxPositionY + textboxPaddingY + spec.yOffset;
 	var color = spec.color;
 	draw_set_font(spec.font);
@@ -94,7 +94,7 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 	
 	var choicesLength = array_length(dialogueEntry.choices);
 	
-	var drawChoiceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding;
+	var drawChoiceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + portraitWidthAndPadding;
 	var drawChoiceY = drawTextY + stringHeight;
 	var pointerDrawX = undefined;
 	var pointerDrawY = undefined;
@@ -131,5 +131,14 @@ if (nameplateName != undefined) {
 		draw_text_color(nameplateX + nameplatePadding, nameplateY + nameplatePadding, nameplateName, c_white, c_white, c_white, c_white, 1);
 	});
 }
+
+#region Portrait 
+
+if (portraitSprite != undefined) {
+	// TODO: Move calculations to page turn ;)
+		draw_sprite(portraitSprite, portraitSubImg, portraitX, portraitY);
+}
+
+#endregion
 
 #endregion

@@ -55,6 +55,15 @@ nameplateHeight = undefined;
 nameplatePadding = 5;
 nameplateXOffset = 20;
 
+// Portrait
+portraitSprite = undefined;
+portraitSubImg = undefined;
+portraitX = undefined;
+portraitY = undefined;
+portraitWidth = undefined;
+portraitPaddingX = 20;
+portraitWidthAndPadding = undefined;
+
 // Effect Settings
 waveEffectAmplitude = 4;
 
@@ -101,6 +110,15 @@ function TurnPage() {
 	
 	specIndex = 0;
 
+	// TODO: Throw this right into a struct and calculate everything on construction :O
+	var portrait = variable_struct_get(dialogueEntry, "portrait");
+	portraitSprite = portrait != undefined ? asset_get_index(portrait.assetName) : undefined;
+	portraitSubImg = portrait != undefined ? coalesce(variable_struct_get(portrait, "subImg"), 0) : undefined;
+	portraitWidth = portraitSprite != undefined ? sprite_get_width(portraitSprite) : 0;
+	portraitX = portrait != undefined ? textboxPositionX + portraitPaddingX + portraitWidth / 2 : undefined;
+	portraitY = portrait != undefined ? textboxPositionY + textboxHeight / 2 : undefined;
+	portraitWidthAndPadding = portrait != undefined ? portraitWidth + portraitPaddingX * 2 : 0;
+	
 	draw_set_font_temp(fnt_dialogue, function() {		
 		stringHeight = string_height("M");
 		
@@ -109,14 +127,15 @@ function TurnPage() {
 		nameplateWidth = nameplateName != undefined ? string_width(nameplateName) + nameplatePadding * 2 : undefined;
 		nameplateX = nameplateName != undefined ? textboxPositionX + textboxWidth - nameplateWidth - nameplateXOffset : undefined;
 		nameplateY = nameplateName != undefined ? textboxPositionY - nameplateHeight : undefined;
+				
+		var textAreaWidth = textboxWidth - textboxPaddingX * 2 - portraitWidthAndPadding;
 		
 		currentCharacterSpecs = global.dialogue_functions.create_character_specs(
 		dialogueEntry, 
-		textboxWidth - textboxPaddingX * 2);
+		textAreaWidth);
 		
 		specsLength = array_length(currentCharacterSpecs);
-	});
-	
+	});	
 }
 
 function FindPageIndexByUniqueId(uniqueId) {
