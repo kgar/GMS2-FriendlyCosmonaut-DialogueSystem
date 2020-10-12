@@ -47,8 +47,10 @@ textboxPaddingY = 10;
 textboxPositionY = guiHeight - textboxHeight - 8;
 
 // Portrait
-portraitSprite = undefined;
+portraitSpriteIdle = undefined;
 portraitSubImg = undefined;
+portraitSpriteSpeaking = undefined;
+portraitSpriteSpeakingFps = undefined;
 portraitX = undefined;
 portraitY = undefined;
 portraitWidth = undefined;
@@ -115,16 +117,24 @@ function TurnPage() {
 	// TODO: Throw this right into a struct and calculate everything on construction :O
 	var portrait = variable_struct_get(dialogueEntry, "portrait");
 	
-	portraitSprite = portrait != undefined 
-		? asset_get_index(portrait.assetName) 
+	portraitSpriteIdle = portrait != undefined 
+		? asset_get_index(portrait.idle) 
 		: undefined;
-	
+		
 	portraitSubImg = portrait != undefined 
 		? coalesce(variable_struct_get(portrait, "subImg"), 0) 
 		: undefined;
+
+	portraitSpriteSpeaking = portrait != undefined
+		? variable_struct_get(portrait, "speaking")
+		: undefined;
+		
+	portraitSpriteSpeakingFps = portrait != undefined
+		? variable_struct_get(portrait, "speakingFps")
+		: 6;
 	
-	portraitWidth = portraitSprite != undefined 
-		? sprite_get_width(portraitSprite) 
+	portraitWidth = portraitSpriteIdle != undefined 
+		? sprite_get_width(portraitSpriteIdle) 
 		: 0;
 	
 	portraitSide = portrait != undefined 

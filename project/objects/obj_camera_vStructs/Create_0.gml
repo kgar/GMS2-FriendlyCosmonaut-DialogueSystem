@@ -51,7 +51,7 @@ var dialogue = [
     ],
 	name: "Narrator",
 	portrait: {
-		assetName: "spr_portrait_narrator",
+		idle: "spr_portrait_narrator",
 		subImg: 0,
 		invert: true
 	}
@@ -62,7 +62,7 @@ var dialogue = [
     type: DialogueType.Normal,
 	name: "Narrator",
 	portrait: {
-		assetName: "spr_portrait_narrator",
+		idle: "spr_portrait_narrator",
 		subImg: 0,
 		invert: true
 	}
@@ -76,8 +76,9 @@ var dialogue = [
     uniqueId: "FullOnRainbowText",
 	name: "The Other Narrator",
 	portrait: {
-		assetName: "spr_portrait_other_narrator",
+		idle: "spr_portrait_other_narrator",
 		subImg: 0,
+		speaking: "spr_portrait_other_narrator_speaking",
 		side: PortraitSide.Right
 	}
   },
@@ -111,7 +112,7 @@ var dialogue = [
     ],
 	name: "Narrator",
 	portrait: {
-		assetName: "spr_portrait_narrator",
+		idle: "spr_portrait_narrator",
 		subImg: 0,
 		invert: true
 	}
@@ -147,8 +148,9 @@ var dialogue = [
     ],
 	name: "The Other Narrator",
 	portrait: {
-		assetName: "spr_portrait_other_narrator",
+		idle: "spr_portrait_other_narrator",
 		subImg: 0,
+		speaking: "spr_portrait_other_narrator_speaking",
 		side: PortraitSide.Right
 	}
   }

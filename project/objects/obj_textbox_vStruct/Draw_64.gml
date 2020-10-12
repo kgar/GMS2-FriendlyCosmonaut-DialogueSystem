@@ -142,9 +142,9 @@ if (nameplateName != undefined) {
 
 #region Portrait 
 
-if (portraitSprite != undefined) {
+if (portraitSpriteIdle != undefined) {
 	// TODO: Move calculations to page turn ;)
-		draw_sprite_ext(portraitSprite, portraitSubImg, portraitX, portraitY, portraitXScale, 1, 0, c_white, 1);
+		draw_sprite_ext(portraitSpriteIdle, portraitSubImg, portraitX, portraitY, portraitXScale, 1, 0, c_white, 1);
 }
 
 #endregion
