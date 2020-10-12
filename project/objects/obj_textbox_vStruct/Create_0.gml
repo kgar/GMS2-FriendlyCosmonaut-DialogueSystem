@@ -51,6 +51,7 @@ portraitSpriteIdle = undefined;
 portraitSubImg = undefined;
 portraitSpriteSpeaking = undefined;
 portraitSpriteSpeakingFps = undefined;
+portraitSpriteSpeakingSubImg = undefined;
 portraitX = undefined;
 portraitY = undefined;
 portraitWidth = undefined;
@@ -132,6 +133,10 @@ function TurnPage() {
 	portraitSpriteSpeakingFps = portrait != undefined
 		? variable_struct_get(portrait, "speakingFps")
 		: 6;
+		
+	portraitSpriteSpeakingSubImg = portraitSpriteSpeakingFps != undefined
+		? 0
+		: undefined;
 	
 	portraitWidth = portraitSpriteIdle != undefined 
 		? sprite_get_width(portraitSpriteIdle) 
