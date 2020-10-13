@@ -142,9 +142,15 @@ if (nameplateName != undefined) {
 
 #region Portrait 
 
-if (portraitSpriteIdle != undefined) {
+// TODO: Expand on this for distinguishing punctuation from consonants and vowels.
+var isSpeaking = floor(specIndex) + 1 < specsLength;
+
+if (isSpeaking && portraitSpriteSpeaking != undefined) {
+	draw_sprite_ext(portraitSpriteSpeaking, portraitSpeakAnimationTracker.currentSubImg, portraitX, portraitY, portraitXScale, 1, 0, c_white, 1);
+}
+else if (portraitSpriteIdle != undefined) {
 	// TODO: Move calculations to page turn ;)
-		draw_sprite_ext(portraitSpriteIdle, portraitSubImg, portraitX, portraitY, portraitXScale, 1, 0, c_white, 1);
+	draw_sprite_ext(portraitSpriteIdle, portraitSubImg, portraitX, portraitY, portraitXScale, 1, 0, c_white, 1);
 }
 
 #endregion

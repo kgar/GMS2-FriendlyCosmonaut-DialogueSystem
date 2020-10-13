@@ -1,7 +1,6 @@
 ## To Do
 - Add talk animation
-  - Be wasteful and make full sprite subImgs of the full speaking animation that I want
-  - Be able to specify talk speed?
+  - Implement main narrator talk frames
   - The portrait should talk only while vowels and consonants are being drawn. They shouldn't animate during punctuation.
 - Add portrait semi-random 1-2 blinks during idle
   - Idle State = dialogue is finished type-writing

@@ -50,8 +50,6 @@ textboxPositionY = guiHeight - textboxHeight - 8;
 portraitSpriteIdle = undefined;
 portraitSubImg = undefined;
 portraitSpriteSpeaking = undefined;
-portraitSpriteSpeakingFps = undefined;
-portraitSpriteSpeakingSubImg = undefined;
 portraitX = undefined;
 portraitY = undefined;
 portraitWidth = undefined;
@@ -59,6 +57,7 @@ portraitPaddingX = 20;
 portraitWidthAndPadding = undefined;
 portraitSide = undefined;
 portraitXScale = 0;
+portraitSpeakAnimationTracker = undefined; // TODO: Destroy and recreate this for the lifetime of the textbox; if not undefined, then destroy on object destruction.
 
 // Nameplate
 nameplateName = undefined;
@@ -92,6 +91,13 @@ function TurnPage() {
 			? 0
 			: currentPage + 1;	
 	}
+	
+	#region Disposal of prior resources
+	if (portraitSpeakAnimationTracker != undefined) {
+		instance_destroy(portraitSpeakAnimationTracker);
+		portraitSpeakAnimationTracker = undefined;
+	}
+	#endregion
 			
 	currentChoiceIndex = 0;
 	chosen = false;
@@ -126,17 +132,19 @@ function TurnPage() {
 		? coalesce(variable_struct_get(portrait, "subImg"), 0) 
 		: undefined;
 
-	portraitSpriteSpeaking = portrait != undefined
-		? variable_struct_get(portrait, "speaking")
+	portraitSpriteSpeaking = portrait != undefined && variable_struct_exists(portrait, "speaking")
+		? asset_get_index(variable_struct_get(portrait, "speaking"))
 		: undefined;
 		
-	portraitSpriteSpeakingFps = portrait != undefined
-		? variable_struct_get(portrait, "speakingFps")
-		: 6;
+	if (portraitSpriteSpeaking != undefined) {
+		portraitSpeakAnimationTracker = instance_create_layer(0, 0, "Instances", obj_sequential_loop_animation_tracker);
 		
-	portraitSpriteSpeakingSubImg = portraitSpriteSpeakingFps != undefined
-		? 0
-		: undefined;
+		var portraitSpriteSpeakingFps = portrait != undefined && variable_struct_exists(portrait, "speakingFps")
+			? variable_struct_get(portrait, "speakingFps")
+			: 6;
+		
+		portraitSpeakAnimationTracker.Init(portraitSpriteSpeakingFps, sprite_get_number(portraitSpriteSpeaking));
+	}
 	
 	portraitWidth = portraitSpriteIdle != undefined 
 		? sprite_get_width(portraitSpriteIdle) 
