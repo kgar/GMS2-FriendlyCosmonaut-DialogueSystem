@@ -1,6 +1,4 @@
 ## To Do
-- Add talk animation
-  - The portrait should talk only while vowels and consonants are being drawn. They shouldn't animate during punctuation.
 - Add portrait semi-random 1-2 blinks during idle
   - Idle State = dialogue is finished type-writing
 - Apply some simple 9-panel textbox with borders to replace the black box
