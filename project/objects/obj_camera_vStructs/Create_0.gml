@@ -53,6 +53,8 @@ var dialogue = [
 	portrait: {
 		idle: "spr_portrait_narrator",
 		subImg: 0,
+		speaking: "spr_portrait_narrator_speaking",
+		speakingFps: 12,
 		invert: true
 	}
   },
@@ -64,6 +66,8 @@ var dialogue = [
 	portrait: {
 		idle: "spr_portrait_narrator",
 		subImg: 0,
+		speaking: "spr_portrait_narrator_speaking",
+		speakingFps: 12,
 		invert: true
 	}
   },
@@ -79,6 +83,7 @@ var dialogue = [
 		idle: "spr_portrait_other_narrator",
 		subImg: 0,
 		speaking: "spr_portrait_other_narrator_speaking",
+		speakingFps: 6,
 		side: PortraitSide.Right
 	}
   },
@@ -114,6 +119,8 @@ var dialogue = [
 	portrait: {
 		idle: "spr_portrait_narrator",
 		subImg: 0,
+		speaking: "spr_portrait_narrator_speaking",
+		speakingFps: 12,
 		invert: true
 	}
   },
@@ -151,6 +158,7 @@ var dialogue = [
 		idle: "spr_portrait_other_narrator",
 		subImg: 0,
 		speaking: "spr_portrait_other_narrator_speaking",
+    speakingFps: 12,
 		side: PortraitSide.Right
 	}
   }
