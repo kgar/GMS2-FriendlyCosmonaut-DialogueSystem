@@ -16,10 +16,8 @@ switch (dialogueEntry.type) {
 		break;
 	case DialogueType.Choice:
 		if (chosen) exit;
+		var finishedTypeWriting = specIndex >= specsLength - 1;
 		if (keyboard_check_pressed(interactKey)) {
-			
-			var finishedTypeWriting = specIndex >= specsLength - 1;
-			
 			if (finishedTypeWriting) {
 				// Process input
 				chosen = true;
@@ -33,6 +31,7 @@ switch (dialogueEntry.type) {
 			exit;
 		}
 		
+		if (!finishedTypeWriting) exit;
 		var change = keyboard_check_pressed(choiceMoveDownKey) - keyboard_check_pressed(choiceMoveUpKey);
 		if(change != 0){ 
 			var choicesLength = array_length(dialogueEntry.choices);

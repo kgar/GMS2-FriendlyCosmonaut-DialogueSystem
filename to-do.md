@@ -1,5 +1,4 @@
 ## To Do
-- Restrict choice toggling until choices are visible.
 - Implement interactable objects for dialogue (e.g., a signpost)
   - Inheritance? Or composition?
     - How would we do composition in GMS2?
