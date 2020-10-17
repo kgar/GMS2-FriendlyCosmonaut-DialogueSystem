@@ -3,12 +3,8 @@
 if (!active) exit;
 
 // Draw textbox
-draw_set_color_temp(c_black, function() {
-	draw_rectangle(
-		textboxPositionX, textboxPositionY, 
-		textboxPositionX + textboxWidth, textboxPositionY + textboxHeight, 
-		false);
-});
+draw_nine_panel_textbox(spr_nine_panel_textbox, textboxPositionX, textboxPositionY, 
+		textboxPositionX + textboxWidth, textboxPositionY + textboxHeight, 0);
 
 #region Normal Dialogue
 
@@ -131,9 +127,8 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 #region Nameplate
 
 if (nameplateName != undefined) {
-	draw_set_color_temp(c_black, function() {
-		draw_rectangle(nameplateX, nameplateY, nameplateX + nameplateWidth, nameplateY + nameplateHeight, false);
-	});
+	draw_nine_panel_textbox(spr_nine_panel_textbox, nameplateX, nameplateY, 
+		nameplateX + nameplateWidth, nameplateY + nameplateHeight, 0);
 	
 	draw_set_font_temp(fnt_dialogue, function() {
 		draw_text_color(nameplateX + nameplatePadding, nameplateY + nameplatePadding, nameplateName, c_white, c_white, c_white, c_white, 1);

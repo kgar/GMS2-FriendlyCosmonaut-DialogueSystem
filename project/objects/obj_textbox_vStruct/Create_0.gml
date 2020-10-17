@@ -65,8 +65,9 @@ nameplateX = undefined;
 nameplateY = undefined;
 nameplateWidth = undefined;
 nameplateHeight = undefined;
-nameplatePadding = 5;
-nameplateXOffset = 20;
+nameplatePadding = 12;
+nameplateXOffset = 0;
+nameplateYOffset = 0;
 
 // Effect Settings
 waveEffectAmplitude = 4;
@@ -186,7 +187,7 @@ function TurnPage() {
 		nameplateX = portraitSide == PortraitSide.Right
 			? (nameplateName != undefined ? textboxPositionX + textboxWidth - nameplateWidth - nameplateXOffset : undefined)
 			: (nameplateName != undefined ? textboxPositionX + nameplateXOffset : undefined);
-		nameplateY = nameplateName != undefined ? textboxPositionY - nameplateHeight : undefined;
+		nameplateY = nameplateName != undefined ? textboxPositionY - nameplateHeight + nameplateYOffset: undefined;
 				
 		var textAreaWidth = textboxWidth - textboxPaddingX * 2 - portraitWidthAndPadding;
 		

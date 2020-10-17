@@ -1,9 +1,5 @@
 ## To Do
-- Add portrait semi-random 1-2 blinks during idle
-  - Idle State = dialogue is finished type-writing
-- Apply some simple 9-panel textbox with borders to replace the black box
-  - Do the same for the nameplate
-- Implement interactable objects for dialogue
+- Implement interactable objects for dialogue (e.g., a signpost)
   - Inheritance? Or composition?
     - How would we do composition in GMS2?
 
@@ -38,6 +34,10 @@
 - Implement dialogue participants context
   - Have the ability to declare who all is in a conversation and at what point in the conversation they are present or absent
   - Imagine this kind of context allowing for visualizations like showing character busts all at once on the screen and emphasizing the current speaker.
+- Add portrait semi-random 1-2 blinks during idle
+  - Idle State = dialogue is finished type-writing
+  - Idle portrait Should work with or without blink frames
+- Implement a treasure chest object that queues up text and then awards an item.
 
 ## Refactoring
 - Create specMaxIndex variable for obj and use it.
