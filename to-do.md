@@ -1,6 +1,5 @@
 ## To Do
-- Restrict character movement when a textbox is open (Scene mode).
-  - Maybe I'm using the wrong character object?
+- Restrict choice toggling until choices are visible.
 - Implement interactable objects for dialogue (e.g., a signpost)
   - Inheritance? Or composition?
     - How would we do composition in GMS2?

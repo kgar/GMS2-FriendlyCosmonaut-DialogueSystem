@@ -1,5 +1,4 @@
 if(instance_exists(obj_textbox_vStruct)) {
-	show_message("Skip input!");
 	exit;
 }
 
