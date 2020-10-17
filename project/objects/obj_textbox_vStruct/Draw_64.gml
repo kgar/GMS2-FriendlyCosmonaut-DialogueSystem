@@ -131,7 +131,7 @@ if (nameplateName != undefined) {
 		nameplateX + nameplateWidth, nameplateY + nameplateHeight, 0);
 	
 	draw_set_font_temp(fnt_dialogue, function() {
-		draw_text_color(nameplateX + nameplatePadding, nameplateY + nameplatePadding, nameplateName, c_white, c_white, c_white, c_white, 1);
+		draw_text_color(nameplateX + nameplateXPadding, nameplateY + nameplateYPadding, nameplateName, c_white, c_white, c_white, c_white, 1);
 	});
 }
 

@@ -65,7 +65,8 @@ nameplateX = undefined;
 nameplateY = undefined;
 nameplateWidth = undefined;
 nameplateHeight = undefined;
-nameplatePadding = 12;
+nameplateXPadding = 12;
+nameplateYPadding = 6;
 nameplateXOffset = 0;
 nameplateYOffset = 0;
 
@@ -181,8 +182,8 @@ function TurnPage() {
 		
 		// TODO: Put nameplates in a struct; name is required parameter; portrait struct is optional parameter
 		nameplateName = variable_struct_get(dialogueEntry, "name");
-		nameplateHeight = nameplateName != undefined ? stringHeight + nameplatePadding * 2 : undefined;
-		nameplateWidth = nameplateName != undefined ? string_width(nameplateName) + nameplatePadding * 2 : undefined;
+		nameplateHeight = nameplateName != undefined ? stringHeight + nameplateYPadding * 2 : undefined;
+		nameplateWidth = nameplateName != undefined ? string_width(nameplateName) + nameplateXPadding * 2 : undefined;
 		// TODO: Clean this up! This is a mess! Perhaps use some functions when this is extracted to its own nameplate struct...
 		nameplateX = portraitSide == PortraitSide.Right
 			? (nameplateName != undefined ? textboxPositionX + textboxWidth - nameplateWidth - nameplateXOffset : undefined)

@@ -1,4 +1,7 @@
-if(instance_exists(obj_textbox)) exit;
+if(instance_exists(obj_textbox_vStruct)) {
+	show_message("Skip input!");
+	exit;
+}
 
 input_left		= keyboard_check(vk_left);
 input_right		= keyboard_check(vk_right);

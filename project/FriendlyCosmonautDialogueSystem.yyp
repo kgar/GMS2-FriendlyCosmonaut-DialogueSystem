@@ -1,5 +1,6 @@
 {
   "resources": [
+    {"id":{"name":"game_enums","path":"scripts/game_enums/game_enums.yy",},"order":7,},
     {"id":{"name":"obj_textbox","path":"objects/obj_textbox/obj_textbox.yy",},"order":4,},
     {"id":{"name":"obj_emote","path":"objects/obj_emote/obj_emote.yy",},"order":1,},
     {"id":{"name":"spr_portrait_examplechar","path":"sprites/spr_portrait_examplechar/spr_portrait_examplechar.yy",},"order":7,},
