@@ -1,4 +1,6 @@
 ## To Do
+- Add global variable for whether a textbox is open.
+- Restrict character movement when a textbox is open.
 - Implement interactable objects for dialogue (e.g., a signpost)
   - Inheritance? Or composition?
     - How would we do composition in GMS2?
