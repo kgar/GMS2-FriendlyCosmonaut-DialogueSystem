@@ -1,0 +1,1 @@
+detectionRadius = 32;

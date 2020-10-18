@@ -1,7 +1,7 @@
 signText = [
   {
-    text: "<-- Left \n--> Right \n Watch your step",
+    text: "<-- Left \n--> Right \nWatch your step",
     type: DialogueType.Normal
   }
 ];
-detectionRadius = 16;
+detectionRadius = 12;

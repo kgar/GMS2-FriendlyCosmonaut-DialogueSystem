@@ -1,9 +1,4 @@
-## To Do
-- Implement interactable objects for dialogue (e.g., a signpost)
-  - Inheritance? Or composition?
-    - How would we do composition in GMS2?
-
-## Stretches
+## To Do (formerly, Stretches)
 - Allow for variable insertion during spec generation
   - Allow value interpolation. For example, inject the `introRestartCount` into a line of dialogue.
     - The spec should be able to account for the difference in text length between the interpolation text and the resulting injected content and apply the text effects / etc. based on the original string of text.

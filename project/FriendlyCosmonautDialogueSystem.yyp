@@ -49,6 +49,7 @@
     {"id":{"name":"spr_portrait_narrator","path":"sprites/spr_portrait_narrator/spr_portrait_narrator.yy",},"order":13,},
     {"id":{"name":"spr_portrait_player","path":"sprites/spr_portrait_player/spr_portrait_player.yy",},"order":10,},
     {"id":{"name":"rm_dialoguesystem_demo","path":"rooms/rm_dialoguesystem_demo/rm_dialoguesystem_demo.yy",},"order":1,},
+    {"id":{"name":"obj_interactable","path":"objects/obj_interactable/obj_interactable.yy",},"order":8,},
     {"id":{"name":"spr_examplechar","path":"sprites/spr_examplechar/spr_examplechar.yy",},"order":4,},
     {"id":{"name":"spr_emotes","path":"sprites/spr_emotes/spr_emotes.yy",},"order":3,},
     {"id":{"name":"snd_voice1","path":"sounds/snd_voice1/snd_voice1.yy",},"order":2,},
