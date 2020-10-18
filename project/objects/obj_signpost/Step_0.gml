@@ -1,0 +1,1 @@
+sglobal.dialogue_functions.check_for_dialogue_interaction(8, signText, obj_player_vStruct, self);

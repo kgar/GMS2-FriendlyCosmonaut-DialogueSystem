@@ -1,4 +1,5 @@
 ## To Do
+- Update character spec creation to respect `\n` 
 - Implement interactable objects for dialogue (e.g., a signpost)
   - Inheritance? Or composition?
     - How would we do composition in GMS2?

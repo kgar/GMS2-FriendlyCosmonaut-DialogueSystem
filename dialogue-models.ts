@@ -33,8 +33,12 @@ export interface DialogueChoice {
 }
 
 export interface DialoguePortrait {
-  assetName: string;
+  idle?: string;
+  idleFps?: string;
   subImg?: number;
+  speaking?: string;
+  speakingFps?: string;
+  invert?: boolean;
 }
 
 export interface DialogueChoices {
@@ -51,7 +55,7 @@ export interface DialogueChoices {
   id?: string;
   name?: string;
   // Make an extension of DialogueMessage?
-  portrait: DialoguePortrait;
+  portrait?: DialoguePortrait;
 }
 
 export interface TextColor {
@@ -87,7 +91,7 @@ export interface DialogueMessage {
   textFont?: TextFont[];
   uniqueId?: string;
   name?: string;
-  portrait: DialoguePortrait;
+  portrait?: DialoguePortrait;
 }
 
 export type DialogueEntry = DialogueChoices | DialogueMessage;

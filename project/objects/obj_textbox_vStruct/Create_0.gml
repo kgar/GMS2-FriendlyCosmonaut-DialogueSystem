@@ -25,7 +25,7 @@ chosen = false;
 currentChoiceIndex = 0;
 
 // Input
-interactKey = ord("E");
+interactKey = global.interactKey;
 choiceMoveUpKey = vk_up;
 choiceMoveDownKey = vk_down;
 

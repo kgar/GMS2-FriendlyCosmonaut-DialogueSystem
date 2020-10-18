@@ -142,5 +142,19 @@ global.dialogue_functions = {
 		ds_map_destroy(speedMap);
 		
 		return characterSpecs;
+	},
+	check_for_dialogue_interaction: function(_detectionRadius, _dialogue, _playerObject, _targetObject) {		
+		if (instance_exists(obj_textbox_vStruct)) {
+			return;
+		}
+		
+		if(!keyboard_check_pressed(global.interactKey)){
+			return;
+		}
+		
+		var dr = _detectionRadius;
+		if(point_in_rectangle(_playerObject.x, _playerObject.y, _targetObject.x-dr, _targetObject.y-dr, _targetObject.x+dr, _targetObject.y+dr)){
+			create_dialogue_vStruct(_dialogue);
+		}
 	}
 }
