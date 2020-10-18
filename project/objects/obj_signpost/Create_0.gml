@@ -4,3 +4,4 @@ signText = [
     type: DialogueType.Normal
   }
 ];
+detectionRadius = 16;

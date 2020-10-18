@@ -100,7 +100,14 @@ global.dialogue_functions = {
 			characterSpecs[i] = spec;
 			currentXOffset += spec.width;
 			
-			// Handle newlines
+			// Handle escaped newlines
+			if (spec.character == "\n") {
+				currentYOffset += lineHeight;
+				currentXOffset = 0;
+				continue;
+			}
+			
+			// Handle automatic newlines
 			if (currentXOffset > textAreaWidth) {
 				currentXOffset = 0;
 				currentYOffset += lineHeight;
