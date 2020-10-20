@@ -30,6 +30,7 @@ export interface DialogueChoice {
   text: string;
   jump?: DialogueJump;
   script?: () => void;
+  getInterpolationData: () => object;
 }
 
 export interface DialoguePortrait {
@@ -92,6 +93,8 @@ export interface DialogueMessage {
   uniqueId?: string;
   name?: string;
   portrait?: DialoguePortrait;
+  jump?: DialogueJump;
+  getInterpolationData: () => object;
 }
 
 export type DialogueEntry = DialogueChoices | DialogueMessage;

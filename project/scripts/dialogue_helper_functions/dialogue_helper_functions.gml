@@ -65,6 +65,12 @@ global.dialogue_functions = {
 		var characterSpecs = [];
 		var currentText = dialogueEntry.text;
 		var textLength = string_length(currentText);
+		
+		// Interpolation Data
+		var interpolationData = variable_struct_exists(dialogueEntry, "getInterpolationData")
+			? dialogueEntry.getInterpolationData()
+			: {};
+		
 		for (var i = 0; i < textLength + characterInsertCount; i++) {
 			var spec = new global.dialogue_models.CharacterSpec();
 			spec.character = string_char_at(currentText, i + 1);
@@ -91,6 +97,35 @@ global.dialogue_functions = {
 			// Handle speeds
 			currentSpeed = coalesce(speedMap[? i - characterInsertCount], currentSpeed)
 			spec.speed = currentSpeed;
+			
+			// Handle interpolated data
+			if (spec.character == "%" && string_char_at(currentText, i + 2) == "{") {
+				var interpolationIndex = i + 2;
+				var interpolationVariableName = "";
+				while (interpolationIndex < textLength) {
+					// Find termination character "}"
+					var interpolationCharacter = string_char_at(currentText, interpolationIndex + 1);
+					if (interpolationCharacter == "}") {
+						break;
+					}
+					
+					interpolationVariableName += interpolationCharacter;
+					
+					interpolationIndex++;
+				}
+				
+				if (!variable_struct_exists(interpolationData, interpolationVariableName)) {
+					throw { error: "Interpolation data required for interpolated string", missingField: interpolationVariableName };
+				}
+				
+				var valueToInterpolate = string(variable_struct_get(interpolationData, interpolationVariableName));
+				var interpolationTagLength = string_length(interpolationVariableName) + 3;
+				characterInsertCount += string_length(valueToInterpolate) - interpolationTagLength;
+				
+				currentText = string_replace(currentText, "%{" + interpolationVariableName + "}", valueToInterpolate);
+				
+				spec.character = string_char_at(valueToInterpolate, 1);
+			}
 			
 			var tempFont = draw_get_font();
 			draw_set_font(spec.font);

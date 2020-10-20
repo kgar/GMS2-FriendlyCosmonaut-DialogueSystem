@@ -72,6 +72,23 @@ var dialogue = [
 	}
   },
   {
+	text: "I've said this, like, %{numberOfTimesHeSaidThis} times...",
+	type: DialogueType.Normal,
+	name: "Narrator",
+	portrait: {
+		idle: "spr_portrait_narrator",
+		subImg: 0,
+		speaking: "spr_portrait_narrator_speaking",
+		speakingFps: 12,
+		invert: true
+	},
+	getInterpolationData: function() {
+		return {
+			numberOfTimesHeSaidThis: global.introRestartCount + 1
+		}
+	}
+  },
+  {
     text:
       "Hit 'Space' to make a player monologue happen. And 'D' to toggle debug.",
     type: DialogueType.Normal,

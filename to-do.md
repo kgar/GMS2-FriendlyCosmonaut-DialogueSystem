@@ -1,7 +1,14 @@
 ## To Do (formerly, Stretches)
-- Allow for variable insertion during spec generation
-  - Allow value interpolation. For example, inject the `introRestartCount` into a line of dialogue.
-    - The spec should be able to account for the difference in text length between the interpolation text and the resulting injected content and apply the text effects / etc. based on the original string of text.
+- Ensure text effects for interpolated values match the effect that was applied to the % sign of the tag start
+  - Find the simplest way to do it, like keeping a copy of the spec of the "%" and preserving the current X/Y offsets
+- Test interpolation
+  - The spec should be able to account for the difference in text length between the interpolation text and the resulting injected content and apply the text effects / etc. based on the original string of text.
+  - Test malformed interpolation with no closing tag: should throw useful error
+  - Test interpolation variable that is not present in the data function: should throw useful error
+  - Test text effects integrity with interpolation value that is longer than its variable
+  - Test text effects integrity with interpolation value that is shorter than its variable
+  - Test very long interpolated variable to ensure it word-breaks properly
+    - Replace supersupersuper... text with interpolation of the same content 🤯
 - Implement conditional dialogue entries
   - They can be a normal or a choice dialogue entry.
   - They should have a function that can be called to check if the dialogue entry should be allowed
@@ -9,8 +16,8 @@
     - `"This is an example of a one-time 'text event'. It runs when the game starts."` with 
     - `"Uh, as previously stated, this is an example of a one-time 'text event'. It runs when the game starts. And I've said this \{global.introRestartCount + 1} times."`
       - GMS2 doesn't allow straight up interpretation of strings into scripts (not anymore, at least). Maybe something like a function that returns a struct?
-      - e.g., `"...And I've said this \{numberOfTimesHeSaidThis} times."`, and 
-      - `interpolations: function() { return { numberOfTimesHeSaidThis: global.introRestartCount + 1 } }`
+      - e.g., `"...And I've said this %{numberOfTimesHeSaidThis} times."`, and 
+      - `getInterpolationData: function() { return { numberOfTimesHeSaidThis: global.introRestartCount + 1 } }`
       - Yeah! That could work!
 - Provide scrollability to choice, so any number of options can appear in the textbox
   - This should include arrow pointers up and down in the center x / top and bottom y of the textbox; the arrows should only appear for their corresponding direction when that direction is accessible
