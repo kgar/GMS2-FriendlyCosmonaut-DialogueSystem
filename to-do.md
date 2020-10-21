@@ -1,14 +1,4 @@
 ## To Do (formerly, Stretches)
-- Ensure text effects for interpolated values match the effect that was applied to the % sign of the tag start
-  - Find the simplest way to do it, like keeping a copy of the spec of the "%" and preserving the current X/Y offsets
-- Test interpolation
-  - The spec should be able to account for the difference in text length between the interpolation text and the resulting injected content and apply the text effects / etc. based on the original string of text.
-  - Test malformed interpolation with no closing tag: should throw useful error
-  - Test interpolation variable that is not present in the data function: should throw useful error
-  - Test text effects integrity with interpolation value that is longer than its variable
-  - Test text effects integrity with interpolation value that is shorter than its variable
-  - Test very long interpolated variable to ensure it word-breaks properly
-    - Replace supersupersuper... text with interpolation of the same content 🤯
 - Implement conditional dialogue entries
   - They can be a normal or a choice dialogue entry.
   - They should have a function that can be called to check if the dialogue entry should be allowed
@@ -21,7 +11,7 @@
       - Yeah! That could work!
 - Provide scrollability to choice, so any number of options can appear in the textbox
   - This should include arrow pointers up and down in the center x / top and bottom y of the textbox; the arrows should only appear for their corresponding direction when that direction is accessible
-  - Can I make it so scrolling is smooth, with strings of text scrolling in and out of view instead of instantly changing?
+  - Can I make it so scrolling is smooth, with strings of text scrolling in and out of view instead of instantly changing? Herp lerp 🤙
 - Update choice pointer to animate
   - Subtle bounce effect where the arrow accelerates to the right, bounces back very slowly, then repeats
 - Create character metadata structs in global scope
@@ -42,6 +32,10 @@
 - Implement a treasure chest object that queues up text and then awards an item.
 
 ## Refactoring
+- Character spec generation has gotten messy and voluminous. Move it its own script file and make it easier to read.
+- Am I deleting specs? Can we go ahead and delete specs when done with them?
+  - Consider writing a recursive / reflective function to crawl through a struct graph and delete all structs...
+  - Or, is there a way to do this with existing GML functions?
 - Create specMaxIndex variable for obj and use it.
 - Create function for skipping to end of typewriting and extract all manual logic.
 - Can I eliminate any more variables from the textbox object?

@@ -7,36 +7,39 @@ window_set_fullscreen(true);
 var dialogue = [
 {
     text:
-      "Welcome to the supersupersupersupersupersupersupersupersupersupersupersupersuper demo of the dialogue system! Hit 'E' to go to the next page.",
+      "Welcome to the %{superText} demo of the dialogue system! Hit 'E' to go to the next page.",
     type: DialogueType.Normal,
     speaker: undefined,
     effects: [
       { index: 0, effect: TextEffect.Shakey },
       { index: 7, effect: TextEffect.Spin },
       { index: 15, effect: TextEffect.Wave },
-      { index: 81, effect: TextEffect.ColorShift },
-      { index: 110, effect: TextEffect.WaveAndColorShift },
-      { index: 121, effect: TextEffect.Pulse },
-      { index: 131, effect: TextEffect.Flicker }
+      { index: 28, effect: TextEffect.ColorShift },
+      { index: 57, effect: TextEffect.WaveAndColorShift },
+      { index: 68, effect: TextEffect.Pulse },
+      { index: 78, effect: TextEffect.Flicker }
     ],
     textSpeed: [
       { index: 0, speed: 0.2 },
       { index: 15, speed: 2 },
-      { index: 81, speed: 0.5 },
-      { index: 110, speed: 1 }
+      { index: 28, speed: 0.5 },
+      { index: 57, speed: 1 }
     ],
     textColors: [
       { index: 0, color: c_lime },
 	  { index: 7, color: c_white },
       { index: 15, color: c_fuchsia },
-      { index: 81, color: c_aqua },
-	  { index: 131, color: make_color_rgb(220, 20, 60) }
+      { index: 28, color: c_aqua },
+	  { index: 78, color: make_color_rgb(220, 20, 60) }
     ],
-    textFont: [{ index: 131, font: fnt_chiller }],
+    textFont: [{ index: 78, font: fnt_chiller }],
     onPageTurn: function () {
       // Literally do whatever scripting you need right here!
       create_instance_layer(170, 120, "Instances", obj_emote_vStruct);
-    }
+    },
+	getInterpolationData: function() {
+		return { superText: "supersupersupersupersupersupersupersupersupersupersupersupersuper" };
+	}
   },
   {
     text:
@@ -82,6 +85,10 @@ var dialogue = [
 		speakingFps: 12,
 		invert: true
 	},
+	textColors: [
+		{ index: 22, color: c_yellow },
+		{ index: 49, color: c_white }
+	],
 	getInterpolationData: function() {
 		return {
 			numberOfTimesHeSaidThis: global.introRestartCount + 1

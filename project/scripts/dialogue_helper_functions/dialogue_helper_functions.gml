@@ -70,12 +70,12 @@ global.dialogue_functions = {
 		var interpolationData = variable_struct_exists(dialogueEntry, "getInterpolationData")
 			? dialogueEntry.getInterpolationData()
 			: {};
+		var interpolationSpec = undefined;
+		var indexAfterInterpolatedValue = undefined;
 		
 		for (var i = 0; i < textLength + characterInsertCount; i++) {
 			var spec = new global.dialogue_models.CharacterSpec();
 			spec.character = string_char_at(currentText, i + 1);
-			spec.xOffset = currentXOffset;
-			spec.yOffset = currentYOffset;
 			
 			if (spec.character == " ") {
 				mostRecentSpace = i;
@@ -83,6 +83,7 @@ global.dialogue_functions = {
 			
 			// Handle effects
 			// TODO: Create a common struct for handling this pattern of ranges and values; use for each of the ranges (effects, fonts, colors, etc.)
+			
 			currentEffect = coalesce(effectsMap[? i - characterInsertCount], currentEffect);
 			spec.effect = currentEffect;
 			
@@ -99,7 +100,12 @@ global.dialogue_functions = {
 			spec.speed = currentSpeed;
 			
 			// Handle interpolated data
-			if (spec.character == "%" && string_char_at(currentText, i + 2) == "{") {
+			if (i < indexAfterInterpolatedValue) {
+				var specCharacter = spec.character;
+				spec = copy_character_spec(interpolationSpec);
+				spec.character = specCharacter;
+			}
+			else if (spec.character == "%" && string_char_at(currentText, i + 2) == "{") {
 				var interpolationIndex = i + 2;
 				var interpolationVariableName = "";
 				while (interpolationIndex < textLength) {
@@ -115,12 +121,16 @@ global.dialogue_functions = {
 				}
 				
 				if (!variable_struct_exists(interpolationData, interpolationVariableName)) {
-					throw { error: "Interpolation data required for interpolated string", missingField: interpolationVariableName };
+					throw "Interpolation data required for interpolated string.\nText: " + currentText + 
+					"\nMissing variable: " + interpolationVariableName;
 				}
 				
 				var valueToInterpolate = string(variable_struct_get(interpolationData, interpolationVariableName));
 				var interpolationTagLength = string_length(interpolationVariableName) + 3;
-				characterInsertCount += string_length(valueToInterpolate) - interpolationTagLength;
+				var valueToInterpolateLength = string_length(valueToInterpolate);
+				characterInsertCount += valueToInterpolateLength - interpolationTagLength;
+				interpolationSpec = spec;
+				indexAfterInterpolatedValue = i + valueToInterpolateLength;
 				
 				currentText = string_replace(currentText, "%{" + interpolationVariableName + "}", valueToInterpolate);
 				
@@ -129,6 +139,8 @@ global.dialogue_functions = {
 			
 			var tempFont = draw_get_font();
 			draw_set_font(spec.font);
+			spec.xOffset = currentXOffset;
+			spec.yOffset = currentYOffset;
 			spec.width = string_width(spec.character);
 			draw_set_font(tempFont);
 			
