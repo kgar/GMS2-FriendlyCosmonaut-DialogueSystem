@@ -72,10 +72,13 @@ var dialogue = [
 		speaking: "spr_portrait_narrator_speaking",
 		speakingFps: 12,
 		invert: true
+	},
+	showThisPage: function() {
+		return global.introRestartCount <= 0;
 	}
   },
   {
-	text: "I've said this, like, %{numberOfTimesHeSaidThis} times...",
+	text: "Uh, as previously stated, this is an example of a one-time 'text event'. It runs when the game starts. And I've said this %{numberOfTimesHeSaidThis} times.",
 	type: DialogueType.Normal,
 	name: "Narrator",
 	portrait: {
@@ -86,13 +89,16 @@ var dialogue = [
 		invert: true
 	},
 	textColors: [
-		{ index: 22, color: c_yellow },
-		{ index: 49, color: c_white }
+		{ index: 122, color: c_yellow },
+		{ index: 149, color: c_white }
 	],
 	getInterpolationData: function() {
 		return {
 			numberOfTimesHeSaidThis: global.introRestartCount + 1
 		}
+	},
+	showThisPage: function() {
+		return global.introRestartCount > 0;
 	}
   },
   {

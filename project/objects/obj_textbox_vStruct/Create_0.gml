@@ -119,6 +119,11 @@ function TurnPage() {
 	
 	dialogueEntry = dialogue[currentPage];
 	
+	if (variable_struct_exists(dialogueEntry, "showThisPage") && !dialogueEntry.showThisPage()) {
+		TurnPage();
+		return;
+	}
+	
 	currentText = dialogueEntry.text;
 	
 	specIndex = 0;

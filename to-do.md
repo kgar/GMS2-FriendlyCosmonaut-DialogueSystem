@@ -1,14 +1,4 @@
 ## To Do (formerly, Stretches)
-- Implement conditional dialogue entries
-  - They can be a normal or a choice dialogue entry.
-  - They should have a function that can be called to check if the dialogue entry should be allowed
-    - Example, if you have restarted the intro at least once, swap the page 
-    - `"This is an example of a one-time 'text event'. It runs when the game starts."` with 
-    - `"Uh, as previously stated, this is an example of a one-time 'text event'. It runs when the game starts. And I've said this \{global.introRestartCount + 1} times."`
-      - GMS2 doesn't allow straight up interpretation of strings into scripts (not anymore, at least). Maybe something like a function that returns a struct?
-      - e.g., `"...And I've said this %{numberOfTimesHeSaidThis} times."`, and 
-      - `getInterpolationData: function() { return { numberOfTimesHeSaidThis: global.introRestartCount + 1 } }`
-      - Yeah! That could work!
 - Provide scrollability to choice, so any number of options can appear in the textbox
   - This should include arrow pointers up and down in the center x / top and bottom y of the textbox; the arrows should only appear for their corresponding direction when that direction is accessible
   - Can I make it so scrolling is smooth, with strings of text scrolling in and out of view instead of instantly changing? Herp lerp 🤙

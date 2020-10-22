@@ -55,8 +55,8 @@ export interface DialogueChoices {
   textFont?: TextFont[];
   id?: string;
   name?: string;
-  // Make an extension of DialogueMessage?
   portrait?: DialoguePortrait;
+  showThisPage?: () => boolean;
 }
 
 export interface TextColor {
@@ -95,6 +95,7 @@ export interface DialogueMessage {
   portrait?: DialoguePortrait;
   jump?: DialogueJump;
   getInterpolationData: () => object;
+  showThisPage?: () => boolean;
 }
 
 export type DialogueEntry = DialogueChoices | DialogueMessage;
