@@ -1,6 +1,4 @@
 ## To Do (formerly, Stretches)
-- Change interpolation wording to be more template-focused
-  - Look up JS templates on MDN and try to get a handle on an understandable series of variable names for the templating feature.
 - Implement a treasure chest object that queues up text and then awards an item.
   - Make it animate open with an opening sound effect, play an item gained sound effect, type-write some text about the item gained, and remain in an emptied / opened state afterward
   - Implement as a global variable kind of thing.
@@ -50,3 +48,5 @@
 - Implement dialogue participants context
   - Have the ability to declare who all is in a conversation and at what point in the conversation they are present or absent
   - Imagine this kind of context allowing for visualizations like showing character busts all at once on the screen and emphasizing the current speaker.
+- Change interpolation wording to be more template-focused
+  - Look up JS templates on MDN and try to get a handle on an understandable series of variable names for the templating feature.
