@@ -1,4 +1,11 @@
 ## To Do (formerly, Stretches)
+- Implement a treasure chest object that queues up text and then awards an item.
+  - Make it animate open with an opening sound effect, play an item gained sound effect, type-write some text about the item gained, and remain in an emptied / opened state afterward
+  - Implement as a global variable kind of thing.
+  - Upgrade it so it is data-driven
+    - Data tells where on the screen it should go
+    - Data to keep track of the item it contains (it should be emptyable)
+    - Data to keep track of anything special, like a unique treasure message
 - Provide scrollability to choice, so any number of options can appear in the textbox
   - This should include arrow pointers up and down in the center x / top and bottom y of the textbox; the arrows should only appear for their corresponding direction when that direction is accessible
   - Can I make it so scrolling is smooth, with strings of text scrolling in and out of view instead of instantly changing? Herp lerp 🤙
@@ -13,13 +20,9 @@
   - ... there are probably other things that could be added to this
 - Ooo, and then upgrade that character metadata to be read from a JSON file
 - Allow for a single character, e.g., a protag, to have their metadata changed as the game progresses, so all dialogues that reference the protag will have access to the latest sprites / other metadata.
-- Implement dialogue participants context
-  - Have the ability to declare who all is in a conversation and at what point in the conversation they are present or absent
-  - Imagine this kind of context allowing for visualizations like showing character busts all at once on the screen and emphasizing the current speaker.
 - Add portrait semi-random 1-2 blinks during idle
   - Idle State = dialogue is finished type-writing
   - Idle portrait Should work with or without blink frames
-- Implement a treasure chest object that queues up text and then awards an item.
 
 ## Refactoring
 - Character spec generation has gotten messy and voluminous. Move it its own script file and make it easier to read.
@@ -37,8 +40,11 @@
 - Make text effects drawing reusable
 - Convert as many hardcoded assets to strings and use asset_get_index() on them.
 
-## Research
+## Research and Needs Work
 - How could I handle JSON-driven dialogue workflow while also allowing for running full GML scripts?
   - Some ideas:
     - use the function execution technique that FriendlyCosmonaut uses with the big switch
     - ...?
+- Implement dialogue participants context
+  - Have the ability to declare who all is in a conversation and at what point in the conversation they are present or absent
+  - Imagine this kind of context allowing for visualizations like showing character busts all at once on the screen and emphasizing the current speaker.
