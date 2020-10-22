@@ -1,6 +1,5 @@
 ## To Do (formerly, Stretches)
 - Change interpolation wording to be more template-focused
-  - Change interpolation tag `%{}` to a JS template expression `${}`
   - Look up JS templates on MDN and try to get a handle on an understandable series of variable names for the templating feature.
 - Implement a treasure chest object that queues up text and then awards an item.
   - Make it animate open with an opening sound effect, play an item gained sound effect, type-write some text about the item gained, and remain in an emptied / opened state afterward

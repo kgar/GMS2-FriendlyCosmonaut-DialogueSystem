@@ -7,7 +7,7 @@ window_set_fullscreen(true);
 var dialogue = [
 {
     text:
-      "Welcome to the %{superText} demo of the dialogue system! Hit 'E' to go to the next page.",
+      "Welcome to the ${superText} demo of the dialogue system! Hit 'E' to go to the next page.",
     type: DialogueType.Normal,
     speaker: undefined,
     effects: [
@@ -78,7 +78,7 @@ var dialogue = [
 	}
   },
   {
-	text: "Uh, as previously stated, this is an example of a one-time 'text event'. It runs when the game starts. And I've said this %{numberOfTimesHeSaidThis} times.",
+	text: "Uh, as previously stated, this is an example of a one-time 'text event'. It runs when the game starts. And I've said this ${numberOfTimesHeSaidThis} times.",
 	type: DialogueType.Normal,
 	name: "Narrator",
 	portrait: {

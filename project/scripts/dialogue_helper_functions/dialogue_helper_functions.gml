@@ -105,7 +105,7 @@ global.dialogue_functions = {
 				spec = copy_character_spec(interpolationSpec);
 				spec.character = specCharacter;
 			}
-			else if (spec.character == "%" && string_char_at(currentText, i + 2) == "{") {
+			else if (spec.character == "$" && string_char_at(currentText, i + 2) == "{") {
 				var interpolationIndex = i + 2;
 				var interpolationVariableName = "";
 				while (interpolationIndex < textLength) {
@@ -132,7 +132,7 @@ global.dialogue_functions = {
 				interpolationSpec = spec;
 				indexAfterInterpolatedValue = i + valueToInterpolateLength;
 				
-				currentText = string_replace(currentText, "%{" + interpolationVariableName + "}", valueToInterpolate);
+				currentText = string_replace(currentText, "${" + interpolationVariableName + "}", valueToInterpolate);
 				
 				spec.character = string_char_at(valueToInterpolate, 1);
 			}
