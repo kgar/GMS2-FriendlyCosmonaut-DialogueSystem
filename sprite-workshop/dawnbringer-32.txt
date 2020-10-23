@@ -1,0 +1,37 @@
+;paint.net Palette File
+;Downloaded from Lospec.com/palette-list
+;Palette Name: DawnBringer 32
+;Description: Created by <a href="http://pixeljoint.com/p/23821.htm">DawnBringer</a>.
+;Colors: 32
+FF000000
+FF222034
+FF45283c
+FF663931
+FF8f563b
+FFdf7126
+FFd9a066
+FFeec39a
+FFfbf236
+FF99e550
+FF6abe30
+FF37946e
+FF4b692f
+FF524b24
+FF323c39
+FF3f3f74
+FF306082
+FF5b6ee1
+FF639bff
+FF5fcde4
+FFcbdbfc
+FFffffff
+FF9badb7
+FF847e87
+FF696a6a
+FF595652
+FF76428a
+FFac3232
+FFd95763
+FFd77bba
+FF8f974a
+FF8a6f30
