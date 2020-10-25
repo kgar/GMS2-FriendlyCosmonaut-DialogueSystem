@@ -1,4 +1,5 @@
 ## To Do (formerly, Stretches)
+- Figure out how to detect the caller ID without requiring the ID as a paramter in create_textbox_vStruct(). Make it completely transparent.
 - Implement a treasure chest object that queues up text and then awards an item.
   - Make it animate open with an opening sound effect, play an item gained sound effect, type-write some text about the item gained, and remain in an emptied / opened state afterward
   - Implement as a global variable kind of thing.
