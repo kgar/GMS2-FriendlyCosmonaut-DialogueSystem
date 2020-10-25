@@ -1,29 +1,9 @@
 ## To Do (formerly, Stretches)
-- Figure out how to detect the caller ID without requiring the ID as a paramter in create_textbox_vStruct(). Make it completely transparent.
-- Implement a treasure chest object that queues up text and then awards an item.
-  - Make it animate open with an opening sound effect, play an item gained sound effect, type-write some text about the item gained, and remain in an emptied / opened state afterward
-  - Implement as a global variable kind of thing.
-  - Upgrade it so it is data-driven
-    - Data tells where on the screen it should go
-    - Data to keep track of the item it contains (it should be emptyable)
-    - Data to keep track of anything special, like a unique treasure message
 - Provide scrollability to choice, so any number of options can appear in the textbox
   - This should include arrow pointers up and down in the center x / top and bottom y of the textbox; the arrows should only appear for their corresponding direction when that direction is accessible
   - Can I make it so scrolling is smooth, with strings of text scrolling in and out of view instead of instantly changing? Herp lerp 🤙
 - Update choice pointer to animate
   - Subtle bounce effect where the arrow accelerates to the right, bounces back very slowly, then repeats
-- Create character metadata structs in global scope
-  - The struct contains name, all portrait data, etc.
-  - Implement character's side preference and level of intensity
-    - The hero's portrait is always on the left with intensity of 100
-    - A villain's portrait is always on the right with intensity of 100
-    - A character type that has no real preference will go on the side that the other character does not prefer. 
-  - ... there are probably other things that could be added to this
-- Ooo, and then upgrade that character metadata to be read from a JSON file
-- Allow for a single character, e.g., a protag, to have their metadata changed as the game progresses, so all dialogues that reference the protag will have access to the latest sprites / other metadata.
-- Add portrait semi-random 1-2 blinks during idle
-  - Idle State = dialogue is finished type-writing
-  - Idle portrait Should work with or without blink frames
 
 ## Refactoring
 - Character spec generation has gotten messy and voluminous. Move it its own script file and make it easier to read.
@@ -52,3 +32,33 @@
   - Imagine this kind of context allowing for visualizations like showing character busts all at once on the screen and emphasizing the current speaker.
 - Change interpolation wording to be more template-focused
   - Look up JS templates on MDN and try to get a handle on an understandable series of variable names for the templating feature.
+
+# Punted for standalone projects
+- Implement a treasure chest object that leverages the dialogue engine and is extensible / persistable
+  - Ideas:
+    - Use a global map to associated rooms / some other identifier with a group of treasure chests
+    - On room load / arrival / whatever, it should check to see what treasures to place
+    - The treasure state will be held by the global treasure map
+    - Upon creating the treasure object, it will then call the Init() function for the treasure, passing in its state
+    - Research: Is there a way to manage treasure state per room via files rather than global memory? At what point would it be worth the trouble?
+    - Treasure state:
+      - Position in room
+      - Items contained in chest
+      - Chest opened or closed
+      - Chest locked/unlocked state
+      - Chest conditions for unlocking
+      - Script references for special events
+      - Special messaging or events associated with the chest
+      - Chest type (e.g., wooden chest, mossy crate, iron chest, etc.) and that chest's attributes (sfx, opening animation sequence, etc.)
+- Create character metadata structs in global scope
+  - The struct contains name, all portrait data, etc.
+  - Implement character's side preference and level of intensity
+    - The hero's portrait is always on the left with intensity of 100
+    - A villain's portrait is always on the right with intensity of 100
+    - A character type that has no real preference will go on the side that the other character does not prefer. 
+  - ... there are probably other things that could be added to this
+  - Ooo, and then upgrade that character metadata to be read from a JSON file
+  - Allow for a single character, e.g., a protag, to have their metadata changed as the game progresses, so all dialogues that reference the protag will have access to the latest sprites / other metadata.
+- Add portrait semi-random 1-2 blinks during idle
+  - Idle State = dialogue is finished type-writing
+  - Idle portrait Should work with or without blink frames
