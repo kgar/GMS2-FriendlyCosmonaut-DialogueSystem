@@ -41,15 +41,31 @@ treasureText = [
   }
 ];
 
-//animationScheme = [
-//	{ subImg: 0, ms: 150 },
-//	{ subImg: 1, ms: 150 },
-//	{ subImg: 2, ms: 100 },
-//	{ subImg: 3, ms: 750 }
-//];
+animationScheme = [
+	{ subImg: 0, ms: 150 },
+	{ subImg: 1, ms: 150 },
+	{ subImg: 2, ms: 100 },
+	{ subImg: 3, ms: 750 }
+];
+animationIndex = 0;
+getFramesToWait = function(milliseconds) {
+	return room_speed * (milliseconds / 1000);
+}
 
 onPlayerInteraction = function() {
-	// TODO: Do opening animation with opening sound effect
-	// TODO: Queue the dialogue
-	create_dialogue_vStruct(treasureText, id);
+	if (instance_exists(obj_textbox_vStruct)) {
+		return;
+	}
+	
+	if (itemAwarded) {
+		onOpeningAnimationComplete();
+		return;
+	}
+	
+	audio_play_sound(snd_chest_open, 5, false);
+	alarm[0] = 1;
+}
+
+onOpeningAnimationComplete = function() {
+	create_dialogue_vStruct(treasureText);
 }
