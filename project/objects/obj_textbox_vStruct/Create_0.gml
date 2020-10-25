@@ -73,8 +73,9 @@ nameplateYOffset = 0;
 // Effect Settings
 waveEffectAmplitude = 4;
 
-function Init(_dialogue) {
+function Init(_dialogue, _caller) {
 	dialogue = _dialogue;
+	caller = _caller;
 	TurnPage();
 	active = true;
 }
@@ -106,6 +107,10 @@ function TurnPage() {
 	choicePointerLastX = undefined;
 	choicePointerLastY = undefined;
 		
+	if (dialogueEntry != undefined && variable_struct_exists(dialogueEntry, "onPageTurn")) {
+		dialogueEntry.onPageTurn(caller);
+	}
+		
 	if (currentPage >= array_length(dialogue)) {
 		instance_destroy();
 		return;
@@ -113,15 +118,15 @@ function TurnPage() {
 	
 	dialogueSpeed = 1;
 	
-	if (dialogueEntry != undefined && variable_struct_exists(dialogueEntry, "onPageTurn")) {
-		dialogueEntry.onPageTurn();
-	}
-	
 	dialogueEntry = dialogue[currentPage];
 	
-	if (variable_struct_exists(dialogueEntry, "showThisPage") && !dialogueEntry.showThisPage()) {
+	if (variable_struct_exists(dialogueEntry, "showThisPage") && !dialogueEntry.showThisPage(caller)) {
 		TurnPage();
 		return;
+	}
+	
+	if (dialogueEntry != undefined && variable_struct_exists(dialogueEntry, "onPageOpen")) {
+		dialogueEntry.onPageOpen(caller);
 	}
 	
 	currentText = dialogueEntry.text;
@@ -199,7 +204,8 @@ function TurnPage() {
 		
 		currentCharacterSpecs = global.dialogue_functions.create_character_specs(
 		dialogueEntry, 
-		textAreaWidth);
+		textAreaWidth,
+		caller);
 		
 		specsLength = array_length(currentCharacterSpecs);
 	});	

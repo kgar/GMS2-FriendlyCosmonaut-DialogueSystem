@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_signpost",
-    "path": "sprites/spr_signpost/spr_signpost.yy",
+    "name": "spr_mossy_treasure",
+    "path": "sprites/spr_mossy_treasure/spr_mossy_treasure.yy",
   },
   "solid": false,
   "visible": true,
@@ -24,7 +24,8 @@
   "physicsKinematic": false,
   "physicsShapePoints": [],
   "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_signpost","path":"objects/obj_signpost/obj_signpost.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_mossy_treasure","path":"objects/obj_mossy_treasure/obj_mossy_treasure.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_mossy_treasure","path":"objects/obj_mossy_treasure/obj_mossy_treasure.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
@@ -33,7 +34,7 @@
     "path": "folders/Objects/KGAR_FC_DialogueSystemWithStructs.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_signpost",
+  "name": "obj_mossy_treasure",
   "tags": [],
   "resourceType": "GMObject",
 }

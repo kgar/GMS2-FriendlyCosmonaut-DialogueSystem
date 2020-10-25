@@ -39,6 +39,7 @@
   - Somehow do this without holding any variables so that all rainbow text behaves as if some kind of masking were being used.
 - Make text effects drawing reusable
 - Convert as many hardcoded assets to strings and use asset_get_index() on them.
+- Establish that textColor `undefined` means to use the default dialogue font. Update all dialogues to leverage this.
 
 ## Research and Needs Work
 - How could I handle JSON-driven dialogue workflow while also allowing for running full GML scripts?

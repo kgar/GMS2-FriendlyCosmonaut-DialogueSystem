@@ -30,7 +30,7 @@ export interface DialogueChoice {
   text: string;
   jump?: DialogueJump;
   script?: () => void;
-  getInterpolationData: () => object;
+  getInterpolationData?: () => object;
 }
 
 export interface DialoguePortrait {
@@ -49,6 +49,8 @@ export interface DialogueChoices {
   speaker?: number;
   effects?: DialogueTextEffect[];
   textColors?: TextColor[];
+  onPageOpen?: (instance: number) => void;
+  onPageTurn?: (instance: number) => void;
   emotion?: number;
   emote?: number;
   textSpeed?: TextSpeed[];
@@ -56,7 +58,7 @@ export interface DialogueChoices {
   id?: string;
   name?: string;
   portrait?: DialoguePortrait;
-  showThisPage?: () => boolean;
+  showThisPage?: (instance: number) => boolean;
 }
 
 export interface TextColor {
@@ -84,7 +86,8 @@ export interface DialogueMessage {
   text: string;
   speaker?: number;
   effects?: DialogueTextEffect[];
-  onPageTurn?: Function;
+  onPageOpen?: (instance: number) => void;
+  onPageTurn?: (instance: number) => void;
   textColors?: TextColor[];
   emotion?: number;
   emote?: number;
@@ -94,8 +97,8 @@ export interface DialogueMessage {
   name?: string;
   portrait?: DialoguePortrait;
   jump?: DialogueJump;
-  getInterpolationData: () => object;
-  showThisPage?: () => boolean;
+  getInterpolationData?: () => object;
+  showThisPage?: (instance: number) => boolean;
 }
 
 export type DialogueEntry = DialogueChoices | DialogueMessage;
@@ -114,4 +117,6 @@ export declare var id: number,
   change_variable: Function,
   obj_emote_vStruct: number,
   global: any,
-  fnt_chiller: number;
+  fnt_chiller: number,
+  audio_play_sound: (soundid: number, priority: number, loops: boolean) => void,
+  snd_item_award: number;

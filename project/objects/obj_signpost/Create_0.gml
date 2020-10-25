@@ -1,3 +1,5 @@
+event_inherited();
+
 signText = [
   {
     text: "<-- Left \n--> Right \nWatch your step",
@@ -5,3 +7,7 @@ signText = [
   }
 ];
 detectionRadius = 12;
+
+onPlayerInteraction = function() {
+	create_dialogue_vStruct(signText);
+}

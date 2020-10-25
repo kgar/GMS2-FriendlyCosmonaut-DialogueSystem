@@ -1,1 +1,0 @@
-global.dialogue_functions.check_for_dialogue_interaction(detectionRadius, signText, obj_player_vStruct, self);
