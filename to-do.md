@@ -1,7 +1,15 @@
 ## To Do (formerly, Stretches)
 - Provide scrollability to choice, so any number of options can appear in the textbox
   - This should include arrow pointers up and down in the center x / top and bottom y of the textbox; the arrows should only appear for their corresponding direction when that direction is accessible
-  - Can I make it so scrolling is smooth, with strings of text scrolling in and out of view instead of instantly changing? Herp lerp 🤙
+- Upgrade scrolling choices so that when a scroll occurs, the options lerp 🤙 into their proper position
+  - ?: How do I hide options as they scroll out of view?
+    - [Surfaces](https://docs2.yoyogames.com/source/_build/3_scripting/4_gml_reference/drawing/surfaces/index.html)
+      - During draw, 
+        - ensure the choices surface exists
+        - keep track of the overall scroll position of the options
+        - when the arrow changes to an option offscreen, keep the arrow in the current position and lerp the scroll position in the correct direction until the next option from offscreen is now scrolled into view
+        - use the choices surface as a clip mask (transparency mask?) that is the size of the scrollable area (the choices section of the textbox), so that content appears to scroll in and out of view, when in reality, content is being drawn to the choices surface and not to the application surface
+      - [Matharoo's quick and great vid on surfaces](https://www.youtube.com/watch?v=ZrvKmDpVP6I)
 - Update choice pointer to animate
   - Subtle bounce effect where the arrow accelerates to the right, bounces back very slowly, then repeats
 
@@ -9,7 +17,6 @@
 - Character spec generation has gotten messy and voluminous. Move it its own script file and make it easier to read.
 - Am I deleting specs? Can we go ahead and delete specs when done with them?
   - Consider writing a recursive / reflective function to crawl through a struct graph and delete all structs...
-  - Or, is there a way to do this with existing GML functions?
 - Create specMaxIndex variable for obj and use it.
 - Create function for skipping to end of typewriting and extract all manual logic.
 - Can I eliminate any more variables from the textbox object?
