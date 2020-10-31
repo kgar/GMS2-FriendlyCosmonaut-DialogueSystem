@@ -22,6 +22,7 @@
     {"id":{"name":"spr_nine_panel_textbox","path":"sprites/spr_nine_panel_textbox/spr_nine_panel_textbox.yy",},"order":17,},
     {"id":{"name":"utilities","path":"scripts/utilities/utilities.yy",},"order":4,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":3,},
+    {"id":{"name":"scr_text_scroller","path":"scripts/scr_text_scroller/scr_text_scroller.yy",},"order":7,},
     {"id":{"name":"fnt_debug","path":"fonts/fnt_debug/fnt_debug.yy",},"order":0,},
     {"id":{"name":"spr_portrait_other_narrator_speaking","path":"sprites/spr_portrait_other_narrator_speaking/spr_portrait_other_narrator_speaking.yy",},"order":15,},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":6,},

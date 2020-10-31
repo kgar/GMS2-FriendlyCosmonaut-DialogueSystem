@@ -1,15 +1,12 @@
 ## To Do (formerly, Stretches)
-- Provide scrollability to choice, so any number of options can appear in the textbox
-  - This should include arrow pointers up and down in the center x / top and bottom y of the textbox; the arrows should only appear for their corresponding direction when that direction is accessible
-- Upgrade scrolling choices so that when a scroll occurs, the options lerp 🤙 into their proper position
-  - ?: How do I hide options as they scroll out of view?
-    - [Surfaces](https://docs2.yoyogames.com/source/_build/3_scripting/4_gml_reference/drawing/surfaces/index.html)
-      - During draw, 
-        - ensure the choices surface exists
-        - keep track of the overall scroll position of the options
-        - when the arrow changes to an option offscreen, keep the arrow in the current position and lerp the scroll position in the correct direction until the next option from offscreen is now scrolled into view
-        - use the choices surface as a clip mask (transparency mask?) that is the size of the scrollable area (the choices section of the textbox), so that content appears to scroll in and out of view, when in reality, content is being drawn to the choices surface and not to the application surface
-      - [Matharoo's quick and great vid on surfaces](https://www.youtube.com/watch?v=ZrvKmDpVP6I)
+- Set up one of the dialogue choices to have too many options for the given screen
+- Update the dialogue choice cursor handling so that when the cursor is attempting to move to an option beyond the bottom of the textbox, offset the choices rather than the cursor
+- Make sure this scrolling effect works in both directions and when wrapping around
+- Add a surface whose size matches the available textbox space for choices
+  - If the surface already exists, resize it to the target dimensions
+  - Ensure the existence check is made
+- Draw the choices in the surface instead of in the regular application_surface, adjusting the coordinates accordingly
+- Ensure the surface is freed on textbox destroy
 - Update choice pointer to animate
   - Subtle bounce effect where the arrow accelerates to the right, bounces back very slowly, then repeats
 
