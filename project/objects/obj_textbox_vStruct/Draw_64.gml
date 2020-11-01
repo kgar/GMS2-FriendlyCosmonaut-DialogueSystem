@@ -92,10 +92,14 @@ for (var i = 0; i <= roundedspecIndex; i++) {
 #region Dialogue Choice
 if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 	
-	if (!surface_exists(choiceSurface)) {\
-		// TODO: Ensure surface exists and in the size of the available lines.
-		// TOOD: Make sure available lines is calculated right after char specs.
+	if (!surface_exists(choiceSurface)) {
+		choiceSurface = surface_create(choiceSurfaceWidth, choiceSurfaceHeight);
 	}
+	
+	surface_set_target(choiceSurface);
+	draw_rectangle_color(0, 0, choiceSurfaceWidth, choiceSurfaceHeight, c_purple, c_purple, c_purple, c_purple, false);
+	surface_reset_target();
+	draw_surface(choiceSurface, choiceSurfaceX, choiceSurfaceY);
 	
 	var choicesLength = array_length(dialogueEntry.choices);
 	

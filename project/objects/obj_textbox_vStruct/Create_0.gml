@@ -24,6 +24,14 @@ choicePointerLastY = undefined;
 chosen = false;
 currentChoiceIndex = 0;
 choiceSurface = -1;
+choiceSurfaceWidth = undefined;
+choiceSurfaceHeight = undefined;
+choiceSurfaceX = undefined;
+choiceSurfaceY = undefined;
+choiceMaxVisibleLines = undefined;
+choicePointerLineIndex = undefined;
+choiceSurfaceYOffset = undefined;
+
 
 // Input
 interactKey = global.interactKey;
@@ -104,11 +112,6 @@ function TurnPage() {
 		portraitSpeakAnimationTracker = undefined;
 	}
 	#endregion
-			
-	currentChoiceIndex = 0;
-	chosen = false;
-	choicePointerLastX = undefined;
-	choicePointerLastY = undefined;
 		
 	if (dialogueEntry != undefined && variable_struct_exists(dialogueEntry, "onPageTurn")) {
 		dialogueEntry.onPageTurn(caller);
@@ -211,6 +214,25 @@ function TurnPage() {
 		caller);
 		
 		specsLength = array_length(currentCharacterSpecs);
+		
+		if (dialogueEntry.type == DialogueType.Choice) {
+			chosen = false;
+			choicePointerLastX = undefined;
+			choicePointerLastY = undefined;
+			
+			choicePointerLineIndex = 0;
+			currentChoiceIndex = 0;
+			choiceSurfaceYOffset = 0;
+			
+			choiceSurfaceHeight = textboxHeight - textboxPaddingY * 2 - currentCharacterSpecs[specsLength - 1].yOffset - stringHeight;
+			choiceMaxVisibleLines = floor(choiceSurfaceHeight / stringHeight);
+			var effectivePortraitWidthAndPadding = portraitSide == PortraitSide.Left
+				? portraitWidthAndPadding
+				: 0;
+			choiceSurfaceWidth = textboxWidth - textboxPaddingX * 2 - choicePointerWidth - choicePointerRightPadding - effectivePortraitWidthAndPadding;
+			choiceSurfaceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + + effectivePortraitWidthAndPadding;
+			choiceSurfaceY = textboxPositionY + textboxHeight - choiceSurfaceHeight - textboxPaddingY;
+		}
 	});	
 }
 
