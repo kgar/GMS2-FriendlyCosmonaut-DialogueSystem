@@ -19,11 +19,13 @@ choiceSoundPriority = 5;
 choiceTextColor = c_yellow;
 choicePointerWidth = sprite_get_width(spr_pointer);
 choicePointerRightPadding = choicePointerWidth / 2;
+choicePointerTopY = undefined;
 targetChoicePointerX = undefined;
 targetChoicePointerY = undefined;
 currentChoicePointerX = undefined;
 currentChoicePointerY = undefined;
 chosen = false;
+choicesLength = undefined;
 currentChoiceIndex = 0;
 choiceSurface = -1;
 choiceSurfaceWidth = undefined;
@@ -219,6 +221,7 @@ function TurnPage() {
 		
 		if (dialogueEntry.type == DialogueType.Choice) {
 			chosen = false;
+			choicesLength = array_length(dialogueEntry.choices);
 			
 			// TODO: Share this as an object member
 			var effectivePortraitLeftPadding = portraitSide == PortraitSide.Left
@@ -230,7 +233,8 @@ function TurnPage() {
 			var lastTextLineYOffset = specsLength > 0 ? currentCharacterSpecs[specsLength - 1].yOffset : 0;
 			
 			targetChoicePointerX = textboxPositionX + textboxPaddingX + effectivePortraitLeftPadding;
-			targetChoicePointerY = textboxPositionY + textboxPaddingY + lastTextLineYOffset + stringHeight + stringHeight / 2;
+			choicePointerTopY = textboxPositionY + textboxPaddingY + lastTextLineYOffset + stringHeight + stringHeight / 2;
+			targetChoicePointerY = choicePointerTopY;
 			currentChoicePointerX = targetChoicePointerX;
 			currentChoicePointerY = targetChoicePointerY;
 			
@@ -246,6 +250,35 @@ function TurnPage() {
 			choiceSurfaceY = textboxPositionY + textboxHeight - choiceSurfaceHeight - textboxPaddingY;
 		}
 	});	
+}
+
+function ChoiceScrollDown() {
+	if (currentChoiceIndex == choicesLength - 1) {
+		currentChoiceIndex = 0;
+		targetChoicePointerY = choicePointerTopY;
+		choiceSurfaceYOffset = 0;
+		return;
+	}
+	
+	currentChoiceIndex++;
+	// Move pointer Y if there is still room to move
+	targetChoicePointerY += stringHeight;
+	// Else, shift yOffset
+	
+}
+
+function ChoiceScrollUp() {
+	if (currentChoiceIndex == 0) {
+		currentChoiceIndex = choicesLength - 1;
+		targetChoicePointerY = choicePointerTopY + (choiceMaxVisibleLines - 1) * stringHeight;
+		choiceSurfaceYOffset = 0; // TODO: Figure out how to calc this
+		return;
+	}
+	
+	currentChoiceIndex--;
+	// Move pointer Y if there is still room to move
+	targetChoicePointerY -= stringHeight;
+	// Else, shift yOffset
 }
 
 function FindPageIndexByUniqueId(uniqueId) {
