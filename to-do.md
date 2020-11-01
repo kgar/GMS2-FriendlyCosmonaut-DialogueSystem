@@ -1,4 +1,11 @@
 ## To Do (formerly, Stretches)
+- Calculate choice surface width on page turn
+  - textbox width - padding * 2 - cursor width - cursor padding?
+- Calculate choice surface height on page turn 
+  - max available visible lines * line height of dialogue font
+- Draw surface
+  - X: textboxX + padding + cursor width + cursor padding?
+  - Y: textboxY + padding + Last char spec yOffset + line height of dialogue font
 - Establish cursor position management in cursor event handling.
   - Rename pointer coordinates to current___ and target___.
   - Detach cursor from selected index; manage cursor separately
