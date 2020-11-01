@@ -97,9 +97,8 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 	}
 	
 	surface_set_target(choiceSurface);
+	
 	draw_rectangle_color(0, 0, choiceSurfaceWidth, choiceSurfaceHeight, c_purple, c_purple, c_purple, c_purple, false);
-	surface_reset_target();
-	draw_surface(choiceSurface, choiceSurfaceX, choiceSurfaceY);
 	
 	var choicesLength = array_length(dialogueEntry.choices);
 	
@@ -107,30 +106,30 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 	var effectivePortraitWidthAndPadding = portraitSide == PortraitSide.Left
 		? portraitWidthAndPadding
 		: 0;
-	var drawChoiceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + effectivePortraitWidthAndPadding;
-	var drawChoiceY = drawTextY + stringHeight;
-	var pointerDrawX = undefined;
-	var pointerDrawY = undefined;
+	var drawChoiceX = 0;
+	var drawChoiceY = 0;
 	var choiceOffsetY = 0;
-	var availableChoiceWidth = textboxWidth - textboxPaddingX * 2;
 	
 	for (var i = 0; i < choicesLength; i++) {
 		var choice = dialogueEntry.choices[i];
 		var isSelected = currentChoiceIndex == i;
 		var color = isSelected ? choiceTextColor : c_white /* TODO: Eliminate this hardcodedness */;
-		draw_text_ext_color(drawChoiceX, drawChoiceY + choiceOffsetY, choice.text, stringHeight, availableChoiceWidth, color, color, color, color, 1);
-		choiceOffsetY += string_height_ext(choice.text, stringHeight, availableChoiceWidth);
+		draw_text_ext_color(drawChoiceX, drawChoiceY + choiceOffsetY, choice.text, stringHeight, choiceSurfaceWidth, color, color, color, color, 1);
+		choiceOffsetY += string_height_ext(choice.text, stringHeight, choiceSurfaceWidth);
 		
-		if (isSelected) {
-			pointerDrawX = drawChoiceX - choicePointerWidth - choicePointerRightPadding / 2;
-			pointerDrawY = drawChoiceY + choiceOffsetY - stringHeight / 2;
-		}
+		//if (isSelected) {
+		//	targetChoicePointerX = drawChoiceX - choicePointerWidth - choicePointerRightPadding / 2;
+		//	targetChoicePointerY = drawChoiceY + choiceOffsetY - stringHeight / 2;
+		//}
 	}
 	
+	surface_reset_target();
+	draw_surface(choiceSurface, choiceSurfaceX, choiceSurfaceY);
+	
 	// Draw Pointer
-	choicePointerLastX = lerp(coalesce(choicePointerLastX, pointerDrawX), pointerDrawX, 0.25);
-	choicePointerLastY = lerp(coalesce(choicePointerLastY, pointerDrawY), pointerDrawY, 0.25);
-	draw_sprite(spr_pointer, 0, choicePointerLastX, choicePointerLastY);
+	currentChoicePointerX = lerp(coalesce(currentChoicePointerX, targetChoicePointerX), targetChoicePointerX, 0.25);
+	currentChoicePointerY = lerp(coalesce(currentChoicePointerY, targetChoicePointerY), targetChoicePointerY, 0.25);
+	draw_sprite(spr_pointer, 0, currentChoicePointerX, currentChoicePointerY);
 }
 #endregion
 

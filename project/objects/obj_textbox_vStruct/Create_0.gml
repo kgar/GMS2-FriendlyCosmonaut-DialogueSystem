@@ -19,8 +19,10 @@ choiceSoundPriority = 5;
 choiceTextColor = c_yellow;
 choicePointerWidth = sprite_get_width(spr_pointer);
 choicePointerRightPadding = choicePointerWidth / 2;
-choicePointerLastX = undefined;
-choicePointerLastY = undefined;
+targetChoicePointerX = undefined;
+targetChoicePointerY = undefined;
+currentChoicePointerX = undefined;
+currentChoicePointerY = undefined;
 chosen = false;
 currentChoiceIndex = 0;
 choiceSurface = -1;
@@ -217,20 +219,30 @@ function TurnPage() {
 		
 		if (dialogueEntry.type == DialogueType.Choice) {
 			chosen = false;
-			choicePointerLastX = undefined;
-			choicePointerLastY = undefined;
+			
+			// TODO: Share this as an object member
+			var effectivePortraitLeftPadding = portraitSide == PortraitSide.Left
+				? portraitWidthAndPadding
+				: 0;
+			var effectivePortraitRightPadding = portraitSide == PortraitSide.Right
+				? portraitWidthAndPadding
+				: 0;
+			var lastTextLineYOffset = specsLength > 0 ? currentCharacterSpecs[specsLength - 1].yOffset : 0;
+			
+			targetChoicePointerX = textboxPositionX + textboxPaddingX + effectivePortraitLeftPadding;
+			targetChoicePointerY = textboxPositionY + textboxPaddingY + lastTextLineYOffset + stringHeight + stringHeight / 2;
+			currentChoicePointerX = targetChoicePointerX;
+			currentChoicePointerY = targetChoicePointerY;
 			
 			choicePointerLineIndex = 0;
 			currentChoiceIndex = 0;
 			choiceSurfaceYOffset = 0;
 			
-			choiceSurfaceHeight = textboxHeight - textboxPaddingY * 2 - currentCharacterSpecs[specsLength - 1].yOffset - stringHeight;
+			choiceSurfaceHeight = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset - stringHeight;
 			choiceMaxVisibleLines = floor(choiceSurfaceHeight / stringHeight);
-			var effectivePortraitWidthAndPadding = portraitSide == PortraitSide.Left
-				? portraitWidthAndPadding
-				: 0;
-			choiceSurfaceWidth = textboxWidth - textboxPaddingX * 2 - choicePointerWidth - choicePointerRightPadding - effectivePortraitWidthAndPadding;
-			choiceSurfaceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + + effectivePortraitWidthAndPadding;
+			
+			choiceSurfaceWidth = textboxWidth - textboxPaddingX * 2 - choicePointerWidth - choicePointerRightPadding - effectivePortraitLeftPadding - effectivePortraitRightPadding;
+			choiceSurfaceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + effectivePortraitLeftPadding;
 			choiceSurfaceY = textboxPositionY + textboxHeight - choiceSurfaceHeight - textboxPaddingY;
 		}
 	});	

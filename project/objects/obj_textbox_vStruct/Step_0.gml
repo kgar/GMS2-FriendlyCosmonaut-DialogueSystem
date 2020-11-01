@@ -32,12 +32,14 @@ switch (dialogueEntry.type) {
 		}
 		
 		if (!finishedTypeWriting) exit;
+		
 		var change = keyboard_check_pressed(choiceMoveDownKey) - keyboard_check_pressed(choiceMoveUpKey);
 		if(change != 0){ 
 			var choicesLength = array_length(dialogueEntry.choices);
 			currentChoiceIndex = (currentChoiceIndex + change + choicesLength) % choicesLength; 
 			audio_play_sound(choiceChangeSound, choiceSoundPriority, false); 
 		}
+		
 		break;
 	default:
 		throw "Invalid DialogueType";
