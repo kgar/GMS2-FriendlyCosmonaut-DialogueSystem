@@ -1,5 +1,11 @@
 ## To Do (formerly, Stretches)
-- Set up one of the dialogue choices to have too many options for the given screen
+- Establish cursor position management in cursor event handling.
+  - Rename pointer coordinates to current___ and target___.
+  - Detach cursor from selected index; manage cursor separately
+  - Recreate original positioning functionality but driven by user input rather than simply highlighted index.
+- Prepare for scroll behavior
+  - Detect number of available visible lines
+  - Using current cursor position and current line, handle the use cases
 - Update the dialogue choice cursor handling so that when the cursor is attempting to move to an option beyond the bottom of the textbox, offset the choices rather than the cursor
 - Make sure this scrolling effect works in both directions and when wrapping around
 - Add a surface whose size matches the available textbox space for choices

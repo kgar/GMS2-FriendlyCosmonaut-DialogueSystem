@@ -23,6 +23,7 @@ choicePointerLastX = undefined;
 choicePointerLastY = undefined;
 chosen = false;
 currentChoiceIndex = 0;
+choiceSurface = -1;
 
 // Input
 interactKey = global.interactKey;
@@ -83,6 +84,8 @@ function Init(_dialogue, _caller) {
 /// @description Turn the page
 /// @param index  optional field specifying the absolute index to change the page to.
 function TurnPage() {
+	
+	surface_free(choiceSurface);
 	
 	var absoluteIndex = argument_count > 0 ? argument[0] : undefined;
 	

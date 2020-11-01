@@ -181,7 +181,13 @@ var dialogue = [
           jumpType: DialogueJumpType.RelativeIndex,
           value: -1
         }
-      }
+      },
+	  {
+		text: "Nope. Bye.",
+		jump: {
+			jumpType: DialogueJumpType.ExitDialogue
+		}
+	  }
     ],
 	name: "The Other Narrator",
 	portrait: {

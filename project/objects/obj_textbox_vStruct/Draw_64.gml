@@ -92,6 +92,11 @@ for (var i = 0; i <= roundedspecIndex; i++) {
 #region Dialogue Choice
 if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 	
+	if (!surface_exists(choiceSurface)) {\
+		// TODO: Ensure surface exists and in the size of the available lines.
+		// TOOD: Make sure available lines is calculated right after char specs.
+	}
+	
 	var choicesLength = array_length(dialogueEntry.choices);
 	
 	// TODO: Need a better name than effectivePortraitWidthAndPadding
@@ -118,6 +123,7 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 		}
 	}
 	
+	// Draw Pointer
 	choicePointerLastX = lerp(coalesce(choicePointerLastX, pointerDrawX), pointerDrawX, 0.25);
 	choicePointerLastY = lerp(coalesce(choicePointerLastY, pointerDrawY), pointerDrawY, 0.25);
 	draw_sprite(spr_pointer, 0, choicePointerLastX, choicePointerLastY);
