@@ -1,9 +1,8 @@
 ## To Do (formerly, Stretches)
+- Update indicator colors
+- Make indicators only appear when the content is scrollable
 - Update choice pointer to animate
   - Subtle bounce effect where the arrow accelerates to the right, bounces back very slowly, then repeats
-- Add up/down indicators to scrollable dialogue choices
-  - Use some basic draw_triangle_color() calls
-  - Gray out the choice when it cannot scroll in that direction
 - Consider beginning the Module/Demo repo for this first draft of the textbox module and moving the implementation there
 
 ## Refactoring

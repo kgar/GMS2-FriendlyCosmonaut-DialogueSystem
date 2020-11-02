@@ -29,6 +29,8 @@ chosen = false;
 choicesLength = undefined;
 currentChoiceIndex = 0;
 choiceSurface = -1;
+choiceScrollIndicatorWidth = 25;
+choiceScrollIndicatorHeight = 20;
 choiceSurfaceWidth = undefined;
 choiceSurfaceHeight = undefined;
 choiceSurfaceX = undefined;
@@ -38,6 +40,12 @@ choicePointerLineIndex = undefined;
 choiceSurfaceYOffset = undefined;
 choiceSurfaceCurrentYOffset = undefined;
 choiceSurfaceTargetYOffset = undefined;
+choiceScrollUpIndicatorX = undefined;
+choiceScrollUpIndicatorY = undefined;
+choiceScrollDownIndicatorX  = undefined;
+choiceScrollDownIndicatorY = undefined;
+choiceScrollEnabledColor = c_green;
+choiceScrollDisabledColor = c_red;
 
 
 // Input
@@ -250,16 +258,26 @@ function TurnPage() {
 			choiceSurfaceHeight = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset - stringHeight;
 			choiceMaxVisibleLines = floor(choiceSurfaceHeight / stringHeight);
 			choicePointerBottomY = choicePointerTopY + (choiceMaxVisibleLines - 1) * stringHeight;
-			
-			choiceSurfaceWidth = textboxWidth - textboxPaddingX * 2 - choicePointerWidth - choicePointerRightPadding - effectivePortraitLeftPadding - effectivePortraitRightPadding;
+						
+			choiceSurfaceWidth = textboxWidth - textboxPaddingX * 2 - choicePointerWidth - choicePointerRightPadding - effectivePortraitLeftPadding - effectivePortraitRightPadding - choiceScrollIndicatorWidth;
 			choiceSurfaceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + effectivePortraitLeftPadding;
 			choiceSurfaceY = textboxPositionY + textboxHeight - choiceSurfaceHeight - textboxPaddingY;
+			// TODO: Dynamically include or exclude indicator
+			useChoiceScrollIndicators = true;
+			choiceScrollUpIndicatorX = choiceSurfaceX + choiceSurfaceWidth;
+			choiceScrollUpIndicatorY = choiceSurfaceY;
+			choiceScrollDownIndicatorX  = choiceSurfaceX + choiceSurfaceWidth;
+			choiceScrollDownIndicatorY = choiceSurfaceY + choiceSurfaceHeight - choiceScrollIndicatorWidth;
 		}
 	});	
 }
 
+function CanScrollDown() {
+	return currentChoiceIndex < choicesLength - 1;
+}
+
 function ChoiceScrollDown() {
-	if (currentChoiceIndex == choicesLength - 1) {
+	if (!CanScrollDown()) {
 		currentChoiceIndex = 0;
 		targetChoicePointerY = choicePointerTopY;
 		choiceSurfaceTargetYOffset = 0;
@@ -276,8 +294,12 @@ function ChoiceScrollDown() {
 	}
 }
 
+function CanScrollUp() {
+	return currentChoiceIndex > 0;
+}
+
 function ChoiceScrollUp() {
-	if (currentChoiceIndex == 0) {
+	if (!CanScrollUp()) {
 		currentChoiceIndex = choicesLength - 1;
 		targetChoicePointerY = choicePointerTopY + (choiceMaxVisibleLines - 1) * stringHeight;
 		choiceSurfaceTargetYOffset = (choiceMaxVisibleLines - 1) * stringHeight * -1;
