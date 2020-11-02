@@ -1,20 +1,10 @@
 ## To Do (formerly, Stretches)
-- Establish cursor position management in cursor event handling.
-  - Rename pointer coordinates to current___ and target___.
-  - Detach cursor from selected index; manage cursor separately
-  - Recreate original positioning functionality but driven by user input rather than simply highlighted index.
-- Prepare for scroll behavior
-  - Detect number of available visible lines
-  - Using current cursor position and current line, handle the use cases
-- Update the dialogue choice cursor handling so that when the cursor is attempting to move to an option beyond the bottom of the textbox, offset the choices rather than the cursor
-- Make sure this scrolling effect works in both directions and when wrapping around
-- Add a surface whose size matches the available textbox space for choices
-  - If the surface already exists, resize it to the target dimensions
-  - Ensure the existence check is made
-- Draw the choices in the surface instead of in the regular application_surface, adjusting the coordinates accordingly
-- Ensure the surface is freed on textbox destroy
 - Update choice pointer to animate
   - Subtle bounce effect where the arrow accelerates to the right, bounces back very slowly, then repeats
+- Add up/down indicators to scrollable dialogue choices
+  - Use some basic draw_triangle_color() calls
+  - Gray out the choice when it cannot scroll in that direction
+- Consider beginning the Module/Demo repo for this first draft of the textbox module and moving the implementation there
 
 ## Refactoring
 - Character spec generation has gotten messy and voluminous. Move it its own script file and make it easier to read.
@@ -31,6 +21,8 @@
 - Make text effects drawing reusable
 - Convert as many hardcoded assets to strings and use asset_get_index() on them.
 - Establish that textColor `undefined` means to use the default dialogue font. Update all dialogues to leverage this.
+- Try to replace scroll positioning with the TextScroller module
+- Try to extract choice management to a struct that can be used by the object as a vector of composition
 
 ## Research and Needs Work
 - How could I handle JSON-driven dialogue workflow while also allowing for running full GML scripts?

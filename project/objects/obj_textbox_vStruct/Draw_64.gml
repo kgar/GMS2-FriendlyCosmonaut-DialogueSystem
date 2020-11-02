@@ -96,9 +96,11 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 		choiceSurface = surface_create(choiceSurfaceWidth, choiceSurfaceHeight);
 	}
 	
+	choiceSurfaceCurrentYOffset = lerp(coalesce(choiceSurfaceCurrentYOffset, choiceSurfaceTargetYOffset), choiceSurfaceTargetYOffset, 0.25);
+	
 	surface_set_target(choiceSurface);
 	
-	draw_rectangle_color(0, 0, choiceSurfaceWidth, choiceSurfaceHeight, c_purple, c_purple, c_purple, c_purple, false);
+	draw_clear_alpha(c_white, 0);
 	
 	var choicesLength = array_length(dialogueEntry.choices);
 	
@@ -114,13 +116,8 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 		var choice = dialogueEntry.choices[i];
 		var isSelected = currentChoiceIndex == i;
 		var color = isSelected ? choiceTextColor : c_white /* TODO: Eliminate this hardcodedness */;
-		draw_text_ext_color(drawChoiceX, drawChoiceY + choiceOffsetY, choice.text, stringHeight, choiceSurfaceWidth, color, color, color, color, 1);
+		draw_text_ext_color(drawChoiceX, drawChoiceY + choiceOffsetY + choiceSurfaceCurrentYOffset, choice.text, stringHeight, choiceSurfaceWidth, color, color, color, color, 1);
 		choiceOffsetY += string_height_ext(choice.text, stringHeight, choiceSurfaceWidth);
-		
-		//if (isSelected) {
-		//	targetChoicePointerX = drawChoiceX - choicePointerWidth - choicePointerRightPadding / 2;
-		//	targetChoicePointerY = drawChoiceY + choiceOffsetY - stringHeight / 2;
-		//}
 	}
 	
 	surface_reset_target();

@@ -20,6 +20,7 @@ choiceTextColor = c_yellow;
 choicePointerWidth = sprite_get_width(spr_pointer);
 choicePointerRightPadding = choicePointerWidth / 2;
 choicePointerTopY = undefined;
+choicePointerBottomY = undefined;
 targetChoicePointerX = undefined;
 targetChoicePointerY = undefined;
 currentChoicePointerX = undefined;
@@ -35,6 +36,8 @@ choiceSurfaceY = undefined;
 choiceMaxVisibleLines = undefined;
 choicePointerLineIndex = undefined;
 choiceSurfaceYOffset = undefined;
+choiceSurfaceCurrentYOffset = undefined;
+choiceSurfaceTargetYOffset = undefined;
 
 
 // Input
@@ -240,10 +243,13 @@ function TurnPage() {
 			
 			choicePointerLineIndex = 0;
 			currentChoiceIndex = 0;
+			choiceSurfaceCurrentYOffset = 0;
+			choiceSurfaceTargetYOffset = 0;
 			choiceSurfaceYOffset = 0;
 			
 			choiceSurfaceHeight = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset - stringHeight;
 			choiceMaxVisibleLines = floor(choiceSurfaceHeight / stringHeight);
+			choicePointerBottomY = choicePointerTopY + (choiceMaxVisibleLines - 1) * stringHeight;
 			
 			choiceSurfaceWidth = textboxWidth - textboxPaddingX * 2 - choicePointerWidth - choicePointerRightPadding - effectivePortraitLeftPadding - effectivePortraitRightPadding;
 			choiceSurfaceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + effectivePortraitLeftPadding;
@@ -256,29 +262,35 @@ function ChoiceScrollDown() {
 	if (currentChoiceIndex == choicesLength - 1) {
 		currentChoiceIndex = 0;
 		targetChoicePointerY = choicePointerTopY;
-		choiceSurfaceYOffset = 0;
+		choiceSurfaceTargetYOffset = 0;
 		return;
 	}
 	
 	currentChoiceIndex++;
-	// Move pointer Y if there is still room to move
-	targetChoicePointerY += stringHeight;
-	// Else, shift yOffset
 	
+	if (targetChoicePointerY + stringHeight <= choicePointerBottomY) {
+		targetChoicePointerY += stringHeight;
+	}
+	else {
+		choiceSurfaceTargetYOffset -= stringHeight;
+	}
 }
 
 function ChoiceScrollUp() {
 	if (currentChoiceIndex == 0) {
 		currentChoiceIndex = choicesLength - 1;
 		targetChoicePointerY = choicePointerTopY + (choiceMaxVisibleLines - 1) * stringHeight;
-		choiceSurfaceYOffset = 0; // TODO: Figure out how to calc this
+		choiceSurfaceTargetYOffset = (choiceMaxVisibleLines - 1) * stringHeight * -1;
 		return;
 	}
 	
 	currentChoiceIndex--;
-	// Move pointer Y if there is still room to move
-	targetChoicePointerY -= stringHeight;
-	// Else, shift yOffset
+	if (targetChoicePointerY - stringHeight >= choicePointerTopY) {
+		targetChoicePointerY -= stringHeight;
+	}
+	else {
+		choiceSurfaceTargetYOffset += stringHeight;
+	}
 }
 
 function FindPageIndexByUniqueId(uniqueId) {
