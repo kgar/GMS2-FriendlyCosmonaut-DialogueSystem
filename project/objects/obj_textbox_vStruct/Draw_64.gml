@@ -126,7 +126,8 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 	// Draw Pointer
 	currentChoicePointerX = lerp(coalesce(currentChoicePointerX, targetChoicePointerX), targetChoicePointerX, 0.25);
 	currentChoicePointerY = lerp(coalesce(currentChoicePointerY, targetChoicePointerY), targetChoicePointerY, 0.25);
-	draw_sprite(spr_pointer, 0, currentChoicePointerX, currentChoicePointerY);
+	var pointerShift = dsin(time * 4);
+	draw_sprite(spr_pointer, 0, currentChoicePointerX + pointerShift, currentChoicePointerY);
 	
 	// Draw Indicators
 	if (hasChoiceHeightOverflow) {
