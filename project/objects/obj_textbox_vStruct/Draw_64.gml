@@ -129,38 +129,39 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 	draw_sprite(spr_pointer, 0, currentChoicePointerX, currentChoicePointerY);
 	
 	// Draw Indicators
-	if (useChoiceScrollIndicators) {
+	if (hasChoiceHeightOverflow) {
 		// Scroll Up
 		
 		var choiceScrollIndicatorArrowPadding = choiceScrollIndicatorWidth / 5;
-		var scrollUpColor = CanScrollUp() ? choiceScrollEnabledColor : choiceScrollDisabledColor;
+		if (CanScrollUp()) {
+			draw_triangle_color(
+				// Top center
+				choiceScrollUpIndicatorX + choiceScrollIndicatorWidth / 2,
+				choiceScrollUpIndicatorY + choiceScrollIndicatorArrowPadding,
+				// Bottom left
+				choiceScrollUpIndicatorX + choiceScrollIndicatorArrowPadding,
+				choiceScrollUpIndicatorY + choiceScrollIndicatorHeight - choiceScrollIndicatorArrowPadding,
+				// Bottom right
+				choiceScrollUpIndicatorX + choiceScrollIndicatorWidth - choiceScrollIndicatorArrowPadding,
+				choiceScrollUpIndicatorY + choiceScrollIndicatorHeight - choiceScrollIndicatorArrowPadding,
+				choiceScrollTextColor, choiceScrollTextColor, choiceScrollTextColor, false
+			);
+		}
 		
-		draw_triangle_color(
-			// Top center
-			choiceScrollUpIndicatorX + choiceScrollIndicatorWidth / 2,
-			choiceScrollUpIndicatorY + choiceScrollIndicatorArrowPadding,
-			// Bottom left
-			choiceScrollUpIndicatorX + choiceScrollIndicatorArrowPadding,
-			choiceScrollUpIndicatorY + choiceScrollIndicatorHeight - choiceScrollIndicatorArrowPadding,
-			// Bottom right
-			choiceScrollUpIndicatorX + choiceScrollIndicatorWidth - choiceScrollIndicatorArrowPadding,
-			choiceScrollUpIndicatorY + choiceScrollIndicatorHeight - choiceScrollIndicatorArrowPadding,
-			scrollUpColor, scrollUpColor, scrollUpColor, false
-		);
-		
-		var scrollDownColor = CanScrollDown() ? choiceScrollEnabledColor : choiceScrollDisabledColor;
-		draw_triangle_color(
-			// Top left
-			choiceScrollDownIndicatorX + choiceScrollIndicatorArrowPadding,
-			choiceScrollDownIndicatorY + choiceScrollIndicatorArrowPadding,
-			// Top right
-			choiceScrollDownIndicatorX + choiceScrollIndicatorWidth - choiceScrollIndicatorArrowPadding,
-			choiceScrollDownIndicatorY + choiceScrollIndicatorArrowPadding,
-			// Bottom center
-			choiceScrollDownIndicatorX + choiceScrollIndicatorWidth / 2,
-			choiceScrollDownIndicatorY + choiceScrollIndicatorHeight - choiceScrollIndicatorArrowPadding,
-			scrollDownColor, scrollDownColor, scrollDownColor, false
-		);
+		if (CanScrollDown()) {
+			draw_triangle_color(
+				// Top left
+				choiceScrollDownIndicatorX + choiceScrollIndicatorArrowPadding,
+				choiceScrollDownIndicatorY + choiceScrollIndicatorArrowPadding,
+				// Top right
+				choiceScrollDownIndicatorX + choiceScrollIndicatorWidth - choiceScrollIndicatorArrowPadding,
+				choiceScrollDownIndicatorY + choiceScrollIndicatorArrowPadding,
+				// Bottom center
+				choiceScrollDownIndicatorX + choiceScrollIndicatorWidth / 2,
+				choiceScrollDownIndicatorY + choiceScrollIndicatorHeight - choiceScrollIndicatorArrowPadding,
+				choiceScrollTextColor, choiceScrollTextColor, choiceScrollTextColor, false
+			);
+		}
 	}
 }
 #endregion

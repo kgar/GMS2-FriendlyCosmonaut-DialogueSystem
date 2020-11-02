@@ -27,6 +27,7 @@ currentChoicePointerX = undefined;
 currentChoicePointerY = undefined;
 chosen = false;
 choicesLength = undefined;
+choicesContentHeight = undefined;
 currentChoiceIndex = 0;
 choiceSurface = -1;
 choiceScrollIndicatorWidth = 25;
@@ -44,8 +45,7 @@ choiceScrollUpIndicatorX = undefined;
 choiceScrollUpIndicatorY = undefined;
 choiceScrollDownIndicatorX  = undefined;
 choiceScrollDownIndicatorY = undefined;
-choiceScrollEnabledColor = c_green;
-choiceScrollDisabledColor = c_red;
+choiceScrollTextColor = make_color_rgb(210, 210, 210);
 
 
 // Input
@@ -258,26 +258,42 @@ function TurnPage() {
 			choiceSurfaceHeight = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset - stringHeight;
 			choiceMaxVisibleLines = floor(choiceSurfaceHeight / stringHeight);
 			choicePointerBottomY = choicePointerTopY + (choiceMaxVisibleLines - 1) * stringHeight;
+			
+			choiceContentHeight = 0;
+			var standardSurfaceWidth = textboxWidth - textboxPaddingX * 2 - choicePointerWidth - choicePointerRightPadding - effectivePortraitLeftPadding - effectivePortraitRightPadding;
+			for(var i = 0; i < choicesLength; i++) {
+				choiceContentHeight += string_height_ext(dialogueEntry.choices[i].text, -1, standardSurfaceWidth);
+			}
+			
+			hasChoiceHeightOverflow = choiceSurfaceHeight < choiceContentHeight;
+			var effectiveScrollIndicatorWidth = hasChoiceHeightOverflow
+				? choiceScrollIndicatorWidth
+				: 0;
 						
-			choiceSurfaceWidth = textboxWidth - textboxPaddingX * 2 - choicePointerWidth - choicePointerRightPadding - effectivePortraitLeftPadding - effectivePortraitRightPadding - choiceScrollIndicatorWidth;
+			choiceSurfaceWidth = standardSurfaceWidth - effectiveScrollIndicatorWidth;
 			choiceSurfaceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + effectivePortraitLeftPadding;
 			choiceSurfaceY = textboxPositionY + textboxHeight - choiceSurfaceHeight - textboxPaddingY;
-			// TODO: Dynamically include or exclude indicator
-			useChoiceScrollIndicators = true;
-			choiceScrollUpIndicatorX = choiceSurfaceX + choiceSurfaceWidth;
-			choiceScrollUpIndicatorY = choiceSurfaceY;
-			choiceScrollDownIndicatorX  = choiceSurfaceX + choiceSurfaceWidth;
-			choiceScrollDownIndicatorY = choiceSurfaceY + choiceSurfaceHeight - choiceScrollIndicatorWidth;
+			
+			if (hasChoiceHeightOverflow) {
+				choiceScrollUpIndicatorX = choiceSurfaceX + choiceSurfaceWidth;
+				choiceScrollUpIndicatorY = choiceSurfaceY;
+				choiceScrollDownIndicatorX  = choiceSurfaceX + choiceSurfaceWidth;
+				choiceScrollDownIndicatorY = choiceSurfaceY + choiceSurfaceHeight - choiceScrollIndicatorWidth;
+			}
 		}
 	});	
 }
 
-function CanScrollDown() {
+function HasNextChoice() {
 	return currentChoiceIndex < choicesLength - 1;
 }
 
-function ChoiceScrollDown() {
-	if (!CanScrollDown()) {
+function CanScrollDown() {
+	return hasChoiceHeightOverflow && abs(choiceSurfaceTargetYOffset) + choiceSurfaceHeight < choiceContentHeight;
+}
+
+function GoToNextChoice() {
+	if (!HasNextChoice()) {
 		currentChoiceIndex = 0;
 		targetChoicePointerY = choicePointerTopY;
 		choiceSurfaceTargetYOffset = 0;
@@ -294,15 +310,24 @@ function ChoiceScrollDown() {
 	}
 }
 
-function CanScrollUp() {
+function HasPreviousChoice() {
 	return currentChoiceIndex > 0;
 }
 
-function ChoiceScrollUp() {
-	if (!CanScrollUp()) {
+function CanScrollUp() {
+	return hasChoiceHeightOverflow && choiceSurfaceTargetYOffset != 0;
+}
+
+function GoToPreviousChoice() {
+	if (!HasPreviousChoice()) {
 		currentChoiceIndex = choicesLength - 1;
 		targetChoicePointerY = choicePointerTopY + (choiceMaxVisibleLines - 1) * stringHeight;
-		choiceSurfaceTargetYOffset = (choiceMaxVisibleLines - 1) * stringHeight * -1;
+		
+		// TODO: Only do this when there is overflow
+		if (hasChoiceHeightOverflow) {
+			choiceSurfaceTargetYOffset = (choiceMaxVisibleLines - 1) * stringHeight * -1;
+		}
+		
 		return;
 	}
 	

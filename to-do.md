@@ -1,6 +1,5 @@
 ## To Do (formerly, Stretches)
-- Update indicator colors
-- Make indicators only appear when the content is scrollable
+- Upgrade CanScroll() functions to be booleans that are set on choice change
 - Update choice pointer to animate
   - Subtle bounce effect where the arrow accelerates to the right, bounces back very slowly, then repeats
 - Consider beginning the Module/Demo repo for this first draft of the textbox module and moving the implementation there
