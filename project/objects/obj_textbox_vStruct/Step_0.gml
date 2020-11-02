@@ -36,10 +36,12 @@ switch (dialogueEntry.type) {
 		if (keyboard_check_pressed(choiceMoveDownKey)) {
 			audio_play_sound(choiceChangeSound, choiceSoundPriority, false);
 			GoToNextChoice();
+			RefreshScrollIndicators();
 		}
 		else if (keyboard_check_pressed(choiceMoveUpKey)) {
 			audio_play_sound(choiceChangeSound, choiceSoundPriority, false);
 			GoToPreviousChoice();
+			RefreshScrollIndicators();
 		}
 		
 		

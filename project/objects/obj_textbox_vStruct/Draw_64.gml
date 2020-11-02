@@ -133,7 +133,7 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 		// Scroll Up
 		
 		var choiceScrollIndicatorArrowPadding = choiceScrollIndicatorWidth / 5;
-		if (CanScrollUp()) {
+		if (choiceCanScrollUp) {
 			draw_triangle_color(
 				// Top center
 				choiceScrollUpIndicatorX + choiceScrollIndicatorWidth / 2,
@@ -148,7 +148,7 @@ if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
 			);
 		}
 		
-		if (CanScrollDown()) {
+		if (choiceCanScrollDown) {
 			draw_triangle_color(
 				// Top left
 				choiceScrollDownIndicatorX + choiceScrollIndicatorArrowPadding,

@@ -27,7 +27,7 @@ currentChoicePointerX = undefined;
 currentChoicePointerY = undefined;
 chosen = false;
 choicesLength = undefined;
-choicesContentHeight = undefined;
+choiceContentHeight = undefined;
 currentChoiceIndex = 0;
 choiceSurface = -1;
 choiceScrollIndicatorWidth = 25;
@@ -46,6 +46,8 @@ choiceScrollUpIndicatorY = undefined;
 choiceScrollDownIndicatorX  = undefined;
 choiceScrollDownIndicatorY = undefined;
 choiceScrollTextColor = make_color_rgb(210, 210, 210);
+choiceCanScrollDown = undefined;
+choiceCanScrollUp = undefined;
 
 
 // Input
@@ -279,6 +281,7 @@ function TurnPage() {
 				choiceScrollUpIndicatorY = choiceSurfaceY;
 				choiceScrollDownIndicatorX  = choiceSurfaceX + choiceSurfaceWidth;
 				choiceScrollDownIndicatorY = choiceSurfaceY + choiceSurfaceHeight - choiceScrollIndicatorWidth;
+				RefreshScrollIndicators();
 			}
 		}
 	});	
@@ -288,9 +291,6 @@ function HasNextChoice() {
 	return currentChoiceIndex < choicesLength - 1;
 }
 
-function CanScrollDown() {
-	return hasChoiceHeightOverflow && abs(choiceSurfaceTargetYOffset) + choiceSurfaceHeight < choiceContentHeight;
-}
 
 function GoToNextChoice() {
 	if (!HasNextChoice()) {
@@ -314,8 +314,9 @@ function HasPreviousChoice() {
 	return currentChoiceIndex > 0;
 }
 
-function CanScrollUp() {
-	return hasChoiceHeightOverflow && choiceSurfaceTargetYOffset != 0;
+function RefreshScrollIndicators() {
+	choiceCanScrollDown = hasChoiceHeightOverflow && abs(choiceSurfaceTargetYOffset) + choiceSurfaceHeight < choiceContentHeight;
+	choiceCanScrollUp = hasChoiceHeightOverflow && choiceSurfaceTargetYOffset != 0;
 }
 
 function GoToPreviousChoice() {
