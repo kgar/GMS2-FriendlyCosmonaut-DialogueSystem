@@ -136,14 +136,8 @@ var dialogue = [
         }
       },
       {
-        text: "Ask me something else."
-      },
-	  {
-		text: "Nope. Bye.",
-		jump: {
-			jumpType: DialogueJumpType.ExitDialogue
-		}
-	  }
+        text: "Ask me something else, if you don't mind."
+      }
     ],
 	name: "Narrator",
 	portrait: {
@@ -176,14 +170,14 @@ var dialogue = [
         }
       },
       {
-        text: "Ask the previous question",
+        text: "Ask the previous question.",
         jump: {
           jumpType: DialogueJumpType.RelativeIndex,
           value: -1
         }
       },
 	  {
-		text: "Nope. Bye.",
+		text: "Nope. I've heard enough. I've seen enough. I'm outta here!" ,
 		jump: {
 			jumpType: DialogueJumpType.ExitDialogue
 		}
