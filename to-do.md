@@ -1,4 +1,7 @@
 ## To Do (formerly, Stretches)
+- Fix single-line option
+  - Wrapping to bottom results in the cursor being placed on the fourth line, even though there is only one line.
+- Evaluate and fix the others until all choice tests pass
 - Support multi-line choices in non-scrolling situations
 - Support multi-line choices in scrolling situations
 - Consider beginning the Module/Demo repo for this first draft of the textbox module and moving the implementation there
