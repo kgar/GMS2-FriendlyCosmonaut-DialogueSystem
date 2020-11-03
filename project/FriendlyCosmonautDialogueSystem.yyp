@@ -47,6 +47,7 @@
     {"id":{"name":"create_textevent","path":"scripts/create_textevent/create_textevent.yy",},"order":3,},
     {"id":{"name":"snd_item_award","path":"sounds/snd_item_award/snd_item_award.yy",},"order":2,},
     {"id":{"name":"spr_portraitframe","path":"sprites/spr_portraitframe/spr_portraitframe.yy",},"order":11,},
+    {"id":{"name":"scr_choices_selection_test","path":"scripts/scr_choices_selection_test/scr_choices_selection_test.yy",},"order":8,},
     {"id":{"name":"spr_mossy_treasure","path":"sprites/spr_mossy_treasure/spr_mossy_treasure.yy",},"order":3,},
     {"id":{"name":"spr_signpost","path":"sprites/spr_signpost/spr_signpost.yy",},"order":2,},
     {"id":{"name":"snd_chest_open","path":"sounds/snd_chest_open/snd_chest_open.yy",},"order":3,},

@@ -19,3 +19,8 @@ if(keyboard_check_pressed(ord("D"))){ debug = !debug;	}
 
 if(keyboard_check_pressed(vk_escape)){ game_end(); }
 if(keyboard_check_pressed(ord("R"))){ game_restart(); }
+
+if(keyboard_check_pressed(ord("C"))) { 
+	instance_destroy(obj_textbox_vStruct);
+	create_dialogue_vStruct(get_choices_test_dialogue());
+}

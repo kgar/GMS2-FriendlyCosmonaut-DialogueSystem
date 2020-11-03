@@ -177,7 +177,7 @@ var dialogue = [
         }
       },
 	  {
-		text: "Nope. I've heard enough. I've seen enough. I'm outta here!" ,
+		text: "Nope. I've heard enough." ,
 		jump: {
 			jumpType: DialogueJumpType.ExitDialogue
 		}

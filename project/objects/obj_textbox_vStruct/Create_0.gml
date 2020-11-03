@@ -152,7 +152,7 @@ function TurnPage() {
 		dialogueEntry.onPageOpen(caller);
 	}
 	
-	currentText = dialogueEntry.text;
+	currentText = variable_struct_exists(dialogueEntry, "text") ? dialogueEntry.text : "";
 	
 	specIndex = 0;
 
@@ -225,10 +225,12 @@ function TurnPage() {
 				
 		var textAreaWidth = textboxWidth - textboxPaddingX * 2 - portraitWidthAndPadding;
 		
-		currentCharacterSpecs = global.dialogue_functions.create_character_specs(
-		dialogueEntry, 
-		textAreaWidth,
-		caller);
+		currentCharacterSpecs = currentText != "" 
+			? global.dialogue_functions.create_character_specs(
+				dialogueEntry, 
+				textAreaWidth,
+				caller)
+			: [];
 		
 		specsLength = array_length(currentCharacterSpecs);
 		
@@ -243,10 +245,10 @@ function TurnPage() {
 			var effectivePortraitRightPadding = portraitSide == PortraitSide.Right
 				? portraitWidthAndPadding
 				: 0;
-			var lastTextLineYOffset = specsLength > 0 ? currentCharacterSpecs[specsLength - 1].yOffset : 0;
+			var lastTextLineYOffset = specsLength > 0 ? currentCharacterSpecs[specsLength - 1].yOffset + stringHeight : 0;
 			
 			targetChoicePointerX = textboxPositionX + textboxPaddingX + effectivePortraitLeftPadding;
-			choicePointerTopY = textboxPositionY + textboxPaddingY + lastTextLineYOffset + stringHeight + stringHeight / 2;
+			choicePointerTopY = textboxPositionY + textboxPaddingY + lastTextLineYOffset + stringHeight / 2;
 			targetChoicePointerY = choicePointerTopY;
 			currentChoicePointerX = targetChoicePointerX;
 			currentChoicePointerY = targetChoicePointerY;
@@ -257,7 +259,7 @@ function TurnPage() {
 			choiceSurfaceTargetYOffset = 0;
 			choiceSurfaceYOffset = 0;
 			
-			choiceSurfaceHeight = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset - stringHeight;
+			choiceSurfaceHeight = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset;
 			choiceMaxVisibleLines = floor(choiceSurfaceHeight / stringHeight);
 			choicePointerBottomY = choicePointerTopY + (choiceMaxVisibleLines - 1) * stringHeight;
 			
