@@ -1,4 +1,6 @@
 ## To Do (formerly, Stretches)
+- Support multi-line choices in non-scrolling situations
+- Support multi-line choices in scrolling situations
 - Consider beginning the Module/Demo repo for this first draft of the textbox module and moving the implementation there
 
 ## Refactoring
