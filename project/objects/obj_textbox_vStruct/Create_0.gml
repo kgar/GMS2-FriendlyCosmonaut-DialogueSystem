@@ -302,13 +302,17 @@ function GoToNextChoice() {
 		return;
 	}
 	
+	var currentChoiceTextHeight = string_height_ext(dialogueEntry.choices[currentChoiceIndex].text, -1, choiceSurfaceWidth);
+	
+	var cursorOffset = targetChoicePointerY + currentChoiceTextHeight;
+	
 	currentChoiceIndex++;
 	
-	if (targetChoicePointerY + stringHeight <= choicePointerBottomY) {
-		targetChoicePointerY += stringHeight;
+	if (cursorOffset <= choicePointerBottomY) {
+		targetChoicePointerY += currentChoiceTextHeight;
 	}
 	else {
-		choiceSurfaceTargetYOffset -= stringHeight;
+		choiceSurfaceTargetYOffset -= currentChoiceTextHeight;
 	}
 }
 
@@ -323,12 +327,12 @@ function RefreshScrollIndicators() {
 
 function GoToPreviousChoice() {
 	if (!HasPreviousChoice()) {
-		currentChoiceIndex = choicesLength - 1;
-		targetChoicePointerY = choicePointerTopY + (choiceMaxVisibleLines - 1) * stringHeight;
+		var origin = currentChoiceIndex;
+		var destination = choicesLength - 1;
+		var distance = abs(destination - origin);
 		
-		// TODO: Only do this when there is overflow
-		if (hasChoiceHeightOverflow) {
-			choiceSurfaceTargetYOffset = (choiceMaxVisibleLines - 1) * stringHeight * -1;
+		repeat(distance) {
+			GoToNextChoice();
 		}
 		
 		return;
