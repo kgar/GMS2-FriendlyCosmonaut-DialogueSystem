@@ -312,12 +312,23 @@ function GoToNextChoice() {
 	var nextOptionHeight = GetChoiceTextHeight(currentChoiceIndex);
 	var nextOptionHasOverflow = targetChoicePointerY + nextOptionHeight > choicePointerBottomY;
 		
+	// Case 1: Move cursor down by current choice height
+	// Case 2: Move cursor down by current choice height and then scroll remainder of content into view, shifting the cursor as well
+	
 	if (cursorOffset <= choicePointerBottomY && !nextOptionHasOverflow) {
 		targetChoicePointerY += currentChoiceTextHeight;
 	}
 	else {
-		choiceSurfaceTargetYOffset -= nextOptionHeight;
-		targetChoicePointerY = targetChoicePointerY - nextOptionHeight + currentChoiceTextHeight;
+		var nextChoiceVisibleLineCount = 0;
+		var pointerYTemp = targetChoicePointerY;
+		while (pointerYTemp < choicePointerBottomY) {
+			pointerYTemp += stringHeight;
+			nextChoiceVisibleLineCount++;
+		}
+		
+		choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
+		targetChoicePointerY = targetChoicePointerY + currentChoiceTextHeight - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
+		
 	}
 }
 
