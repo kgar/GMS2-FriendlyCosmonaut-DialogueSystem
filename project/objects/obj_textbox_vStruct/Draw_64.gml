@@ -96,79 +96,8 @@ if (specsLength > 0) {
 
 #region Dialogue Choice
 if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
-	
-	if (!surface_exists(choiceSurface)) {
-		choiceSurface = surface_create(choiceSurfaceWidth, choiceSurfaceHeight);
-	}
-	
-	choiceSurfaceCurrentYOffset = lerp(coalesce(choiceSurfaceCurrentYOffset, choiceSurfaceTargetYOffset), choiceSurfaceTargetYOffset, 0.25);
-	
-	surface_set_target(choiceSurface);
-	
-	draw_clear_alpha(c_white, 0);
-	
-	var choicesLength = array_length(dialogueEntry.choices);
-	
-	// TODO: Need a better name than effectivePortraitWidthAndPadding
-	var effectivePortraitWidthAndPadding = portraitSide == PortraitSide.Left
-		? portraitWidthAndPadding
-		: 0;
-	var drawChoiceX = 0;
-	var drawChoiceY = 0;
-	var choiceOffsetY = 0;
-	
-	for (var i = 0; i < choicesLength; i++) {
-		var choice = dialogueEntry.choices[i];
-		var isSelected = currentChoiceIndex == i;
-		var color = isSelected ? choiceTextColor : c_white /* TODO: Eliminate this hardcodedness */;
-		draw_text_ext_color(drawChoiceX, drawChoiceY + choiceOffsetY + choiceSurfaceCurrentYOffset, choice.text, stringHeight, choiceSurfaceWidth, color, color, color, color, 1);
-		choiceOffsetY += string_height_ext(choice.text, stringHeight, choiceSurfaceWidth);
-	}
-	
-	surface_reset_target();
-	draw_surface(choiceSurface, choiceSurfaceX, choiceSurfaceY);
-	
-	// Draw Pointer
-	currentChoicePointerX = lerp(coalesce(currentChoicePointerX, targetChoicePointerX), targetChoicePointerX, 0.25);
-	currentChoicePointerY = lerp(coalesce(currentChoicePointerY, targetChoicePointerY), targetChoicePointerY, 0.25);
-	var pointerShift = dsin(time * 4);
-	draw_sprite(spr_pointer, 0, currentChoicePointerX + pointerShift, currentChoicePointerY);
-	
-	// Draw Indicators
-	if (hasChoiceHeightOverflow) {
-		// Scroll Up
-		
-		var choiceScrollIndicatorArrowPadding = choiceScrollIndicatorWidth / 5;
-		if (choiceCanScrollUp) {
-			draw_triangle_color(
-				// Top center
-				choiceScrollUpIndicatorX + choiceScrollIndicatorWidth / 2,
-				choiceScrollUpIndicatorY + choiceScrollIndicatorArrowPadding,
-				// Bottom left
-				choiceScrollUpIndicatorX + choiceScrollIndicatorArrowPadding,
-				choiceScrollUpIndicatorY + choiceScrollIndicatorHeight - choiceScrollIndicatorArrowPadding,
-				// Bottom right
-				choiceScrollUpIndicatorX + choiceScrollIndicatorWidth - choiceScrollIndicatorArrowPadding,
-				choiceScrollUpIndicatorY + choiceScrollIndicatorHeight - choiceScrollIndicatorArrowPadding,
-				choiceScrollTextColor, choiceScrollTextColor, choiceScrollTextColor, false
-			);
-		}
-		
-		if (choiceCanScrollDown) {
-			draw_triangle_color(
-				// Top left
-				choiceScrollDownIndicatorX + choiceScrollIndicatorArrowPadding,
-				choiceScrollDownIndicatorY + choiceScrollIndicatorArrowPadding,
-				// Top right
-				choiceScrollDownIndicatorX + choiceScrollIndicatorWidth - choiceScrollIndicatorArrowPadding,
-				choiceScrollDownIndicatorY + choiceScrollIndicatorArrowPadding,
-				// Bottom center
-				choiceScrollDownIndicatorX + choiceScrollIndicatorWidth / 2,
-				choiceScrollDownIndicatorY + choiceScrollIndicatorHeight - choiceScrollIndicatorArrowPadding,
-				choiceScrollTextColor, choiceScrollTextColor, choiceScrollTextColor, false
-			);
-		}
-	}
+	// TODO: instantiate this object when turning the page into a dialogue choice.
+	choiceDriver._draw();	
 }
 #endregion
 

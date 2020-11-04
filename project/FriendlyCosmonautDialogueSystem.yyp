@@ -8,6 +8,7 @@
     {"id":{"name":"par_speaker","path":"objects/par_speaker/par_speaker.yy",},"order":6,},
     {"id":{"name":"script_execute_alt","path":"scripts/script_execute_alt/script_execute_alt.yy",},"order":5,},
     {"id":{"name":"draw_nine_panel_textbox","path":"scripts/draw_nine_panel_textbox/draw_nine_panel_textbox.yy",},"order":6,},
+    {"id":{"name":"scr_dialogue_choice_driver","path":"scripts/scr_dialogue_choice_driver/scr_dialogue_choice_driver.yy",},"order":3,},
     {"id":{"name":"spr_portrait_other_narrator","path":"sprites/spr_portrait_other_narrator/spr_portrait_other_narrator.yy",},"order":14,},
     {"id":{"name":"create_dialogue_vStruct","path":"scripts/create_dialogue_vStruct/create_dialogue_vStruct.yy",},"order":0,},
     {"id":{"name":"fnt_dialogue","path":"fonts/fnt_dialogue/fnt_dialogue.yy",},"order":1,},

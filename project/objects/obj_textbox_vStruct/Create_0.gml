@@ -38,7 +38,6 @@ choiceSurfaceX = undefined;
 choiceSurfaceY = undefined;
 choiceMaxVisibleLines = undefined;
 choicePointerLineIndex = undefined;
-choiceSurfaceYOffset = undefined;
 choiceSurfaceCurrentYOffset = undefined;
 choiceSurfaceTargetYOffset = undefined;
 choiceScrollUpIndicatorX = undefined;
@@ -257,7 +256,6 @@ function TurnPage() {
 			currentChoiceIndex = 0;
 			choiceSurfaceCurrentYOffset = 0;
 			choiceSurfaceTargetYOffset = 0;
-			choiceSurfaceYOffset = 0;
 			
 			choiceSurfaceHeight = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset;
 			choiceMaxVisibleLines = floor(choiceSurfaceHeight / stringHeight);
