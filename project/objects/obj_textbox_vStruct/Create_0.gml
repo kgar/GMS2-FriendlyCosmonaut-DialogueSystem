@@ -307,16 +307,17 @@ function GoToNextChoice() {
 	}
 	
 	var currentChoiceTextHeight = GetChoiceTextHeight(currentChoiceIndex);
-	
 	var cursorOffset = targetChoicePointerY + currentChoiceTextHeight;
-	
 	currentChoiceIndex++;
-	
-	if (cursorOffset <= choicePointerBottomY) {
+	var nextOptionHeight = GetChoiceTextHeight(currentChoiceIndex);
+	var nextOptionHasOverflow = targetChoicePointerY + nextOptionHeight > choicePointerBottomY;
+		
+	if (cursorOffset <= choicePointerBottomY && !nextOptionHasOverflow) {
 		targetChoicePointerY += currentChoiceTextHeight;
 	}
 	else {
-		choiceSurfaceTargetYOffset -= currentChoiceTextHeight;
+		choiceSurfaceTargetYOffset -= nextOptionHeight;
+		targetChoicePointerY = targetChoicePointerY - nextOptionHeight + currentChoiceTextHeight;
 	}
 }
 

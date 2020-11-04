@@ -1,6 +1,6 @@
 ## To Do (formerly, Stretches)
-- Fix single-line option
-  - Wrapping to bottom results in the cursor being placed on the fourth line, even though there is only one line.
+- When going to next, if the next choice height is overflowing, it scrolls one stringHeight too far into view.
+  - Determine how to tell when 
 - Evaluate and fix the others until all choice tests pass
 - Support multi-line choices in non-scrolling situations
 - Support multi-line choices in scrolling situations
