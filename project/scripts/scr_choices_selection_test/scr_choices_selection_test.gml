@@ -100,7 +100,7 @@ function get_choices_test_dialogue(){
 		    choices: [
 		      { text: "Option 1. Option 1. Option 1. Option 1. Option 1." },
 		      { text: "Option 2" },
-		      { text: "Option 3. Option 3. Option 3. Option 3. Option 3." },
+		      { text: "Option 3. Option 3. Option 3. Option 3. Option 3. Option 3. Option 3. Option 3. Option 3. Option 3." },
 		      { text: "Option 4. Option 4. Option 4. Option 4. Option 4." }
 		    ]
 		  }

@@ -355,15 +355,27 @@ function GoToPreviousChoice() {
 		return;
 	}
 	
-	currentChoiceIndex--;
+	currentChoiceIndex--;	
 	
 	var previousChoiceHeight = GetChoiceTextHeight(currentChoiceIndex);
-	
+
 	if (targetChoicePointerY - previousChoiceHeight >= choicePointerTopY) {
 		targetChoicePointerY -= previousChoiceHeight;
 	}
 	else {
-		choiceSurfaceTargetYOffset += previousChoiceHeight;
+		var originalY = targetChoicePointerY;
+		targetChoicePointerY -= previousChoiceHeight;
+		var visibleLinesInTargetChoice = 0;
+		var pointerYTemp = targetChoicePointerY;
+		while (pointerYTemp < originalY) {
+			visibleLinesInTargetChoice += pointerYTemp >= choicePointerTopY
+				? 1
+				: 0;
+			pointerYTemp += stringHeight;
+		}
+	
+		choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset + previousChoiceHeight - visibleLinesInTargetChoice * stringHeight;
+		targetChoicePointerY = targetChoicePointerY + previousChoiceHeight - visibleLinesInTargetChoice * stringHeight;
 	}
 }
 
