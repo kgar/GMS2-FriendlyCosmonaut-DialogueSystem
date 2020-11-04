@@ -293,6 +293,10 @@ function HasNextChoice() {
 	return currentChoiceIndex < choicesLength - 1;
 }
 
+function GetChoiceTextHeight(_index) {
+	return string_height_ext(dialogueEntry.choices[_index].text, -1, choiceSurfaceWidth);
+}
+
 
 function GoToNextChoice() {
 	if (!HasNextChoice()) {
@@ -302,7 +306,7 @@ function GoToNextChoice() {
 		return;
 	}
 	
-	var currentChoiceTextHeight = string_height_ext(dialogueEntry.choices[currentChoiceIndex].text, -1, choiceSurfaceWidth);
+	var currentChoiceTextHeight = GetChoiceTextHeight(currentChoiceIndex);
 	
 	var cursorOffset = targetChoicePointerY + currentChoiceTextHeight;
 	
@@ -339,11 +343,14 @@ function GoToPreviousChoice() {
 	}
 	
 	currentChoiceIndex--;
-	if (targetChoicePointerY - stringHeight >= choicePointerTopY) {
-		targetChoicePointerY -= stringHeight;
+	
+	var previousChoiceHeight = GetChoiceTextHeight(currentChoiceIndex);
+	
+	if (targetChoicePointerY - previousChoiceHeight >= choicePointerTopY) {
+		targetChoicePointerY -= previousChoiceHeight;
 	}
 	else {
-		choiceSurfaceTargetYOffset += stringHeight;
+		choiceSurfaceTargetYOffset += previousChoiceHeight;
 	}
 }
 
