@@ -1,1 +1,4 @@
-surface_free(choiceSurface);
+if (choiceDriver != undefined) {
+	choiceDriver._destroy();
+	delete choiceDriver;
+}

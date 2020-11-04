@@ -35,13 +35,11 @@ switch (dialogueEntry.type) {
 		
 		if (keyboard_check_pressed(choiceMoveDownKey)) {
 			audio_play_sound(choiceChangeSound, choiceSoundPriority, false);
-			GoToNextChoice();
-			RefreshScrollIndicators();
+			choiceDriver.go_to_next_choice();
 		}
 		else if (keyboard_check_pressed(choiceMoveUpKey)) {
 			audio_play_sound(choiceChangeSound, choiceSoundPriority, false);
-			GoToPreviousChoice();
-			RefreshScrollIndicators();
+			choiceDriver.go_to_previous_choice();
 		}
 		
 		

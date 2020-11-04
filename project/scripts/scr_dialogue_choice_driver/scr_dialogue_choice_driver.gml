@@ -57,6 +57,7 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 			currentChoiceIndex = 0;
 			targetChoicePointerY = choicePointerTopY;
 			choiceSurfaceTargetYOffset = 0;
+			refresh_scroll_indicators();
 			return;
 		}
 	
@@ -80,8 +81,9 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 		
 			choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
 			targetChoicePointerY = targetChoicePointerY - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
-		
 		}
+		
+		refresh_scroll_indicators();
 	}
 	
 	function has_previous_choice() {
@@ -93,7 +95,7 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 		choiceCanScrollUp = hasChoiceHeightOverflow && choiceSurfaceTargetYOffset != 0;
 	}
 	
-	function go_to_previous() {
+	function go_to_previous_choice() {
 		if (!has_previous_choice()) {
 			var origin = currentChoiceIndex;
 			var destination = choicesLength - 1;
@@ -103,6 +105,7 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 				go_to_next_choice();
 			}
 		
+			refresh_scroll_indicators();
 			return;
 		}
 	
@@ -128,6 +131,8 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 			choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset + previousChoiceHeight - visibleLinesInTargetChoice * stringHeight;
 			targetChoicePointerY = targetChoicePointerY + previousChoiceHeight - visibleLinesInTargetChoice * stringHeight;
 		}
+		
+		refresh_scroll_indicators();
 	}
 	
 	function _draw() {
@@ -198,6 +203,10 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 				);
 			}
 		}
+	}
+	
+	function _destroy() {
+		surface_free(choiceSurface);
 	}
 	
 	

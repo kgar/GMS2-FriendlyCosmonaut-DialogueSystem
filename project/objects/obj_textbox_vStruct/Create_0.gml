@@ -13,41 +13,8 @@ currentCharacterSpecs = undefined;
 specIndex = undefined;
 
 // Choice Dialogue
-choiceChangeSound = snd_moveselect;
-choiceSelectSound = snd_select;
-choiceSoundPriority = 5;
-choiceTextColor = c_yellow;
-choicePointerWidth = sprite_get_width(spr_pointer);
-choicePointerRightPadding = choicePointerWidth / 2;
-choicePointerTopY = undefined;
-choicePointerBottomY = undefined;
-targetChoicePointerX = undefined;
-targetChoicePointerY = undefined;
-currentChoicePointerX = undefined;
-currentChoicePointerY = undefined;
 chosen = false;
-choicesLength = undefined;
-choiceContentHeight = undefined;
-currentChoiceIndex = 0;
-choiceSurface = -1;
-choiceScrollIndicatorWidth = 25;
-choiceScrollIndicatorHeight = 20;
-choiceSurfaceWidth = undefined;
-choiceSurfaceHeight = undefined;
-choiceSurfaceX = undefined;
-choiceSurfaceY = undefined;
-choiceMaxVisibleLines = undefined;
-choicePointerLineIndex = undefined;
-choiceSurfaceCurrentYOffset = undefined;
-choiceSurfaceTargetYOffset = undefined;
-choiceScrollUpIndicatorX = undefined;
-choiceScrollUpIndicatorY = undefined;
-choiceScrollDownIndicatorX  = undefined;
-choiceScrollDownIndicatorY = undefined;
-choiceScrollTextColor = make_color_rgb(210, 210, 210);
-choiceCanScrollDown = undefined;
-choiceCanScrollUp = undefined;
-
+choiceDriver = undefined;
 
 // Input
 interactKey = global.interactKey;
@@ -108,8 +75,6 @@ function Init(_dialogue, _caller) {
 /// @description Turn the page
 /// @param index  optional field specifying the absolute index to change the page to.
 function TurnPage() {
-	
-	surface_free(choiceSurface);
 	
 	var absoluteIndex = argument_count > 0 ? argument[0] : undefined;
 	
@@ -235,9 +200,7 @@ function TurnPage() {
 		
 		if (dialogueEntry.type == DialogueType.Choice) {
 			chosen = false;
-			choicesLength = array_length(dialogueEntry.choices);
 			
-			// TODO: Share this as an object member
 			var effectivePortraitLeftPadding = portraitSide == PortraitSide.Left
 				? portraitWidthAndPadding
 				: 0;
@@ -245,136 +208,24 @@ function TurnPage() {
 				? portraitWidthAndPadding
 				: 0;
 			var lastTextLineYOffset = specsLength > 0 ? currentCharacterSpecs[specsLength - 1].yOffset + stringHeight : 0;
+			var height = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset;
+			var width = textboxWidth - textboxPaddingX * 2 - effectivePortraitLeftPadding - effectivePortraitRightPadding;
+			var x1 = textboxPositionX + textboxPaddingX + effectivePortraitLeftPadding;
+			var y1 = textboxPositionY + textboxHeight - choiceSurfaceHeight - textboxPaddingY;
 			
-			targetChoicePointerX = textboxPositionX + textboxPaddingX + effectivePortraitLeftPadding;
-			choicePointerTopY = textboxPositionY + textboxPaddingY + lastTextLineYOffset + stringHeight / 2;
-			targetChoicePointerY = choicePointerTopY;
-			currentChoicePointerX = targetChoicePointerX;
-			currentChoicePointerY = targetChoicePointerY;
-			
-			choicePointerLineIndex = 0;
-			currentChoiceIndex = 0;
-			choiceSurfaceCurrentYOffset = 0;
-			choiceSurfaceTargetYOffset = 0;
-			
-			choiceSurfaceHeight = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset;
-			choiceMaxVisibleLines = floor(choiceSurfaceHeight / stringHeight);
-			choicePointerBottomY = choicePointerTopY + (choiceMaxVisibleLines - 1) * stringHeight;
-			
-			choiceContentHeight = 0;
-			var standardSurfaceWidth = textboxWidth - textboxPaddingX * 2 - choicePointerWidth - choicePointerRightPadding - effectivePortraitLeftPadding - effectivePortraitRightPadding;
-			for(var i = 0; i < choicesLength; i++) {
-				choiceContentHeight += string_height_ext(dialogueEntry.choices[i].text, -1, standardSurfaceWidth);
+			if (choiceDriver != undefined) {
+				choiceDriver._destroy();
 			}
 			
-			hasChoiceHeightOverflow = choiceSurfaceHeight < choiceContentHeight;
-			var effectiveScrollIndicatorWidth = hasChoiceHeightOverflow
-				? choiceScrollIndicatorWidth
-				: 0;
-						
-			choiceSurfaceWidth = standardSurfaceWidth - effectiveScrollIndicatorWidth;
-			choiceSurfaceX = textboxPositionX + textboxPaddingX + choicePointerWidth + choicePointerRightPadding + effectivePortraitLeftPadding;
-			choiceSurfaceY = textboxPositionY + textboxHeight - choiceSurfaceHeight - textboxPaddingY;
-			
-			if (hasChoiceHeightOverflow) {
-				choiceScrollUpIndicatorX = choiceSurfaceX + choiceSurfaceWidth;
-				choiceScrollUpIndicatorY = choiceSurfaceY;
-				choiceScrollDownIndicatorX  = choiceSurfaceX + choiceSurfaceWidth;
-				choiceScrollDownIndicatorY = choiceSurfaceY + choiceSurfaceHeight - choiceScrollIndicatorWidth;
-				RefreshScrollIndicators();
-			}
+			choiceDriver = new DialogueChoiceDriver(
+				dialogueEntry.choices, 
+				x1,
+				y1,
+				width,
+				height,
+				stringHeight);	
 		}
 	});	
-}
-
-function HasNextChoice() {
-	return currentChoiceIndex < choicesLength - 1;
-}
-
-function GetChoiceTextHeight(_index) {
-	return string_height_ext(dialogueEntry.choices[_index].text, -1, choiceSurfaceWidth);
-}
-
-
-function GoToNextChoice() {
-	if (!HasNextChoice()) {
-		currentChoiceIndex = 0;
-		targetChoicePointerY = choicePointerTopY;
-		choiceSurfaceTargetYOffset = 0;
-		return;
-	}
-	
-	var currentChoiceTextHeight = GetChoiceTextHeight(currentChoiceIndex);
-	var cursorOffset = targetChoicePointerY + currentChoiceTextHeight;
-	currentChoiceIndex++;
-	var nextOptionHeight = GetChoiceTextHeight(currentChoiceIndex);
-	var nextOptionHasOverflow = targetChoicePointerY + nextOptionHeight > choicePointerBottomY;
-		
-	// Case 1: Move cursor down by current choice height
-	// Case 2: Move cursor down by current choice height and then scroll remainder of content into view, shifting the cursor as well
-	
-	if (cursorOffset <= choicePointerBottomY && !nextOptionHasOverflow) {
-		targetChoicePointerY += currentChoiceTextHeight;
-	}
-	else {
-		targetChoicePointerY += currentChoiceTextHeight;
-		var nextChoiceVisibleLineCount = 0;
-		var pointerYTemp = targetChoicePointerY;
-		while (pointerYTemp <= choicePointerBottomY) {
-			pointerYTemp += stringHeight;
-			nextChoiceVisibleLineCount++;
-		}
-		
-		choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
-		targetChoicePointerY = targetChoicePointerY - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
-		
-	}
-}
-
-function HasPreviousChoice() {
-	return currentChoiceIndex > 0;
-}
-
-function RefreshScrollIndicators() {
-	choiceCanScrollDown = hasChoiceHeightOverflow && abs(choiceSurfaceTargetYOffset) + choiceSurfaceHeight < choiceContentHeight;
-	choiceCanScrollUp = hasChoiceHeightOverflow && choiceSurfaceTargetYOffset != 0;
-}
-
-function GoToPreviousChoice() {
-	if (!HasPreviousChoice()) {
-		var origin = currentChoiceIndex;
-		var destination = choicesLength - 1;
-		var distance = abs(destination - origin);
-		
-		repeat(distance) {
-			GoToNextChoice();
-		}
-		
-		return;
-	}
-	
-	currentChoiceIndex--;	
-	
-	var previousChoiceHeight = GetChoiceTextHeight(currentChoiceIndex);
-
-	if (targetChoicePointerY - previousChoiceHeight >= choicePointerTopY) {
-		targetChoicePointerY -= previousChoiceHeight;
-	}
-	else {
-		var originalY = targetChoicePointerY;
-		targetChoicePointerY -= previousChoiceHeight;
-		var visibleLinesInTargetChoice = 0;
-		var pointerYTemp = targetChoicePointerY;
-		while (pointerYTemp < originalY) {
-			visibleLinesInTargetChoice += pointerYTemp >= choicePointerTopY
-				? 1
-				: 0;
-			pointerYTemp += stringHeight;
-		}
-	
-		choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset + previousChoiceHeight - visibleLinesInTargetChoice * stringHeight;
-		targetChoicePointerY = targetChoicePointerY + previousChoiceHeight - visibleLinesInTargetChoice * stringHeight;
-	}
 }
 
 function FindPageIndexByUniqueId(uniqueId) {
