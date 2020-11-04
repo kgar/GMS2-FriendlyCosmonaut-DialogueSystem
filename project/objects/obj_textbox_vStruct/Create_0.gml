@@ -319,15 +319,16 @@ function GoToNextChoice() {
 		targetChoicePointerY += currentChoiceTextHeight;
 	}
 	else {
+		targetChoicePointerY += currentChoiceTextHeight;
 		var nextChoiceVisibleLineCount = 0;
 		var pointerYTemp = targetChoicePointerY;
-		while (pointerYTemp < choicePointerBottomY) {
+		while (pointerYTemp <= choicePointerBottomY) {
 			pointerYTemp += stringHeight;
 			nextChoiceVisibleLineCount++;
 		}
 		
 		choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
-		targetChoicePointerY = targetChoicePointerY + currentChoiceTextHeight - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
+		targetChoicePointerY = targetChoicePointerY - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
 		
 	}
 }
