@@ -1,6 +1,4 @@
 ## To Do
-- Try to extract choice management to a struct that can be used by the object as a vector of composition
-  - This should include all the functions for manipulating choice positioning
 - Create specMaxIndex variable for obj and use it.
 - Challenge: Refactor rainbow text to no longer depend on drawTextX in order to shift vertically correlated colors.
   - Hmm... divide the screen into 255 slices?
@@ -14,6 +12,7 @@
 - Can I eliminate any more variables from the textbox object?
 - Is there a less manual way to handle text ranges?
 - Convert as many hardcoded assets to strings and use asset_get_index() on them.
+- Can more choice management be extracted to the struct?
 - Consider beginning the Module/Demo repo for this first draft of the textbox module and moving the implementation there
 
 ## Research and Needs Work

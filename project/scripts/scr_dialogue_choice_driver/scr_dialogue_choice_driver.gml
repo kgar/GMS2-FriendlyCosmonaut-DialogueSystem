@@ -1,8 +1,11 @@
 function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) constructor {
 	choices = _choices;
-	choicesLength = array_length(dialogueEntry.choices);
-	choiceChangeSound = snd_moveselect;
-	choiceSelectSound = snd_select;
+	choicesLength = array_length(choices);
+	lineHeight = _lineHeight;
+	currentChoiceIndex = 0;
+	choiceSurface = -1;
+	choiceScrollIndicatorWidth = 25;
+	choiceScrollIndicatorHeight = 20;
 	choiceSoundPriority = 5;
 	choiceTextColor = c_yellow;
 	choicePointerWidth = sprite_get_width(spr_pointer);
@@ -19,20 +22,15 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 	choiceContentHeight = 0;
 	var standardSurfaceWidth = _width - choicePointerWidth - choicePointerRightPadding;
 	for(var i = 0; i < choicesLength; i++) {
-		choiceContentHeight += string_height_ext(dialogueEntry.choices[i].text, -1, standardSurfaceWidth);
+		choiceContentHeight += string_height_ext(choices[i].text, -1, standardSurfaceWidth);
 	}
 	hasChoiceHeightOverflow = choiceSurfaceHeight < choiceContentHeight;
 	var effectiveScrollIndicatorWidth = hasChoiceHeightOverflow
 		? choiceScrollIndicatorWidth
 		: 0;
 	choiceSurfaceWidth = standardSurfaceWidth - effectiveScrollIndicatorWidth;
-	currentChoiceIndex = 0;
-	choiceSurface = -1;
-	choiceScrollIndicatorWidth = 25;
-	choiceScrollIndicatorHeight = 20;
 	choiceSurfaceX = _x1 + choicePointerWidth + choicePointerRightPadding;
 	choiceSurfaceY = _y1;
-	choicePointerLineIndex = 0;
 	choiceSurfaceCurrentYOffset = 0;
 	choiceSurfaceTargetYOffset = 0;
 	choiceScrollUpIndicatorX = hasChoiceHeightOverflow ? choiceSurfaceX + choiceSurfaceWidth : undefined;
@@ -48,7 +46,7 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 	}
 
 	function get_choice_text_height(_index) {
-		return string_height_ext(dialogueEntry.choices[_index].text, -1, choiceSurfaceWidth);
+		return string_height_ext(choices[_index].text, -1, choiceSurfaceWidth);
 	}
 
 
@@ -75,12 +73,12 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 			var nextChoiceVisibleLineCount = 0;
 			var pointerYTemp = targetChoicePointerY;
 			while (pointerYTemp <= choicePointerBottomY) {
-				pointerYTemp += stringHeight;
+				pointerYTemp += lineHeight;
 				nextChoiceVisibleLineCount++;
 			}
 		
-			choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
-			targetChoicePointerY = targetChoicePointerY - nextOptionHeight + nextChoiceVisibleLineCount * stringHeight;
+			choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset - nextOptionHeight + nextChoiceVisibleLineCount * lineHeight;
+			targetChoicePointerY = targetChoicePointerY - nextOptionHeight + nextChoiceVisibleLineCount * lineHeight;
 		}
 		
 		refresh_scroll_indicators();
@@ -125,11 +123,11 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 				visibleLinesInTargetChoice += pointerYTemp >= choicePointerTopY
 					? 1
 					: 0;
-				pointerYTemp += stringHeight;
+				pointerYTemp += lineHeight;
 			}
 	
-			choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset + previousChoiceHeight - visibleLinesInTargetChoice * stringHeight;
-			targetChoicePointerY = targetChoicePointerY + previousChoiceHeight - visibleLinesInTargetChoice * stringHeight;
+			choiceSurfaceTargetYOffset = choiceSurfaceTargetYOffset + previousChoiceHeight - visibleLinesInTargetChoice * lineHeight;
+			targetChoicePointerY = targetChoicePointerY + previousChoiceHeight - visibleLinesInTargetChoice * lineHeight;
 		}
 		
 		refresh_scroll_indicators();
@@ -146,17 +144,16 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 	
 		draw_clear_alpha(c_white, 0);
 	
-		var choicesLength = array_length(dialogueEntry.choices);
 		var drawChoiceX = 0;
 		var drawChoiceY = 0;
 		var choiceOffsetY = 0;
 	
 		for (var i = 0; i < choicesLength; i++) {
-			var choice = dialogueEntry.choices[i];
+			var choice = choices[i];
 			var isSelected = currentChoiceIndex == i;
 			var color = isSelected ? choiceTextColor : c_white /* TODO: Eliminate this hardcodedness */;
-			draw_text_ext_color(drawChoiceX, drawChoiceY + choiceOffsetY + choiceSurfaceCurrentYOffset, choice.text, stringHeight, choiceSurfaceWidth, color, color, color, color, 1);
-			choiceOffsetY += string_height_ext(choice.text, stringHeight, choiceSurfaceWidth);
+			draw_text_ext_color(drawChoiceX, drawChoiceY + choiceOffsetY + choiceSurfaceCurrentYOffset, choice.text, lineHeight, choiceSurfaceWidth, color, color, color, color, 1);
+			choiceOffsetY += string_height_ext(choice.text, lineHeight, choiceSurfaceWidth);
 		}
 	
 		surface_reset_target();

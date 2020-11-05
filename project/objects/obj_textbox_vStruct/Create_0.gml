@@ -14,6 +14,9 @@ specIndex = undefined;
 
 // Choice Dialogue
 chosen = false;
+choiceSoundPriority = 5;
+choiceChangeSound = snd_moveselect;
+choiceSelectSound = snd_select;
 choiceDriver = undefined;
 
 // Input
@@ -211,7 +214,7 @@ function TurnPage() {
 			var height = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset;
 			var width = textboxWidth - textboxPaddingX * 2 - effectivePortraitLeftPadding - effectivePortraitRightPadding;
 			var x1 = textboxPositionX + textboxPaddingX + effectivePortraitLeftPadding;
-			var y1 = textboxPositionY + textboxHeight - choiceSurfaceHeight - textboxPaddingY;
+			var y1 = textboxPositionY + textboxHeight - height - textboxPaddingY;
 			
 			if (choiceDriver != undefined) {
 				choiceDriver._destroy();
@@ -240,7 +243,7 @@ function FindPageIndexByUniqueId(uniqueId) {
 
 function ProcessChoice() {
 	// Get choice object based on chosen index
-	var choice = dialogueEntry.choices[currentChoiceIndex];
+	var choice = dialogueEntry.choices[choiceDriver.currentChoiceIndex];
 	
 	// Optionally execute associated script
 	var action = variable_struct_get(choice, "script");
