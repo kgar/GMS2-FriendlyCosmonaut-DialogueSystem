@@ -19,7 +19,11 @@ switch (dialogueEntry.type) {
 		
 		var finishedTypeWriting = IsFinishedTypeWriting();
 		if (keyboard_check_pressed(interactKey)) {
-			if (finishedTypeWriting) {
+			
+			if (finishedTypeWriting && framesSinceTypeWritingCompleted < postTypeWriteDelayBeforeInteraction) {
+				exit;
+			}
+			else if (finishedTypeWriting) {	
 				// Process input
 				chosen = true;
 				audio_play_sound(choiceSelectSound, choiceSoundPriority, false); 
@@ -33,8 +37,6 @@ switch (dialogueEntry.type) {
 		}
 		
 		if (!finishedTypeWriting) exit;
-		
-		if (framesSinceTypeWritingCompleted < postTypeWriteDelayBeforeInteraction) exit;
 		
 		if (keyboard_check_pressed(choiceMoveDownKey)) {
 			audio_play_sound(choiceChangeSound, choiceSoundPriority, false);

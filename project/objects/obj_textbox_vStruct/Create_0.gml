@@ -121,7 +121,7 @@ function TurnPage() {
 		dialogueEntry.onPageOpen(caller);
 	}
 	
-	currentText = variable_struct_exists(dialogueEntry, "text") ? dialogueEntry.text : "";
+	currentText = coalesce(variable_struct_get(dialogueEntry, "text"), "");
 	
 	specIndex = 0;
 	framesSinceTypeWritingCompleted = 0;
@@ -196,7 +196,7 @@ function TurnPage() {
 		var textAreaWidth = textboxWidth - textboxPaddingX * 2 - portraitWidthAndPadding;
 		
 		currentCharacterSpecs = currentText != "" 
-			? global.dialogue_functions.create_character_specs(
+			? character_specs_create(
 				dialogueEntry, 
 				textAreaWidth,
 				caller)
