@@ -1,11 +1,4 @@
 ## To Do
-- Create specMaxIndex variable for obj and use it.
-- Challenge: Refactor rainbow text to no longer depend on drawTextX in order to shift vertically correlated colors.
-  - Hmm... divide the screen into 255 slices?
-  - Somehow determine with the passage of time that hue should circularly shift to the left...
-  - Somehow do this without holding any variables so that all rainbow text behaves as if some kind of masking were being used.
-- Create function for skipping to end of typewriting and extract all manual logic.
-- Put small delay in choice input handling to prevent accidental selection when attempting to skip typewriting
 - Establish that textColor `undefined` means to use the default dialogue font. Update all dialogues to leverage this. 
 - Character spec generation has gotten messy and voluminous. Move it its own script file and make it easier to read.
   - It should also have a constructor so it's not a global function

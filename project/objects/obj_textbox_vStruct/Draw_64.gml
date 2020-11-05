@@ -95,8 +95,7 @@ if (specsLength > 0) {
 
 
 #region Dialogue Choice
-if (dialogueEntry.type == DialogueType.Choice && specIndex >= specsLength - 1) {
-	// TODO: instantiate this object when turning the page into a dialogue choice.
+if (dialogueEntry.type == DialogueType.Choice && IsFinishedTypeWriting()) {
 	choiceDriver._draw();	
 }
 #endregion

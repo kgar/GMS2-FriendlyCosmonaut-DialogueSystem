@@ -11,6 +11,8 @@ dialogueSpeed = 1;
 specsLength = undefined;
 currentCharacterSpecs = undefined;
 specIndex = undefined;
+framesSinceTypeWritingCompleted = undefined;
+postTypeWriteDelayBeforeInteraction = 15;
 
 // Choice Dialogue
 chosen = false;
@@ -122,6 +124,7 @@ function TurnPage() {
 	currentText = variable_struct_exists(dialogueEntry, "text") ? dialogueEntry.text : "";
 	
 	specIndex = 0;
+	framesSinceTypeWritingCompleted = 0;
 
 	// TODO: Throw this right into a struct and calculate everything on construction :O
 	var portrait = variable_struct_get(dialogueEntry, "portrait");
@@ -277,4 +280,16 @@ function ProcessChoice() {
 	else {
 		TurnPage();
 	}
+}
+
+function IsFinishedTypeWriting() { 
+	return specIndex >= specsLength - 1;
+}
+
+function CanSkipToEndOfText() {
+	return specIndex > 2 || specsLength <= 2;
+}
+
+function SkipToEndOfText() {
+	specIndex = specsLength - 1;
 }
