@@ -38,11 +38,10 @@ guiWidth = display_get_gui_width();
 guiHeight = display_get_gui_height();
 textboxPaddingX = lineHeight * 0.5;
 textboxPaddingY = lineHeight * 0.3;
-textboxWidth = guiWidth - lineHeight * 0.5; // TODO: Calculate this whenever I figure out what textbox sprite / methodology I'm using.
+textboxWidth = guiWidth - lineHeight * 0.5;
 textboxMaxLinesOfText = 4;
-textboxHeight = lineHeight * textboxMaxLinesOfText + textboxPaddingY * 2; // TODO: Calculate this based on N lines of text, depending on the size of the standard dialogue font.
-guiWhitespace = guiWidth - textboxWidth;
-textboxPositionX = (guiWhitespace/2);
+textboxHeight = lineHeight * textboxMaxLinesOfText + textboxPaddingY * 2;
+textboxPositionX = (guiWidth - textboxWidth) / 2;
 textboxPositionY = guiHeight - textboxHeight - lineHeight * 0.3;
 
 // Portrait
