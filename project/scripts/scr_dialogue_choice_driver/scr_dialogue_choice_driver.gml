@@ -162,7 +162,7 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 		// Draw Pointer
 		currentChoicePointerX = lerp(coalesce(currentChoicePointerX, targetChoicePointerX), targetChoicePointerX, 0.25);
 		currentChoicePointerY = lerp(coalesce(currentChoicePointerY, targetChoicePointerY), targetChoicePointerY, 0.25);
-		var pointerShift = dsin(current_time);
+		var pointerShift = dsin(current_time / 2);
 		draw_sprite(spr_pointer, 0, currentChoicePointerX + pointerShift, currentChoicePointerY);
 	
 		// Draw Indicators

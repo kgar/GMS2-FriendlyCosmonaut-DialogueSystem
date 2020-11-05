@@ -1,5 +1,4 @@
 ## To Do
-- Establish that textColor `undefined` means to use the default dialogue font. Update all dialogues to leverage this. 
 - Character spec generation has gotten messy and voluminous. Move it its own script file and make it easier to read.
   - It should also have a constructor so it's not a global function
 - Can I eliminate any more variables from the textbox object?
