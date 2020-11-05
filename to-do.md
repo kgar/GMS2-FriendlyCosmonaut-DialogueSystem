@@ -2,9 +2,7 @@
 - Character spec generation has gotten messy and voluminous. Move it its own script file and make it easier to read.
   - It should also have a constructor so it's not a global function
 - Can I eliminate any more variables from the textbox object?
-- Is there a less manual way to handle text ranges?
-- Convert as many hardcoded assets to strings and use asset_get_index() on them.
-- Can more choice management be extracted to the struct?
+- Can more choice management be extracted to the choice driver?
 - Consider beginning the Module/Demo repo for this first draft of the textbox module and moving the implementation there
 
 ## Research and Needs Work

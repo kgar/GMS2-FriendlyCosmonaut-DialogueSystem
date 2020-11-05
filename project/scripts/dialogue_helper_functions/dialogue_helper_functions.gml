@@ -46,8 +46,8 @@ global.dialogue_functions = {
 		var characterInsertCount = 0;
 		
 		// Effects setup
-		var effectsMap = create_range_map(dialogueEntry, "effects", "effect");
 		var currentEffect = TextEffect.Normal;
+		var effectsMap = create_range_map(dialogueEntry, "effects", "effect");
 
 		// Color setup
 		var currentColor = draw_get_color();
