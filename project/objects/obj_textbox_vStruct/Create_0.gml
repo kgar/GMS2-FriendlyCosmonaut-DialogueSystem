@@ -30,17 +30,19 @@ choiceMoveDownKey = vk_down;
 delayedAction = undefined;
 
 // Draw Settings
-stringHeight = undefined;
+lineHeight = undefined;
+draw_set_font_temp(fnt_dialogue, function() {
+	lineHeight = string_height("M");
+});
 guiWidth = display_get_gui_width();
 guiHeight = display_get_gui_height();
-textboxWidth = guiWidth - 50; // TODO: Calculate this whenever I figure out what textbox sprite / methodology I'm using.
-textboxHeight = guiHeight * 0.3; // TODO: Calculate this based on N lines of text, depending on the size of the standard dialogue font.
-guiWhitespace = guiWidth - textboxWidth;
-// TODO: Make a better name for this. It essentially is the padding for one side, not both sides.
 textboxPaddingX = 10;
-textboxPositionX = (guiWhitespace/2);
-// TODO: Make a better name for this. It essentially is the padding for one side, not both sides.
 textboxPaddingY = 10;
+textboxWidth = guiWidth - 50; // TODO: Calculate this whenever I figure out what textbox sprite / methodology I'm using.
+textboxMaxLinesOfText = 5;
+textboxHeight = lineHeight * textboxMaxLinesOfText + textboxPaddingY * 2; // TODO: Calculate this based on N lines of text, depending on the size of the standard dialogue font.
+guiWhitespace = guiWidth - textboxWidth;
+textboxPositionX = (guiWhitespace/2);
 textboxPositionY = guiHeight - textboxHeight - 8;
 
 // Portrait
@@ -180,12 +182,10 @@ function TurnPage() {
 		: 1;
 	
 	
-	draw_set_font_temp(fnt_dialogue, function() {		
-		stringHeight = string_height("M");
-		
+	draw_set_font_temp(fnt_dialogue, function() {				
 		// TODO: Put nameplates in a struct; name is required parameter; portrait struct is optional parameter
 		nameplateName = variable_struct_get(dialogueEntry, "name");
-		nameplateHeight = nameplateName != undefined ? stringHeight + nameplateYPadding * 2 : undefined;
+		nameplateHeight = nameplateName != undefined ? lineHeight + nameplateYPadding * 2 : undefined;
 		nameplateWidth = nameplateName != undefined ? string_width(nameplateName) + nameplateXPadding * 2 : undefined;
 		// TODO: Clean this up! This is a mess! Perhaps use some functions when this is extracted to its own nameplate struct...
 		nameplateX = portraitSide == PortraitSide.Right
@@ -213,7 +213,7 @@ function TurnPage() {
 			var effectivePortraitRightPadding = portraitSide == PortraitSide.Right
 				? portraitWidthAndPadding
 				: 0;
-			var lastTextLineYOffset = specsLength > 0 ? currentCharacterSpecs[specsLength - 1].yOffset + stringHeight : 0;
+			var lastTextLineYOffset = specsLength > 0 ? currentCharacterSpecs[specsLength - 1].yOffset + lineHeight : 0;
 			var height = textboxHeight - textboxPaddingY * 2 - lastTextLineYOffset;
 			var width = textboxWidth - textboxPaddingX * 2 - effectivePortraitLeftPadding - effectivePortraitRightPadding;
 			var x1 = textboxPositionX + textboxPaddingX + effectivePortraitLeftPadding;
@@ -229,7 +229,7 @@ function TurnPage() {
 				y1,
 				width,
 				height,
-				stringHeight);	
+				lineHeight);	
 		}
 	});	
 }

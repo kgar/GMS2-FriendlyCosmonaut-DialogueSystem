@@ -59,7 +59,7 @@ if (specsLength > 0) {
 				var valign = draw_get_valign(), halign = draw_get_halign();
 				draw_set_valign(fa_middle);
 				draw_set_halign(fa_middle);
-				draw_text_transformed_color(drawTextX + characterCenterOffset, drawTextY + stringHeight / 2, 
+				draw_text_transformed_color(drawTextX + characterCenterOffset, drawTextY + lineHeight / 2, 
 					spec.character, 1, 1, shift * 20, color, color, color, color, 1);
 				draw_set_valign(valign);
 				draw_set_halign(halign);
@@ -71,7 +71,7 @@ if (specsLength > 0) {
 				var valign = draw_get_valign(), halign = draw_get_halign();
 				draw_set_valign(fa_middle);
 				draw_set_halign(fa_middle);
-				draw_text_transformed_color(drawTextX + characterCenterOffset, drawTextY + stringHeight / 2, 
+				draw_text_transformed_color(drawTextX + characterCenterOffset, drawTextY + lineHeight / 2, 
 					spec.character, shift, shift, 0, color, color, color, color, 1);
 				draw_set_valign(valign);
 				draw_set_halign(halign);
