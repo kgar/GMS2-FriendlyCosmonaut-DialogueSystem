@@ -31,18 +31,15 @@ delayedAction = undefined;
 
 // Draw Settings
 lineHeight = undefined;
-draw_set_font_temp(fnt_dialogue, function() {
-	lineHeight = string_height("M");
-});
-guiWidth = display_get_gui_width();
-guiHeight = display_get_gui_height();
-textboxPaddingX = lineHeight * 0.5;
-textboxPaddingY = lineHeight * 0.3;
-textboxWidth = guiWidth - lineHeight * 0.5;
-textboxMaxLinesOfText = 4;
-textboxHeight = lineHeight * textboxMaxLinesOfText + textboxPaddingY * 2;
-textboxPositionX = (guiWidth - textboxWidth) / 2;
-textboxPositionY = guiHeight - textboxHeight - lineHeight * 0.3;
+guiWidth = undefined;
+guiHeight = undefined;
+textboxPaddingX = undefined;
+textboxPaddingY = undefined;
+textboxWidth = undefined;
+textboxMaxLinesOfText = undefined;
+textboxHeight = undefined;
+textboxPositionX = undefined;
+textboxPositionY = undefined;
 
 // Portrait
 portraitSpriteIdle = undefined;
@@ -51,7 +48,7 @@ portraitSpriteSpeaking = undefined;
 portraitX = undefined;
 portraitY = undefined;
 portraitWidth = undefined;
-portraitPaddingX = lineHeight * 0.5;
+portraitPaddingX = undefined;
 portraitWidthAndPadding = undefined;
 portraitSide = undefined;
 portraitXScale = 0;
@@ -63,8 +60,8 @@ nameplateX = undefined;
 nameplateY = undefined;
 nameplateWidth = undefined;
 nameplateHeight = undefined;
-nameplateXPadding = lineHeight * 0.25;
-nameplateYPadding = lineHeight * 0.15;
+nameplateXPadding = undefined;
+nameplateYPadding = undefined;
 nameplateXOffset = 0;
 nameplateYOffset = 0;
 
@@ -75,6 +72,24 @@ waveEffectFrequency = 6;
 function Init(_dialogue, _caller) {
 	dialogue = _dialogue;
 	caller = _caller;
+	
+	draw_set_font_temp(fnt_dialogue, function() {
+		lineHeight = string_height("M");
+	});
+	
+	guiWidth = display_get_gui_width();
+	guiHeight = display_get_gui_height();
+	textboxPaddingX = lineHeight * 0.5;
+	textboxPaddingY = lineHeight * 0.3;
+	textboxWidth = guiWidth - lineHeight * 0.5;
+	textboxMaxLinesOfText = 4;
+	textboxHeight = lineHeight * textboxMaxLinesOfText + textboxPaddingY * 2;
+	textboxPositionX = (guiWidth - textboxWidth) / 2;
+	textboxPositionY = guiHeight - textboxHeight - lineHeight * 0.3;
+	portraitPaddingX = lineHeight * 0.5;
+	nameplateXPadding = lineHeight * 0.25;
+	nameplateYPadding = lineHeight * 0.15;
+
 	TurnPage();
 	active = true;
 }

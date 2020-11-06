@@ -1,10 +1,6 @@
 ## To Do
-- Can I eliminate any more variables from the textbox object?
-- Move all initial calculations to the init() function.
-  - Anything nontrivial should be in init()
-- Character spec generation has gotten messy and voluminous. Move it its own script file and make it easier to read.
-  - It should also have a constructor so it's not a global function
 - Can more choice management be extracted to the choice driver?
+- Character spec generation has gotten messy and voluminous. Make it easier to read.
 - Consider beginning the Module/Demo repo for this first draft of the textbox module and moving the implementation there
 
 ## Research and Needs Work
