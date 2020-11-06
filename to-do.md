@@ -1,5 +1,10 @@
 ## To Do
+- Parameterize default font color
+- Standardize function names to match GMS2's style_lower_underscore()
 - Can more choice management be extracted to the choice driver?
+  - _step()
+  - chosen
+  - sound effects
 - Character spec generation has gotten messy and voluminous. Make it easier to read.
 - Consider beginning the Module/Demo repo for this first draft of the textbox module and moving the implementation there
 

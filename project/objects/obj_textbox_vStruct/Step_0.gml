@@ -1,8 +1,5 @@
 /// @description Handle User Input
 
-
-
-
 switch (dialogueEntry.type) {
 	case DialogueType.Normal:
 	

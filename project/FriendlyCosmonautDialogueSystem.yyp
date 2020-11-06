@@ -11,6 +11,7 @@
     {"id":{"name":"scr_dialogue_choice_driver","path":"scripts/scr_dialogue_choice_driver/scr_dialogue_choice_driver.yy",},"order":3,},
     {"id":{"name":"spr_portrait_other_narrator","path":"sprites/spr_portrait_other_narrator/spr_portrait_other_narrator.yy",},"order":14,},
     {"id":{"name":"create_dialogue_vStruct","path":"scripts/create_dialogue_vStruct/create_dialogue_vStruct.yy",},"order":0,},
+    {"id":{"name":"fnt_test","path":"fonts/fnt_test/fnt_test.yy",},"order":3,},
     {"id":{"name":"scr_CharacterSpecs","path":"scripts/scr_CharacterSpecs/scr_CharacterSpecs.yy",},"order":4,},
     {"id":{"name":"fnt_dialogue","path":"fonts/fnt_dialogue/fnt_dialogue.yy",},"order":1,},
     {"id":{"name":"spr_dialoguebox","path":"sprites/spr_dialoguebox/spr_dialoguebox.yy",},"order":1,},

@@ -4,8 +4,8 @@ function CharacterSpec() constructor {
 	xOffset = 0;
 	yOffset = 0;
 	effect = TextEffect.Normal;
-	color = c_white;
-	font = fnt_dialogue;
+	color = c_white; // TODO: Figure out how to eliminate this default value
+	font = undefined;
 	speed = 1;
 }
 
@@ -37,10 +37,12 @@ function range_map_create(struct, rangeArrayName, valueName) {
 }
 
 
-function character_specs_create(dialogueEntry, textAreaWidth, _caller) {
+function character_specs_create(dialogueEntry, textAreaWidth, _caller, _defaultFont) {
 	// Offsets and positioning setup
 	var currentXOffset = 0;
 	var currentYOffset = 0;
+	var originalFont = draw_get_font();
+	draw_set_font(_defaultFont);
 	var lineHeight = string_height("M");
 	var mostRecentSpace = -1;
 	var characterInsertCount = 0;
@@ -193,5 +195,7 @@ function character_specs_create(dialogueEntry, textAreaWidth, _caller) {
 	ds_map_destroy(fontMap);
 	ds_map_destroy(speedMap);
 		
+	draw_set_font(originalFont);
+	
 	return characterSpecs;
 }

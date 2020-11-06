@@ -5,6 +5,6 @@ function create_dialogue_vStruct(_dialogue) {
 
 	//Create the Textbox
 	var _textbox = instance_create_layer(1, 1, "Text", obj_textbox_vStruct);
-	_textbox.Init(_dialogue, object_index);
+	_textbox.Init(_dialogue, object_index, fnt_dialogue);
 	return _textbox;
 }

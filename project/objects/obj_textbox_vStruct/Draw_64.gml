@@ -9,7 +9,7 @@ draw_nine_panel_textbox(spr_nine_panel_textbox, textboxPositionX, textboxPositio
 #region Normal Dialogue
 
 // Draw text up to this point in specIndex
-draw_set_font(fnt_dialogue);
+draw_set_font(dialogueFont);
 var time = get_timer() / 1000000 * room_speed;
 var roundedspecIndex = floor(specIndex);
 var drawTextY = textboxPositionY + textboxPaddingY;
@@ -106,7 +106,7 @@ if (nameplateName != undefined) {
 	draw_nine_panel_textbox(spr_nine_panel_textbox, nameplateX, nameplateY, 
 		nameplateX + nameplateWidth, nameplateY + nameplateHeight, 0);
 	
-	draw_set_font_temp(fnt_dialogue, function() {
+	draw_set_font_temp(dialogueFont, function() {
 		draw_text_color(nameplateX + nameplateXPadding, nameplateY + nameplateYPadding, nameplateName, c_white, c_white, c_white, c_white, 1);
 	});
 }

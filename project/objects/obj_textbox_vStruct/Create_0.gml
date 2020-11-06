@@ -69,11 +69,12 @@ nameplateYOffset = 0;
 waveEffectAmplitude = 4;
 waveEffectFrequency = 6;
 
-function Init(_dialogue, _caller) {
+function Init(_dialogue, _caller, _dialogueFont) {
 	dialogue = _dialogue;
 	caller = _caller;
+	dialogueFont = coalesce(_dialogueFont, fnt_dialogue);
 	
-	draw_set_font_temp(fnt_dialogue, function() {
+	draw_set_font_temp(dialogueFont, function() {
 		lineHeight = string_height("M");
 	});
 	
@@ -197,7 +198,7 @@ function TurnPage() {
 		: 1;
 	
 	
-	draw_set_font_temp(fnt_dialogue, function() {				
+	draw_set_font_temp(dialogueFont, function() {				
 		// TODO: Put nameplates in a struct; name is required parameter; portrait struct is optional parameter
 		nameplateName = variable_struct_get(dialogueEntry, "name");
 		nameplateHeight = nameplateName != undefined ? lineHeight + nameplateYPadding * 2 : undefined;
@@ -214,7 +215,8 @@ function TurnPage() {
 			? character_specs_create(
 				dialogueEntry, 
 				textAreaWidth,
-				caller)
+				caller,
+				dialogueFont)
 			: [];
 		
 		specsLength = array_length(currentCharacterSpecs);
