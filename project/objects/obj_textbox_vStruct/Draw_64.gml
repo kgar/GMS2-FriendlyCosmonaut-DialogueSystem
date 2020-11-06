@@ -34,7 +34,7 @@ if (specsLength > 0) {
 				break;
 			case TextEffect.Wave:
 				var shiftOffset = (time + i);
-				var shift = dsin(shiftOffset * 6) * waveEffectAmplitude;
+				var shift = dsin(shiftOffset * waveEffectFrequency) * waveEffectAmplitude;
 				draw_text_color(drawTextX, drawTextY + shift, spec.character, color, color, color, color, 1);
 				break;
 			case TextEffect.ColorShift:
@@ -46,7 +46,7 @@ if (specsLength > 0) {
 			case TextEffect.WaveAndColorShift:
 				var colorShift = time * 8 + drawTextX;
 				var shiftOffset = (time + i);
-				var shift = dsin(shiftOffset * 6) * waveEffectAmplitude;
+				var shift = dsin(shiftOffset * waveEffectFrequency) * waveEffectAmplitude;
 				var colorShift = (time + i) * 10;
 				var color1 = make_color_hsv(colorShift % 256, 255, 255);
 				var color2 = make_color_hsv((colorShift + 34) % 256, 255, 255);
@@ -54,7 +54,7 @@ if (specsLength > 0) {
 				break;
 			case TextEffect.Spin:
 				var shiftOffset = (time + i);
-				var shift = dsin(shiftOffset * 6);
+				var shift = dsin(shiftOffset * waveEffectFrequency);
 				var characterCenterOffset = spec.width / 2;
 				var valign = draw_get_valign(), halign = draw_get_halign();
 				draw_set_valign(fa_middle);
@@ -66,7 +66,7 @@ if (specsLength > 0) {
 				break;
 			case TextEffect.Pulse:
 				var shiftOffset = time + i;
-				var shift = abs(dsin(shiftOffset * 6));
+				var shift = abs(dsin(shiftOffset * waveEffectFrequency));
 				var characterCenterOffset = spec.width / 2;
 				var valign = draw_get_valign(), halign = draw_get_halign();
 				draw_set_valign(fa_middle);
@@ -78,7 +78,7 @@ if (specsLength > 0) {
 				break;
 			case TextEffect.Flicker:
 				var shiftOffset = time + i;
-				var shift = dsin(shiftOffset * 6);
+				var shift = dsin(shiftOffset * waveEffectFrequency);
 				draw_text_color(drawTextX, drawTextY, spec.character, color, color, color, color, shift + random_range(-1, 1));
 				break;
 			case TextEffect.Normal:

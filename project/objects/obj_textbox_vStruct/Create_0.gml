@@ -51,7 +51,7 @@ portraitSpriteSpeaking = undefined;
 portraitX = undefined;
 portraitY = undefined;
 portraitWidth = undefined;
-portraitPaddingX = 20;
+portraitPaddingX = lineHeight * 0.5;
 portraitWidthAndPadding = undefined;
 portraitSide = undefined;
 portraitXScale = 0;
@@ -63,13 +63,14 @@ nameplateX = undefined;
 nameplateY = undefined;
 nameplateWidth = undefined;
 nameplateHeight = undefined;
-nameplateXPadding = 12;
-nameplateYPadding = 6;
+nameplateXPadding = lineHeight * 0.25;
+nameplateYPadding = lineHeight * 0.15;
 nameplateXOffset = 0;
 nameplateYOffset = 0;
 
 // Effect Settings
 waveEffectAmplitude = 4;
+waveEffectFrequency = 6;
 
 function Init(_dialogue, _caller) {
 	dialogue = _dialogue;
