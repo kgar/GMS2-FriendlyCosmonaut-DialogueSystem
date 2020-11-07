@@ -1,5 +1,4 @@
 ## To Do
-- Standardize function names to match GMS2's style_lower_underscore()
 - Can more choice management be extracted to the choice driver?
   - _step()
   - chosen
