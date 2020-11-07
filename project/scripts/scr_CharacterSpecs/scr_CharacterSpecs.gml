@@ -4,7 +4,7 @@ function CharacterSpec() constructor {
 	xOffset = 0;
 	yOffset = 0;
 	effect = TextEffect.Normal;
-	color = c_white; // TODO: Figure out how to eliminate this default value
+	color = undefined;
 	font = undefined;
 	speed = 1;
 }
@@ -37,11 +37,11 @@ function range_map_create(struct, rangeArrayName, valueName) {
 }
 
 
-function character_specs_create(dialogueEntry, textAreaWidth, _caller, _defaultFont) {
+function character_specs_create(dialogueEntry, textAreaWidth, _caller, _defaultFont, _textColor) {
 	// Offsets and positioning setup
 	var currentXOffset = 0;
 	var currentYOffset = 0;
-	var originalFont = draw_get_font();
+	var originalFont = _defaultFont;
 	draw_set_font(_defaultFont);
 	var lineHeight = string_height("M");
 	var mostRecentSpace = -1;
@@ -52,11 +52,11 @@ function character_specs_create(dialogueEntry, textAreaWidth, _caller, _defaultF
 	var effectsMap = range_map_create(dialogueEntry, "effects", "effect");
 
 	// Color setup
-	var currentColor = draw_get_color();
+	var currentColor = _textColor;
 	var colorMap = range_map_create(dialogueEntry, "textColors", "color");
 		
 	// Font setup
-	var currentFont = draw_get_font();
+	var currentFont = originalFont;
 	var fontMap = range_map_create(dialogueEntry, "textFont", "font");
 		
 	// Speed setup
@@ -77,6 +77,7 @@ function character_specs_create(dialogueEntry, textAreaWidth, _caller, _defaultF
 		
 	for (var i = 0; i < textLength + characterInsertCount; i++) {
 		var spec = new CharacterSpec();
+		spec.color = currentColor;
 		spec.character = string_char_at(currentText, i + 1);
 			
 		if (spec.character == " ") {

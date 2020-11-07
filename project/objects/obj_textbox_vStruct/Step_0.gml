@@ -5,16 +5,16 @@ switch (dialogueEntry.type) {
 	
 		if (!keyboard_check_pressed(interactKey)) return;
 	
-		if (IsFinishedTypeWriting()) {
-			TurnPage();
-		} else if (CanSkipToEndOfText()) {
-			SkipToEndOfText();
+		if (is_finished_type_writing()) {
+			turn_page();
+		} else if (can_skip_to_end_of_text()) {
+			skip_to_end_of_text();
 		}
 		break;
 	case DialogueType.Choice:
 		if (chosen) exit;
 		
-		var finishedTypeWriting = IsFinishedTypeWriting();
+		var finishedTypeWriting = is_finished_type_writing();
 		if (keyboard_check_pressed(interactKey)) {
 			
 			if (finishedTypeWriting && framesSinceTypeWritingCompleted < postTypeWriteDelayBeforeInteraction) {
@@ -24,10 +24,10 @@ switch (dialogueEntry.type) {
 				// Process input
 				chosen = true;
 				audio_play_sound(choiceSelectSound, choiceSoundPriority, false); 
-				delayedAction = ProcessChoice;
+				delayedAction = process_choice;
 				alarm[0] = 10;			
-			} else if (CanSkipToEndOfText()) {
-				SkipToEndOfText();
+			} else if (can_skip_to_end_of_text()) {
+				skip_to_end_of_text();
 			}
 			
 			exit;

@@ -30,6 +30,7 @@ choiceMoveDownKey = vk_down;
 delayedAction = undefined;
 
 // Draw Settings
+textColor = c_white;
 lineHeight = undefined;
 guiWidth = undefined;
 guiHeight = undefined;
@@ -69,7 +70,7 @@ nameplateYOffset = 0;
 waveEffectAmplitude = 4;
 waveEffectFrequency = 6;
 
-function Init(_dialogue, _caller, _dialogueFont) {
+function init(_dialogue, _caller, _dialogueFont) {
 	dialogue = _dialogue;
 	caller = _caller;
 	dialogueFont = coalesce(_dialogueFont, fnt_dialogue);
@@ -91,13 +92,13 @@ function Init(_dialogue, _caller, _dialogueFont) {
 	nameplateXPadding = lineHeight * 0.25;
 	nameplateYPadding = lineHeight * 0.15;
 
-	TurnPage();
+	turn_page();
 	active = true;
 }
 
 /// @description Turn the page
 /// @param index  optional field specifying the absolute index to change the page to.
-function TurnPage() {
+function turn_page() {
 	
 	var absoluteIndex = argument_count > 0 ? argument[0] : undefined;
 	
@@ -131,7 +132,7 @@ function TurnPage() {
 	dialogueEntry = dialogue[currentPage];
 	
 	if (variable_struct_exists(dialogueEntry, "showThisPage") && !dialogueEntry.showThisPage(caller)) {
-		TurnPage();
+		turn_page();
 		return;
 	}
 	
@@ -216,7 +217,8 @@ function TurnPage() {
 				dialogueEntry, 
 				textAreaWidth,
 				caller,
-				dialogueFont)
+				dialogueFont,
+				textColor)
 			: [];
 		
 		specsLength = array_length(currentCharacterSpecs);
@@ -251,7 +253,7 @@ function TurnPage() {
 	});	
 }
 
-function FindPageIndexByUniqueId(uniqueId) {
+function find_page_index_by_unique_id(uniqueId) {
 	var totalPages = array_length(dialogue);
 	for (var i = 0; i < totalPages; i++) {
 		var dialogueEntryToCheck = dialogue[i];
@@ -261,7 +263,7 @@ function FindPageIndexByUniqueId(uniqueId) {
 	return undefined;
 }
 
-function ProcessChoice() {
+function process_choice() {
 	// Get choice object based on chosen index
 	var choice = dialogueEntry.choices[choiceDriver.currentChoiceIndex];
 	
@@ -276,18 +278,18 @@ function ProcessChoice() {
 	if (jump != undefined) {
 		switch(jump.jumpType) {
 			case DialogueJumpType.AbsoluteIndex:
-				TurnPage(jump.value);
+				turn_page(jump.value);
 				break;
 			case DialogueJumpType.RelativeIndex:
 				var absoluteIndex = currentPage + jump.value;
-				TurnPage(absoluteIndex);
+				turn_page(absoluteIndex);
 				break;
 			case DialogueJumpType.UniqueId:
-				var pageSearchResult = FindPageIndexByUniqueId(jump.value);
+				var pageSearchResult = find_page_index_by_unique_id(jump.value);
 				if (pageSearchResult == undefined) {
 					throw "Attempt to jump dialogue by unique ID failed. Dialogue does not contain the unique ID " + jump.value;
 				}
-				TurnPage(pageSearchResult);
+				turn_page(pageSearchResult);
 				break;
 			case DialogueJumpType.ExitDialogue:
 				instance_destroy();
@@ -295,18 +297,18 @@ function ProcessChoice() {
 		}
 	}
 	else {
-		TurnPage();
+		turn_page();
 	}
 }
 
-function IsFinishedTypeWriting() { 
+function is_finished_type_writing() { 
 	return specIndex >= specsLength - 1;
 }
 
-function CanSkipToEndOfText() {
+function can_skip_to_end_of_text() {
 	return specIndex > 2 || specsLength <= 2;
 }
 
-function SkipToEndOfText() {
+function skip_to_end_of_text() {
 	specIndex = specsLength - 1;
 }

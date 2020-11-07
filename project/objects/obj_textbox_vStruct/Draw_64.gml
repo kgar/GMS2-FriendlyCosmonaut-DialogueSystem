@@ -95,7 +95,7 @@ if (specsLength > 0) {
 
 
 #region Dialogue Choice
-if (dialogueEntry.type == DialogueType.Choice && IsFinishedTypeWriting()) {
+if (dialogueEntry.type == DialogueType.Choice && is_finished_type_writing()) {
 	choiceDriver._draw();	
 }
 #endregion
@@ -107,7 +107,7 @@ if (nameplateName != undefined) {
 		nameplateX + nameplateWidth, nameplateY + nameplateHeight, 0);
 	
 	draw_set_font_temp(dialogueFont, function() {
-		draw_text_color(nameplateX + nameplateXPadding, nameplateY + nameplateYPadding, nameplateName, c_white, c_white, c_white, c_white, 1);
+		draw_text_color(nameplateX + nameplateXPadding, nameplateY + nameplateYPadding, nameplateName, textColor, textColor, textColor, textColor, 1);
 	});
 }
 
