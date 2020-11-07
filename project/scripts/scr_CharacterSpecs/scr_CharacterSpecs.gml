@@ -189,8 +189,6 @@ function character_specs_create(dialogueEntry, textAreaWidth, _caller, _defaultF
 		}
 	}
 		
-	show_debug_message(string(characterSpecs));
-		
 	ds_map_destroy(effectsMap);
 	ds_map_destroy(colorMap);
 	ds_map_destroy(fontMap);

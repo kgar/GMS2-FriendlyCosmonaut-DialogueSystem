@@ -133,7 +133,7 @@ function DialogueChoiceDriver(_choices, _x1, _y1, _width, _height, _lineHeight) 
 		refresh_scroll_indicators();
 	}
 	
-	function _draw() {
+	function _draw_gui() {
 		if (!surface_exists(choiceSurface)) {
 			choiceSurface = surface_create(choiceSurfaceWidth, choiceSurfaceHeight);
 		}

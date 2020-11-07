@@ -96,7 +96,7 @@ if (specsLength > 0) {
 
 #region Dialogue Choice
 if (dialogueEntry.type == DialogueType.Choice && is_finished_type_writing()) {
-	choiceDriver._draw();	
+	choiceDriver._draw_gui();	
 }
 #endregion
 
